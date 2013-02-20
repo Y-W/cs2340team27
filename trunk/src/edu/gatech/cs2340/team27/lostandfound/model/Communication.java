@@ -82,15 +82,15 @@ public class Communication {
 	 * @return the status of login attempt
 	 */
 	public LogStatus loginAttempt(String username, String password){
-		MessageDigest md=null;
-		try {
-			md = MessageDigest.getInstance(digestMethod);
-		} catch (NoSuchAlgorithmException e) {
-			//impossible to reach here
-		}
-		md.reset();
-		md.digest(password.getBytes());
-		String digest=new String(md.digest());
+//		MessageDigest md=null;
+//		try {
+//			md = MessageDigest.getInstance(digestMethod);
+//		} catch (NoSuchAlgorithmException e) {
+//			//impossible to reach here
+//		}
+//		md.reset();
+//		md.digest(password.getBytes());
+//		String digest=new String(md.digest());
 		String query="USER/"+username.replace('/', '_');
 		if(data.get(query)==null){
 			return LogStatus.FAILURE;
@@ -98,14 +98,14 @@ public class Communication {
 		if(Integer.parseInt(data.get(query+"/COUNTER"))>lockTime){
 			return LogStatus.LOCKED;
 		}
-		if(data.get(query+"/PASSWORD").equals(digest)){
+		if(data.get(query+"/PASSWORD").equals(password)){
 			currentUsername=username;
 			currentPassword=password;
 			return LogStatus.SUCCESS;
 		}
 		else{
 			data.put(query+"/COUNTER", 
-					Integer.valueOf(Integer.getInteger(data.get(query+"/COUNTER")).intValue()+1).toString()
+					Integer.valueOf(Integer.parseInt(data.get(query+"/COUNTER"))+1).toString()
 					);
 			return LogStatus.FAILURE;
 		}
@@ -124,16 +124,16 @@ public class Communication {
 		if(data.get(query)==null){
 			data.put(query,Long.toString((System.currentTimeMillis())));
 			data.put(query+"/COUNTER", "0");
-			MessageDigest md=null;
-			try {
-				md = MessageDigest.getInstance(digestMethod);
-			} catch (NoSuchAlgorithmException e) {
-				//impossible to reach here
-			}
-			md.reset();
-			md.digest(password.getBytes());
-			String digest=new String(md.digest());
-			data.put(query+"/PASSWORD", digest);
+//			MessageDigest md=null;
+//			try {
+//				md = MessageDigest.getInstance(digestMethod);
+//			} catch (NoSuchAlgorithmException e) {
+//				//impossible to reach here
+//			}
+//			md.reset();
+//			md.digest(password.getBytes());
+//			String digest=new String(md.digest());
+			data.put(query+"/PASSWORD", password);
 			return true;
 		}
 		return false;
