@@ -5,6 +5,8 @@ import edu.gatech.cs2340.team27.lostandfound.R;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,15 +41,41 @@ public class Login extends Activity {
 		String message;
 		if(status == LogStatus.SUCCESS) {
 			message = "Login Successful.";
+			intent.putExtra(STATUS_MESSAGE, message);
+			startActivity(intent);
 		}
-		else if(status == LogStatus.FAILURE) {
-			message = "Login Failed.";
+		
+		else if (status==LogStatus.FAILURE) {
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Wrong Password.")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            clear();
+		        }
+		     })
+		     .show();
+			return;
 		}
-		else {
-			message = "Account Locked";
+		else{
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Account Locked!")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            clear();
+		        }
+		     })
+		     .show();
+			return;
 		}
-		intent.putExtra(STATUS_MESSAGE, message);
-		startActivity(intent);
+		
+	}
+	public void clear(){
+		EditText username = (EditText) findViewById(R.id.editText1);
+		EditText password = (EditText) findViewById(R.id.editText2);
+		password.setText("");
+		username.setText("");
 	}
 	
 	public void registerAttempt(View view) {
