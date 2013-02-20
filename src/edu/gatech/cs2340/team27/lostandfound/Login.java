@@ -26,15 +26,23 @@ public class Login extends Activity {
 	}
 	
 	public void loginAttempt(View view) {
-		//Intent intent = new Intent(this, DisplayMessageActivity.class);
+		Intent intent = new Intent(this, LoginStatus.class);
 		EditText username = (EditText) findViewById(R.id.editText1);
 		EditText password = (EditText) findViewById(R.id.editText2);
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
 		LoginStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.loginAttempt(userText, psText);
-		if(status==LoginStatus.SUCCESS) {
-			
+		String message;
+		if(status == LoginStatus.SUCCESS) {
+			message = "Login Successful.";
 		}
+		else if(status == LoginStatus.FAILURE) {
+			message = "Login Failed.";
+		}
+		else {
+			message = "Account Locked'";
+		}
+		
 	}
 	
 	public void registerAttempt() {
