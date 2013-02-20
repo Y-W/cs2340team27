@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
-import com.example.myfirstapp.DisplayMessageActivity;
-import com.example.myfirstapp.R;
+import edu.gatech.cs2340.team27.lostandfound.R;
 
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LoginStatus;
 import android.app.Activity;
