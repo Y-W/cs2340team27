@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import com.example.myfirstapp.DisplayMessageActivity;
+import com.example.myfirstapp.R;
+
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LoginStatus;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +36,11 @@ public class Login extends Activity {
 		if(status==LoginStatus.SUCCESS) {
 			
 		}
+	}
+	
+	public void registerAttempt() {
+		Intent intent = new Intent(this, Register.class);
+	    startActivity(intent);
 	}
 
 }
