@@ -55,9 +55,7 @@ public class Communication {
 		} catch (Exception e) {
 			data=new HashMap<String, String>();
 		}
-		data.put("USER/test", "0");
-		data.put("USER/test/PASSWORD", "23");
-		data.put("USER/test/COUNTER", "0");
+		createAccount("test","test",false);
 	}
 	protected void finalize() throws IOException{
 		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
@@ -97,7 +95,7 @@ public class Communication {
 		if(data.get(query)==null){
 			return LogStatus.FAILURE;
 		}
-		if(Integer.getInteger(data.get(query+"/COUNTER"))>lockTime){
+		if(Integer.parseInt(data.get(query+"/COUNTER"))>lockTime){
 			return LogStatus.LOCKED;
 		}
 		if(data.get(query+"/PASSWORD").equals(digest)){
