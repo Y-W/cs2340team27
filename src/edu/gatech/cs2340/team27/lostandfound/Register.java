@@ -2,11 +2,20 @@ package edu.gatech.cs2340.team27.lostandfound;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 import edu.gatech.cs2340.team27.lostandfound.R;
 
 public class Register extends Activity {
 
+	private EditText username = (EditText) findViewById(R.id.editText1);
+	private EditText password = (EditText) findViewById(R.id.editText2);
+	private EditText pswdConfirm = (EditText) findViewById(R.id.editText3);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,5 +28,36 @@ public class Register extends Activity {
 		getMenuInflater().inflate(R.menu.register, menu);
 		return true;
 	}
+	
+	public void goBack(View view) {
+		Intent intent = new Intent(this, Login.class);
+		startActivity(intent);
+	}
+	
+	public void clear(){
+		password.setText("");
+		pswdConfirm.setText("");
+	}
 
+	public void registerAccount(View view){
+		String userText = username.getText().toString();
+		String psText = password.getText().toString();
+		String pConfirm = pswdConfirm.getText().toString();
+		if (!psText.equals(pConfirm)) {
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Confirm password is different from your password")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            clear();
+		        }
+		     })
+		     .show();
+			return;
+		}
+		boolean registerStatus = edu.gatech.cs2340.team27.lostandfound.model.
+				Communication.getInstance().createAccount(userText, psText, false);
+		goBack(view);
+	}
+	
 }
