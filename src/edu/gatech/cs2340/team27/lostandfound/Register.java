@@ -60,7 +60,8 @@ public class Register extends Activity {
 		}
 		boolean registerStatus = edu.gatech.cs2340.team27.lostandfound.model.
 				Communication.getInstance().createAccount(userText, psText, false);
-		goBack(view);
+		if (registerStatus)
+			goBack(view);
 	}
 	
 }
