@@ -38,6 +38,8 @@ public class Communication {
 	}
 	
 	private HashMap<String, String> data;
+	private String currentUsername;
+	private String currentPassword;
 	private static final String filename="Data";
 	private static final String digestMethod="SHA-1";
 	private static final int lockTime=3;
@@ -96,6 +98,8 @@ public class Communication {
 			return LoginStatus.LOCKED;
 		}
 		if(data.get(query+"/PASSWORD").equals(digest)){
+			currentUsername=username;
+			currentPassword=password;
 			return LoginStatus.SUCCESS;
 		}
 		else{
