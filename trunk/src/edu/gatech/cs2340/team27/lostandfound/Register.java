@@ -12,14 +12,17 @@ import edu.gatech.cs2340.team27.lostandfound.R;
 
 public class Register extends Activity {
 
-	private EditText username = (EditText) findViewById(R.id.editText1);
-	private EditText password = (EditText) findViewById(R.id.editText2);
-	private EditText pswdConfirm = (EditText) findViewById(R.id.editText3);
+	private EditText username;
+	private EditText password;
+	private EditText pswdConfirm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		username = (EditText) findViewById(R.id.editText1);
+		password = (EditText) findViewById(R.id.editText2);
+		pswdConfirm = (EditText) findViewById(R.id.editText3);
 	}
 
 	@Override
