@@ -2,7 +2,7 @@ package edu.gatech.cs2340.team27.lostandfound;
 
 import edu.gatech.cs2340.team27.lostandfound.R;
 
-import edu.gatech.cs2340.team27.lostandfound.model.Communication.LoginStatus;
+import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,12 +33,12 @@ public class Login extends Activity {
 		EditText password = (EditText) findViewById(R.id.editText2);
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
-		LoginStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
+		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
 		String message;
-		if(true) {
+		if(status == LogStatus.SUCCESS) {
 			message = "Login Successful.";
 		}
-		else if(status == LoginStatus.FAILURE) {
+		else if(status == LogStatus.FAILURE) {
 			message = "Login Failed.";
 		}
 		else {
