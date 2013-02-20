@@ -55,6 +55,9 @@ public class Communication {
 		} catch (Exception e) {
 			data=new HashMap<String, String>();
 		}
+		data.put("USER/test", "0");
+		data.put("USER/test/PASSWORD", "23");
+		data.put("USER/test/COUNER", "0");
 	}
 	protected void finalize() throws IOException{
 		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
