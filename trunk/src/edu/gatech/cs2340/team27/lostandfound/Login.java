@@ -48,7 +48,7 @@ public class Login extends Activity {
 		startActivity(intent);
 	}
 	
-	public void registerAttempt() {
+	public void registerAttempt(View view) {
 		Intent intent = new Intent(this, Register.class);
 	    startActivity(intent);
 	}
