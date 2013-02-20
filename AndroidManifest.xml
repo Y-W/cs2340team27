@@ -33,6 +33,9 @@
          <activity
             android:name="edu.gatech.cs2340.team27.lostandfound.Register"
             android:label="@string/title_activity_register" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gatech.cs2340.team27.lostandfound.Register" />
         </activity>
     </application>
 
