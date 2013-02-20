@@ -95,12 +95,13 @@ public class Communication {
 		if(data.get(query)==null){
 			return LogStatus.FAILURE;
 		}
-		if(Integer.parseInt(data.get(query+"/COUNTER"))>lockTime){
+		if(Integer.parseInt(data.get(query+"/COUNTER"))>=lockTime){
 			return LogStatus.LOCKED;
 		}
 		if(data.get(query+"/PASSWORD").equals(password)){
 			currentUsername=username;
 			currentPassword=password;
+			data.put(query+"/COUNTER", "0");
 			return LogStatus.SUCCESS;
 		}
 		else{
