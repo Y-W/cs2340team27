@@ -67,7 +67,7 @@ public class Communication {
 	/*
 	 * Status of login attempt.
 	 */
-	public enum LoginStatus{
+	public enum LogStatus{
 		SUCCESS,
 		LOCKED,
 		FAILURE;
@@ -80,7 +80,7 @@ public class Communication {
 	 * @param password intended password
 	 * @return the status of login attempt
 	 */
-	public LoginStatus loginAttempt(String username, String password){
+	public LogStatus loginAttempt(String username, String password){
 		MessageDigest md=null;
 		try {
 			md = MessageDigest.getInstance(digestMethod);
@@ -92,21 +92,21 @@ public class Communication {
 		String digest=new String(md.digest());
 		String query="USER/"+username.replace('/', '_');
 		if(data.get(query)==null){
-			return LoginStatus.FAILURE;
+			return LogStatus.FAILURE;
 		}
 		if(Integer.getInteger(data.get(query+"/COUNTER"))>lockTime){
-			return LoginStatus.LOCKED;
+			return LogStatus.LOCKED;
 		}
 		if(data.get(query+"/PASSWORD").equals(digest)){
 			currentUsername=username;
 			currentPassword=password;
-			return LoginStatus.SUCCESS;
+			return LogStatus.SUCCESS;
 		}
 		else{
 			data.put(query+"/COUNTER", 
 					Integer.valueOf(Integer.getInteger(data.get(query+"/COUNTER")).intValue()+1).toString()
 					);
-			return LoginStatus.FAILURE;
+			return LogStatus.FAILURE;
 		}
 	}
 	
