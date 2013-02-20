@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -102,12 +103,32 @@ public class Communication {
 			currentUsername=username;
 			currentPassword=password;
 			data.put(query+"/COUNTER", "0");
+			try {
+				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+				ObjectOutputStream oOut=new ObjectOutputStream(out);
+				oOut.writeObject(data);
+				oOut.close();
+				out.close();
+			}
+			catch(Exception e){
+
+			}
 			return LogStatus.SUCCESS;
 		}
 		else{
 			data.put(query+"/COUNTER", 
 					Integer.valueOf(Integer.parseInt(data.get(query+"/COUNTER"))+1).toString()
 					);
+			try {
+				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+				ObjectOutputStream oOut=new ObjectOutputStream(out);
+				oOut.writeObject(data);
+				oOut.close();
+				out.close();
+			}
+			catch(Exception e){
+
+			}
 			return LogStatus.FAILURE;
 		}
 	}
@@ -135,6 +156,18 @@ public class Communication {
 //			md.digest(password.getBytes());
 //			String digest=new String(md.digest());
 			data.put(query+"/PASSWORD", password);
+			
+			FileOutputStream out;
+			try {
+				out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+				ObjectOutputStream oOut=new ObjectOutputStream(out);
+				oOut.writeObject(data);
+				oOut.close();
+				out.close();
+			}
+			catch(Exception e){
+
+			}
 			return true;
 		}
 		return false;
