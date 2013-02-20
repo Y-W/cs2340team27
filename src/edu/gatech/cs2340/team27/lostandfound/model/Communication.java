@@ -10,7 +10,7 @@ public class Communication {
 	private static Communication onlyInstance;
 
 	/*
-	 * returns the only instance of Communication. If there's no instance ever created, then create one.
+	 * Returns the only instance of Communication. If there's no instance ever created, then create one.
 	 * 
 	 * @return the only instance of Communication
 	 */
