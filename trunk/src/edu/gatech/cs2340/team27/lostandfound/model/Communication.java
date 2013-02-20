@@ -1,9 +1,15 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
-import org.apache.http.client.*;
-import org.apache.http.impl.client.*;
+import android.content.Context;
 
 /*
  * Handles communication
@@ -13,6 +19,7 @@ import org.apache.http.impl.client.*;
  */
 public class Communication {
 	private static Communication onlyInstance;
+	private static Context appContext;
 
 	/*
 	 * Returns the only instance of Communication. If there's no instance ever created, then create one.
@@ -26,15 +33,35 @@ public class Communication {
 		return onlyInstance;
 	}
 	
+	public static void setAppContext(Context appContext){
+		Communication.appContext=appContext;
+	}
+	
 	private HashMap<String, String> data;
+	private static final String filename="Data";
+	private static final String digestMethod="SHA-1";
+	private static final int lockTime=3;
 	
+	@SuppressWarnings("unchecked")
 	protected Communication(){
-		
+		try {
+			FileInputStream in= appContext.openFileInput(filename);
+			ObjectInputStream oIn=new ObjectInputStream(in);
+			oIn.close();
+			in.close();
+			data=(HashMap<String, String>) oIn.readObject();
+		} catch (Exception e) {
+			data=new HashMap<String, String>();
+		}
 	}
-	protected void finalize(){
-		
+	protected void finalize() throws IOException{
+		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+		ObjectOutputStream oOut=new ObjectOutputStream(out);
+		oOut.writeObject(data);
+		oOut.close();
+		out.close();
 	}
-	
+
 	/*
 	 * Status of login attempt.
 	 */
@@ -51,8 +78,32 @@ public class Communication {
 	 * @param password intended password
 	 * @return the status of login attempt
 	 */
-	public static LoginStatus loginAttempt(String username, String password){
-		return LoginStatus.SUCCESS;
+	public LoginStatus loginAttempt(String username, String password){
+		MessageDigest md=null;
+		try {
+			md = MessageDigest.getInstance(digestMethod);
+		} catch (NoSuchAlgorithmException e) {
+			//impossible to reach here
+		}
+		md.reset();
+		md.digest(password.getBytes());
+		String digest=new String(md.digest());
+		String query="USER/"+username.replace('/', '_');
+		if(data.get(query)==null){
+			return LoginStatus.FAILURE;
+		}
+		if(Integer.getInteger(data.get(query+"/COUNTER"))>lockTime){
+			return LoginStatus.LOCKED;
+		}
+		if(data.get(query+"/PASSWORD").equals(digest)){
+			return LoginStatus.SUCCESS;
+		}
+		else{
+			data.put(query+"/COUNTER", 
+					Integer.valueOf(Integer.getInteger(data.get(query+"/COUNTER")).intValue()+1).toString()
+					);
+			return LoginStatus.FAILURE;
+		}
 	}
 	
 	/*
@@ -64,6 +115,22 @@ public class Communication {
 	 * @return	true if success, false otherwise
 	 */
 	public boolean createAccount(String username, String password, boolean priviliged){
+		String query="USER/"+username.replace('/', '_');
+		if(data.get(query)==null){
+			data.put(query,Long.toString((System.currentTimeMillis())));
+			data.put(query+"/COUNTER", "0");
+			MessageDigest md=null;
+			try {
+				md = MessageDigest.getInstance(digestMethod);
+			} catch (NoSuchAlgorithmException e) {
+				//impossible to reach here
+			}
+			md.reset();
+			md.digest(password.getBytes());
+			String digest=new String(md.digest());
+			data.put(query+"/PASSWORD", digest);
+			return true;
+		}
 		return false;
 	}
 }
