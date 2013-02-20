@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 public class Login extends Activity {
 
+	public final static String STATUS_MESSAGE = "LOGIN_STATUS_MESSAGE";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class Login extends Activity {
 		String psText = password.getText().toString();
 		LoginStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.loginAttempt(userText, psText);
 		String message;
-		if(status == LoginStatus.SUCCESS) {
+		if(true) {
 			message = "Login Successful.";
 		}
 		else if(status == LoginStatus.FAILURE) {
@@ -42,12 +44,13 @@ public class Login extends Activity {
 		else {
 			message = "Account Locked'";
 		}
-		
+		intent.putExtra(STATUS_MESSAGE, message);
+		startActivity(intent);
 	}
 	
-	public void registerAttempt() {
+	/*public void registerAttempt() {
 		Intent intent = new Intent(this, Register.class);
 	    startActivity(intent);
-	}
+	}*/
 
 }

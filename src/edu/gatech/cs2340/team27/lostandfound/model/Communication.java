@@ -52,7 +52,7 @@ public class Communication {
 	 * @return the status of login attempt
 	 */
 	public static LoginStatus loginAttempt(String username, String password){
-		return null;
+		return LoginStatus.SUCCESS;
 	}
 	
 	/*
