@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class LoginStatus extends Activity {
@@ -54,4 +55,8 @@ public class LoginStatus extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void goBackAttempt(View view){
+		Intent intent = new Intent(this, Login.class);
+	    startActivity(intent);
+	}
 }
