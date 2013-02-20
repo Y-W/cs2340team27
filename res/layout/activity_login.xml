@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
-        android:text="@string/login" />
+        android:text="@string/login" 
+        android:onClick="loginAttempt"/>
 
 </RelativeLayout>
