@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class Login extends Activity {
 
-	public final static String STATUS_MESSAGE = "LOGIN_STATUS_MESSAGE";
+	public final static String STATUS_MESSAGE = "edu.gatech.cs2340.team27.lostandfound.MESSAGE";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,9 @@ public class Login extends Activity {
 		startActivity(intent);
 	}
 	
-	/*public void registerAttempt() {
+	public void registerAttempt() {
 		Intent intent = new Intent(this, Register.class);
 	    startActivity(intent);
-	}*/
+	}
 
 }
