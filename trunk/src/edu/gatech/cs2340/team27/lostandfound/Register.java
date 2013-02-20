@@ -3,6 +3,7 @@ package edu.gatech.cs2340.team27.lostandfound;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import edu.gatech.cs2340.team27.lostandfound.R;
 
 public class Register extends Activity {
 
