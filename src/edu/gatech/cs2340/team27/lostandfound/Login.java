@@ -33,7 +33,7 @@ public class Login extends Activity {
 		EditText password = (EditText) findViewById(R.id.editText2);
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
-		LoginStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.loginAttempt(userText, psText);
+		LoginStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
 		String message;
 		if(true) {
 			message = "Login Successful.";
