@@ -2,6 +2,7 @@ package edu.gatech.cs2340.team27.lostandfound;
 
 import edu.gatech.cs2340.team27.lostandfound.R;
 
+import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ public class Login extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		Communication.setAppContext(this.getApplicationContext());
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public class Login extends Activity {
 			message = "Login Failed.";
 		}
 		else {
-			message = "Account Locked'";
+			message = "Account Locked";
 		}
 		intent.putExtra(STATUS_MESSAGE, message);
 		startActivity(intent);
