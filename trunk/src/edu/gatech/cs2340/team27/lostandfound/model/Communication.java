@@ -51,7 +51,7 @@ public class Communication {
 	 * @param password intended password
 	 * @return the status of login attempt
 	 */
-	public LoginStatus loginAttempt(String username, String password){
+	public static LoginStatus loginAttempt(String username, String password){
 		return null;
 	}
 	
