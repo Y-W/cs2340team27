@@ -30,7 +30,13 @@ public class Login extends Activity {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
-	
+	/**
+	 * get username and password, and see if the password is correct
+	 * if it is correct, redirects to home page
+	 * if the password is incorrect, pop up wrong message
+	 * if the password is incorrect for three times in a row, lock the account
+	 * @param view
+	 */
 	public void loginAttempt(View view) {
 		Intent intent = new Intent(this, LoginStatus.class);
 		EditText username = (EditText) findViewById(R.id.editText1);
@@ -51,7 +57,7 @@ public class Login extends Activity {
 		    .setMessage("Wrong Password.")
 		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
-		            clear();
+		            passwordclear();
 		        }
 		     })
 		     .show();
@@ -63,7 +69,8 @@ public class Login extends Activity {
 		    .setMessage("Account Locked!")
 		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
-		            clear();
+		            usernameclear();
+		            passwordclear();
 		        }
 		     })
 		     .show();
@@ -71,13 +78,25 @@ public class Login extends Activity {
 		}
 		
 	}
-	public void clear(){
+	/**
+	 * clear usename
+	 */
+	public void usernameclear(){
 		EditText username = (EditText) findViewById(R.id.editText1);
-		EditText password = (EditText) findViewById(R.id.editText2);
-		password.setText("");
 		username.setText("");
 	}
+	/**
+	 * clear password
+	 */
+	public void passwordclear(){
+		EditText password = (EditText) findViewById(R.id.editText2);
+		password.setText("");
+	}
 	
+	/**
+	 * redirects to register page
+	 * @param view
+	 */
 	public void registerAttempt(View view) {
 		Intent intent = new Intent(this, Register.class);
 	    startActivity(intent);
