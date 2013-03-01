@@ -9,12 +9,11 @@
     <string name="login">Login</string>
     <string name="title_activity_register">Register</string>
     <string name="email_address">Email Address</string>
-
-
     <string name="register">Register</string>
     <string name="title_activity_login_status">LoginStatus</string>
     <string name="confirmpw">Confirm Password</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_home_page">HomePage</string>
 
 </resources>
