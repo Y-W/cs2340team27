@@ -14,6 +14,11 @@
     <string name="confirmpw">Confirm Password</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="founder">I Found Something</string>
+    <string name="loser">I Lost Something</string>
+    <string name="lostinfo">Lost Item Info</string>
+    <string name="foundinfo">Found Item Info</string>
+    <string name="logout">Log Out</string>
     <string name="title_activity_home_page">HomePage</string>
 
 </resources>
