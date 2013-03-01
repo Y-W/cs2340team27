@@ -18,6 +18,9 @@ public class Login extends Activity {
 	public final static String STATUS_MESSAGE = "edu.gatech.cs2340.team27.lostandfound.MESSAGE";
 	
 	@Override
+	/**
+	 * build in method
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
@@ -25,6 +28,9 @@ public class Login extends Activity {
 	}
 
 	@Override
+	/**
+	 * build in method
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
