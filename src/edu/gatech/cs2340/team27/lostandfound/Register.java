@@ -17,6 +17,9 @@ public class Register extends Activity {
 	private EditText pswdConfirm;
 	
 	@Override
+	/**
+	 * build in method
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
@@ -26,22 +29,37 @@ public class Register extends Activity {
 	}
 
 	@Override
+	/**
+	 * build in method
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.register, menu);
 		return true;
 	}
-	
+	/**
+	 * go back to login page
+	 * @param view
+	 */
 	public void goBack(View view) {
 		Intent intent = new Intent(this, Login.class);
 		startActivity(intent);
 	}
 	
+	/**
+	 * clear password and confirm textfields
+	 */
 	public void clear(){
 		password.setText("");
 		pswdConfirm.setText("");
 	}
-
+	/**
+	 * get username, password and confirmpassword
+	 * if password and confirmpassword doesnt match
+	 * pop up wrong message
+	 * otherwise create a new account
+	 * @param view
+	 */
 	public void registerAccount(View view){
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
