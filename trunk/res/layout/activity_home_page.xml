@@ -15,7 +15,8 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="30dp"
-        android:text="@string/founder" />
+        android:text="@string/founder"
+    	android:onClick="founderAttempt"/>
 
     <Button
         android:id="@+id/button3"
@@ -24,7 +25,8 @@
         android:layout_alignLeft="@+id/button2"
         android:layout_below="@+id/button2"
         android:layout_marginTop="30dp"
-        android:text="@string/lostinfo" />
+        android:text="@string/lostinfo"
+   		android:onClick="lostinfoAttempt"/>
 
     <Button
         android:id="@+id/button4"
@@ -33,7 +35,8 @@
         android:layout_alignLeft="@+id/button3"
         android:layout_below="@+id/button3"
         android:layout_marginTop="30dp"
-        android:text="@string/foundinfo" />
+        android:text="@string/foundinfo"
+        android:onClick="foundinfoAttempt"/>
 
     <Button
         android:id="@+id/button5"
@@ -42,7 +45,8 @@
         android:layout_alignLeft="@+id/button4"
         android:layout_below="@+id/button4"
         android:layout_marginTop="29dp"
-        android:text="@string/logout" />
+        android:text="@string/logout" 
+        android:onClick="logoutAttempt"/>
 
     <Button
         android:id="@+id/button1"
@@ -51,6 +55,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
-        android:text="@string/loser" />
+        android:text="@string/loser"
+        android:onClick="loserAttempt"/> />
 
 </RelativeLayout>
