@@ -25,5 +25,7 @@
     <string name="itemName">Item Name</string>
     <string name="locatioin">Location</string>
     <string name="discription">Discription</string>
+    <string name="realname">Real Name</string>
+    <string name="phone">Phone Number</string>
 
 </resources>
