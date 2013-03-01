@@ -2,7 +2,9 @@ package edu.gatech.cs2340.team27.lostandfound;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class LostItemInput extends Activity {
 
@@ -18,5 +20,18 @@ public class LostItemInput extends Activity {
 		getMenuInflater().inflate(R.menu.lost_item_input, menu);
 		return true;
 	}
-
+	/**
+	 * Calls when click confirm to submit the lost item info
+	 * @param view
+	 */
+	public void confirmLostItemInfo(View view){
+		//TODO - addUserInfo
+		Intent intent = new Intent(this,HomePage.class);
+		startActivity(intent);
+	}
+	
+	public void cancelLostItemInfo(View view){
+		Intent intent = new Intent(this,HomePage.class);
+		startActivity(intent);
+	}
 }
