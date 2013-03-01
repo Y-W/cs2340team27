@@ -1,9 +1,5 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
-import edu.gatech.cs2340.team27.lostandfound.R;
-
-import edu.gatech.cs2340.team27.lostandfound.model.Communication;
-import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import edu.gatech.cs2340.team27.lostandfound.model.Communication;
+import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 
 public class Login extends Activity {
 
