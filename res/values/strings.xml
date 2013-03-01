@@ -20,5 +20,7 @@
     <string name="foundinfo">Found Item Info</string>
     <string name="logout">Log Out</string>
     <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_lost_item_input">LostItemInput</string>
+    <string name="lostItemInfo">Lost Item Info</string>
 
 </resources>
