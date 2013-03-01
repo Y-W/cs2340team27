@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 
-/*
+/**
  * Handles communication
  * 
  * @author Yijie Wang
@@ -22,7 +22,7 @@ public class Communication {
 	private static Communication onlyInstance;
 	private static Context appContext;
 
-	/*
+	/**
 	 * Returns the only instance of Communication. If there's no instance ever created, then create one.
 	 * 
 	 * @return the only instance of Communication
@@ -33,7 +33,10 @@ public class Communication {
 		}
 		return onlyInstance;
 	}
-	
+	/**
+	 * set the AppContext to be used
+	 * @param appContext the AppContext to be used
+	 */
 	public static void setAppContext(Context appContext){
 		Communication.appContext=appContext;
 	}
@@ -45,6 +48,9 @@ public class Communication {
 	private static final String digestMethod="SHA-1";
 	private static final int lockTime=3;
 	
+	/**
+	 * default Constructor of Communication
+	 */
 	@SuppressWarnings("unchecked")
 	protected Communication(){
 		try {
@@ -55,9 +61,14 @@ public class Communication {
 			data=(HashMap<String, String>) oIn.readObject();
 		} catch (Exception e) {
 			data=new HashMap<String, String>();
+			
 		}
 		createAccount("test","test",false);
 	}
+	
+	/**
+	 * Stores data.
+	 */
 	protected void finalize() throws IOException{
 		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
 		ObjectOutputStream oOut=new ObjectOutputStream(out);
@@ -66,7 +77,7 @@ public class Communication {
 		out.close();
 	}
 
-	/*
+	/**
 	 * Status of login attempt.
 	 */
 	public enum LogStatus{
@@ -75,7 +86,7 @@ public class Communication {
 		FAILURE;
 	}
 	
-	/*
+	/**
 	 * process login attempt
 	 * 
 	 * @param username intended user name
@@ -133,7 +144,7 @@ public class Communication {
 		}
 	}
 	
-	/*
+	/**
 	 * create an account
 	 * 
 	 * @param username	desired user name
