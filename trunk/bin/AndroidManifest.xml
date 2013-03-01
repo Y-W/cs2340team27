@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.gatech.cs2340.team27.lostandfound"
     android:versionCode="1"
@@ -30,12 +29,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gatech.cs2340.team27.lostandfound.Login" />
         </activity>
-         <activity
+        <activity
             android:name="edu.gatech.cs2340.team27.lostandfound.Register"
             android:label="@string/title_activity_register" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gatech.cs2340.team27.lostandfound.Register" />
+        </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.HomePage"
+            android:label="@string/title_activity_home_page" >
         </activity>
     </application>
 
