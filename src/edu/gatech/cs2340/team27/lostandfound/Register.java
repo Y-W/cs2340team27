@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import edu.gatech.cs2340.team27.lostandfound.R;
 
+/**
+ * Processes the register activity.
+ * @author all
+ *
+ */
 public class Register extends Activity {
 
 	private EditText username;

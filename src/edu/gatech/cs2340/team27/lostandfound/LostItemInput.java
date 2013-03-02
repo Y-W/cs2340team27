@@ -13,7 +13,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
+/**
+ * Processes the creation of lost items.
+ * @author all
+ *
+ */
 public class LostItemInput extends Activity {
 	/**
 	 * Processes the onCreate event.
