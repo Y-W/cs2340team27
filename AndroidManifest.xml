@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.gatech.cs2340.team27.lostandfound.LoginStatus"
+            android:name="edu.gatech.cs2340.team27.lostandfound.HomePage"
             android:label="@string/title_activity_login_status" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
