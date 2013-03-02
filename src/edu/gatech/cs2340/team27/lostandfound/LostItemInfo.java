@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class LostItemInfo extends Activity {
 
+	public static String temp;
 	@Override
 	/**
 	 * build in method
@@ -15,6 +17,8 @@ public class LostItemInfo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lost_item_info);
+		TextView tv=(TextView) this.findViewById(R.id.itemname);
+    	tv.setText(temp);
 	}
 
 	@Override
