@@ -69,5 +69,14 @@ public class LostItem extends Activity {
 		getMenuInflater().inflate(R.menu.lost_item, menu);
 		return true;
 	}
+	
+	/**
+	 * Processes the cancel button's onClick event.
+	 * @param view
+	 */
+	public void returnParent(View view) {
+		Intent intent = new Intent(this, HomePage.class);
+	    startActivity(intent);
+	}
 
 }
