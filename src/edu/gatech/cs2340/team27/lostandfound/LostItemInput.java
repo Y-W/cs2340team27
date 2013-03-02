@@ -7,13 +7,17 @@ import android.view.Menu;
 import android.view.View;
 
 public class LostItemInput extends Activity {
-
+	/**
+	 * Processes the onCreate event.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lost_item_input);
 	}
-
+	/**
+	 * Processes the onCreateOptionsMenu event.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -21,7 +25,7 @@ public class LostItemInput extends Activity {
 		return true;
 	}
 	/**
-	 * Calls when click confirm to submit the lost item info
+	 * Processes the onClick event of the confirm button.
 	 * @param view
 	 */
 	public void confirmLostItemInfo(View view){
@@ -29,7 +33,10 @@ public class LostItemInput extends Activity {
 		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
 	}
-	
+	/**
+	 * Processes the onClick event of the cancel button.
+	 * @param view
+	 */
 	public void cancelLostItemInfo(View view){
 		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
