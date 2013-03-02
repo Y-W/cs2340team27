@@ -54,8 +54,17 @@ public class Register extends Activity {
 		pswdConfirm.setText("");
 	}
 	/**
+	 * clear username
+	 */
+	public void usernameclear(){
+		username.setText("");
+	
+	}
+	/**
 	 * get username, password and confirmpassword
 	 * if password and confirmpassword doesnt match
+	 * pop up wrong message
+	 * if username is already existed
 	 * pop up wrong message
 	 * otherwise create a new account
 	 * @param view
@@ -87,6 +96,7 @@ public class Register extends Activity {
 			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) { 
 					clear();
+					usernameclear();
 				}
 			})
 			.show();
