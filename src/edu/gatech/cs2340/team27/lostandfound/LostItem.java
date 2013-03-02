@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
@@ -25,7 +26,7 @@ import android.widget.TextView;
  */
 public class LostItem extends Activity {
 	
-	private ArrayList<Item> lostlist = Items.getInstance().getLost();
+	private ArrayList<Item> lostlist;
 	
 	/**
 	 * Processes the onCreate event.
@@ -37,6 +38,11 @@ public class LostItem extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		try {
+			lostlist = Items.getInstance().getLost();
+		} catch (IOException e) {
+		} catch (ClassNotFoundException e) {
+		}
 		setContentView(R.layout.activity_lost_item);
 		String[] nameList=new String[lostlist.size()];
 		int a = 0;

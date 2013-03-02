@@ -19,10 +19,13 @@ public class Items {
 	/**
 	 * 
 	 * @return the only instance of this class
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public static Items getInstance() {
+	public static Items getInstance() throws IOException, ClassNotFoundException {
 		if(onlyInstance == null) {
 			onlyInstance = new Items();
+			onlyInstance.list = Communication.getInstance().getItems();
 		}
 		return onlyInstance;
 	}
@@ -30,9 +33,10 @@ public class Items {
 	 * initialize the list of items
 	 * @param items the list items used.
 	 */
-	public void initialize(ArrayList<Item> items) {
+	/*	public void initialize(ArrayList<Item> items) {
 		list = items;
 	}
+*/
 	/**
 	 * Adds an item
 	 * @param status status of the item
