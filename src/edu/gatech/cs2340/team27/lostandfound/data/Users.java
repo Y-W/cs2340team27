@@ -26,6 +26,10 @@ public class Users {
 		currentUser = current;
 	}
 	
+	public User getCurrentUser() {
+		return currentUser;
+	}
+	
 	public void destruct() {
 		onlyInstance = null;
 	}
