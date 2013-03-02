@@ -1,5 +1,9 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -207,5 +212,26 @@ public class Communication {
 			return true;
 		}
 		return false;
+	}
+	
+	public String serialize(Object o) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		XMLEncoder xmlEncoder = new XMLEncoder(out);  
+		xmlEncoder.writeObject(o);  
+		xmlEncoder.flush();
+		return out.toString()+"</java>";
+	}
+	
+	public Object deserialize(String str) {
+		XMLDecoder xmlDecoder = new XMLDecoder(new ByteArrayInputStream(str.getBytes()));  
+		return xmlDecoder.readObject();
+	}
+	
+	public void addItem(String username, HashMap<String,String> item){
+		
+	}
+	
+	public ArrayList<String> getList() {
+		return null;
 	}
 }
