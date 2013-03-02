@@ -91,6 +91,14 @@ public class Item {
 	}
 	
 	/**
+	 * Getter
+	 * @return resolvedDate
+	 */
+	public Date getResolvedDate() {
+		return resolvedDate;
+	}
+	
+	/**
 	 * Getter. 
 	 * @return loser
 	 */
