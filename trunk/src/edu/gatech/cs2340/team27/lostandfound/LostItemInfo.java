@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-
+/**
+ * Processes the display of the details of lost items.
+ * @author all
+ *
+ */
 public class LostItemInfo extends Activity {
 	/**
 	 * itemname contains item name
