@@ -16,6 +16,10 @@ public class Items {
 	
 	private ArrayList<Item> list;
 	private static Items onlyInstance;
+	
+	public Items() throws IOException, ClassNotFoundException {
+		list = Communication.getInstance().getItems();
+	}
 	/**
 	 * 
 	 * @return the only instance of this class
@@ -25,7 +29,6 @@ public class Items {
 	public static Items getInstance() throws IOException, ClassNotFoundException {
 		if(onlyInstance == null) {
 			onlyInstance = new Items();
-			onlyInstance.list = Communication.getInstance().getItems();
 		}
 		return onlyInstance;
 	}

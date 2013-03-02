@@ -17,11 +17,14 @@ public class Users {
 	private ArrayList<User> list;
 	private static Users onlyInstance;
 	
+	public Users() throws IOException, ClassNotFoundException {
+		list = Communication.getInstance().getUserList();
+		currentUser = Communication.getInstance().getCurrentUser();
+	}
+	
 	public static Users getInstance() throws IOException, ClassNotFoundException {
 		if(onlyInstance == null) {
 			onlyInstance = new Users();
-			onlyInstance.list = Communication.getInstance().getUserList();
-			onlyInstance.currentUser = Communication.getInstance().getCurrentUser();
 		}
 		return onlyInstance;
 	}
