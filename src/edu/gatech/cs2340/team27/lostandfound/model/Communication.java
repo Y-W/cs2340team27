@@ -1,7 +1,5 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -207,15 +205,21 @@ public class Communication {
 			boolean priviliged) throws IOException, ClassNotFoundException {
 		username = username.replace('/', '_');
 		String query = "USER/" + username;
-		
+		ArrayList<String> sarr;
 		if (data.get(query) == null) {
 			if (data.get("Users")==null) data.put("Users", "");
 			String str = data.get("Users");
-			ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
+			if (str.equals("") || str==null) {
+				sarr = new ArrayList<String>();
+			}
+			else {
+				sarr = (ArrayList<String>) deserialize(str);
+			}
 			sarr.add(username);
 			data.put("Users", serialize(sarr));
 			data.put(query, Long.toString((System.currentTimeMillis())));
 			data.put(query + "/COUNTER", "0");
+			data.put(query + "/ITEMS", "");
 			// MessageDigest md=null;
 			// try {
 			// md = MessageDigest.getInstance(digestMethod);
@@ -246,28 +250,21 @@ public class Communication {
 	}
 
 	public String serialize(Object o) throws IOException {
-		 ByteArrayOutputStream out = new ByteArrayOutputStream();
-		 XMLEncoder xmlEncoder = new XMLEncoder(out);
-		 xmlEncoder.writeObject(o);
-		 xmlEncoder.flush();
-		 return out.toString()+"</java>";
-//		FileOutputStream fileOut = new FileOutputStream("ser.ser");
-//		ObjectOutputStream out = new ObjectOutputStream(fileOut);
-//		out.writeObject(o);
-//		out.close();
-//		fileOut.close();
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		ObjectOutputStream out = new ObjectOutputStream(bout);
+		out.writeObject(o);
+		out.close();
+		byte[] strin = bout.toByteArray(); 
+        return new String(Base64.encode(strin));
 	}
 
 	public Object deserialize(String str) throws IOException, ClassNotFoundException {
-		 XMLDecoder xmlDecoder = new XMLDecoder(new
-		 ByteArrayInputStream(str.getBytes()));
-		 return xmlDecoder.readObject();
-//		FileInputStream fileIn = new FileInputStream("ser.ser");
-//		ObjectInputStream in = new ObjectInputStream(fileIn);
-//		Object ret = in.readObject();
-//		in.close();
-//		fileIn.close();
-//		return ret;
+		if (str==null) return null;
+		if (str.equals("")) return null;
+		byte[] restoredBytes = Base64.decode(str); 
+  	  ByteArrayInputStream bin = new ByteArrayInputStream(restoredBytes);
+       ObjectInputStream in = new ObjectInputStream(bin);
+       return in.readObject();
 	}
 
 	public void addItem(String username, Item item) throws IOException, ClassNotFoundException {
@@ -283,7 +280,7 @@ public class Communication {
 		if (item.getLoser()!=null) {
 			addItem(item.getLoser().getName(), item);
 		}
-		else 
+		if (item.getFounder()!=null) 
 			addItem(item.getFounder().getName(), item);
 	}
 
@@ -305,6 +302,7 @@ public class Communication {
 		ArrayList<String> eachperson = new ArrayList<String>();
 		for (String eachName : namearr) {
 			eachperson = getItems(eachName);
+			if (eachperson == null) continue;
 			for (String eachItem : eachperson) {
 				Item tmp = deserializeItem(eachItem);
 				if (ret.contains(tmp)) continue;
@@ -368,4 +366,159 @@ public class Communication {
 		String email = sarr.get(3);
 		return new User(name, address, phoneNumber, email);
 	}
+}
+
+class Base64 {
+    static byte[] encodeData;
+    static String charSet = 
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    
+    static {
+    	encodeData = new byte[64];
+	for (int i = 0; i<64; i++) {
+	    byte c = (byte) charSet.charAt(i);
+	    encodeData[i] = c;
+	}
+    }
+
+    private Base64() {}
+
+    /**
+     * base-64 encode a string
+     * @param s		The ascii string to encode
+     * @returns		The base64 encoded result
+     */
+
+    public static String
+    encode(String s) {
+        return encode(s.getBytes());
+    }
+
+    /**
+     * base-64 encode a byte array
+     * @param src	The byte array to encode
+     * @returns		The base64 encoded result
+     */
+
+    public static String
+    encode(byte[] src) {
+	return encode(src, 0, src.length);
+    }
+
+    /**
+     * base-64 encode a byte array
+     * @param src	The byte array to encode
+     * @param start	The starting index
+     * @param len	The number of bytes
+     * @returns		The base64 encoded result
+     */
+
+    public static String
+    encode(byte[] src, int start, int length) {
+        byte[] dst = new byte[(length+2)/3 * 4 + length/72];
+        int x = 0;
+        int dstIndex = 0;
+        int state = 0;	// which char in pattern
+        int old = 0;	// previous byte
+        int len = 0;	// length decoded so far
+	int max = length + start;
+        for (int srcIndex = start; srcIndex<max; srcIndex++) {
+	    x = src[srcIndex];
+	    switch (++state) {
+	    case 1:
+	        dst[dstIndex++] = encodeData[(x>>2) & 0x3f];
+		break;
+	    case 2:
+	        dst[dstIndex++] = encodeData[((old<<4)&0x30) 
+	            | ((x>>4)&0xf)];
+		break;
+	    case 3:
+	        dst[dstIndex++] = encodeData[((old<<2)&0x3C) 
+	            | ((x>>6)&0x3)];
+		dst[dstIndex++] = encodeData[x&0x3F];
+		state = 0;
+		break;
+	    }
+	    old = x;
+	    if (++len >= 72) {
+	    	dst[dstIndex++] = (byte) '\n';
+	    	len = 0;
+	    }
+	}
+
+	/*
+	 * now clean up the end bytes
+	 */
+
+	switch (state) {
+	case 1: dst[dstIndex++] = encodeData[(old<<4) & 0x30];
+	   dst[dstIndex++] = (byte) '=';
+	   dst[dstIndex++] = (byte) '=';
+	   break;
+	case 2: dst[dstIndex++] = encodeData[(old<<2) & 0x3c];
+	   dst[dstIndex++] = (byte) '=';
+	   break;
+	}
+	return new String(dst);
+    }
+
+    /**
+     * A Base64 decoder.  This implementation is slow, and 
+     * doesn't handle wrapped lines.
+     * The output is undefined if there are errors in the input.
+     * @param s		a Base64 encoded string
+     * @returns		The byte array eith the decoded result
+     */
+
+    public static byte[]
+    decode(String s) {
+      int end = 0;	// end state
+      if (s.endsWith("=")) {
+	  end++;
+      }
+      if (s.endsWith("==")) {
+	  end++;
+      }
+      int len = (s.length() + 3)/4 * 3 - end;
+      byte[] result = new byte[len];
+      int dst = 0;
+      try {
+	  for(int src = 0; src< s.length(); src++) {
+	      int code =  charSet.indexOf(s.charAt(src));
+	      if (code == -1) {
+	          break;
+	      }
+	      switch (src%4) {
+	      case 0:
+	          result[dst] = (byte) (code<<2);
+	          break;
+	      case 1: 
+	          result[dst++] |= (byte) ((code>>4) & 0x3);
+	          result[dst] = (byte) (code<<4);
+	          break;
+	      case 2:
+	          result[dst++] |= (byte) ((code>>2) & 0xf);
+	          result[dst] = (byte) (code<<6);
+	          break;
+	      case 3:
+	          result[dst++] |= (byte) (code & 0x3f);
+	          break;
+	      }
+	  }
+      } catch (ArrayIndexOutOfBoundsException e) {}
+      return result;
+    }
+
+    /**
+     * Test the decoder and encoder.
+     * Call as <code>Base64 [string]</code>.
+     */
+
+//    public static void
+//    main(String[] args) {
+//    	System.out.println("encode: " + args[0]  + " -> (" 
+//    	    + encode(args[0]) + ")");
+//    	System.out.println("decode: " + args[0]  + " -> (" 
+//    	    + new String(decode(args[0])) + ")");
+//    }
 }
