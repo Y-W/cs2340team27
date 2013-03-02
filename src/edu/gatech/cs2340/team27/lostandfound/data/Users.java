@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
+import java.util.ArrayList;
+
 
 /**
  * This class represents the local user database within the application. 
@@ -9,7 +11,7 @@ package edu.gatech.cs2340.team27.lostandfound.data;
 public class Users {
 	
 	private User currentUser;
-	private User[] list;
+	private ArrayList<User> list;
 	private static Users onlyInstance;
 	
 	public static Users getInstance() {
@@ -19,7 +21,7 @@ public class Users {
 		return onlyInstance;
 	}
 	
-	public void initialize(User[] users, User current) {
+	public void initialize(ArrayList<User> users, User current) {
 		list = users;
 		currentUser = current;
 	}
