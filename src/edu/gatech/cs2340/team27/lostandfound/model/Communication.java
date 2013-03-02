@@ -28,7 +28,6 @@ import android.util.Log;
 /**
  * Handles communication
  * 
- * @author Yijie Wang
  * @version 0.1
  */
 public class Communication {
@@ -307,7 +306,9 @@ public class Communication {
 		for (String eachName : namearr) {
 			eachperson = getItems(eachName);
 			for (String eachItem : eachperson) {
-				ret.add(deserializeItem(eachItem));
+				Item tmp = deserializeItem(eachItem);
+				if (ret.contains(tmp)) continue;
+				ret.add(tmp);
 			}
 		}
 //		Items.getInstance().initialize(ret);
