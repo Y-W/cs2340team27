@@ -62,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
-        android:layout_centerVertical="true"
-        android:text="@string/register" 
-        android:onClick="registerAttempt" />
+        android:layout_below="@+id/button1"
+        android:onClick="registerAttempt"
+        android:text="@string/register" />
 
 </RelativeLayout>
