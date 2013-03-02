@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 
 public class LostItem extends Activity {
+	
+	private ArrayList<Item> lostlist = Items.getInstance().getLost();
 	/**
 	 * Processes the onCreate event.
 	 * create a namelist, arrayadapter and use listview to show a
@@ -26,7 +28,6 @@ public class LostItem extends Activity {
 	 * when click to lost item, redirect to detail info
 	 */
 	
-	private ArrayList<Item> lostlist = Items.getInstance().getLost();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,16 +44,13 @@ public class LostItem extends Activity {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//		    	TextView tv=(TextView) parent.findViewById(R.id.itemname);
-//		    	tv.setText(""+position);
-		    	LostItemInfo.temp=" "+position;
+
+		    	LostItemInfo.itemname=lostlist.get(position).getName();
+		    	LostItemInfo.discription=lostlist.get(position).getDescri();
+		    	LostItemInfo.date=lostlist.get(position).getLostDate();
+		    	LostItemInfo.location=lostlist.get(position).getLoca();
 		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
 				startActivity(intent);
-//		    	new AlertDialog.Builder(parent.getContext())
-//			    .setTitle("Hint")
-//			    .setMessage("Position: "+position+"; ID: "+id)
-//			    .setPositiveButton("OK", null)
-//			    .show();
 		    }
 		}); 
 	}

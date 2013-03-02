@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,17 +10,38 @@ import android.view.View;
 import android.widget.TextView;
 
 public class LostItemInfo extends Activity {
-
-	public static String temp;
+	/**
+	 * itemname contains item name
+	 */
+	public static String itemname;
+	/**
+	 * discription contains description of item
+	 */
+	public static String discription;
+	/**
+	 * date contains lost date
+	 */
+	public static Date date;
+	/**
+	 * location contains lost location
+	 */
+	public static String location;
 	@Override
 	/**
-	 * build in method
+	 * get details from lostitem list
+	 * set text
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lost_item_info);
 		TextView tv=(TextView) this.findViewById(R.id.itemname);
-    	tv.setText(temp);
+    	tv.setText(itemname);
+    	TextView tv4=(TextView) this.findViewById(R.id.textView4);
+    	tv4.setText(discription);
+    	TextView tv6=(TextView) this.findViewById(R.id.textView6);
+    	tv6.setText(date.toString());
+    	TextView tv8=(TextView) this.findViewById(R.id.textView8);
+    	tv8.setText(location);
 	}
 
 	@Override
