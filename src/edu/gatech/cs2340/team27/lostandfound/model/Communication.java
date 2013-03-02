@@ -13,9 +13,13 @@ import java.io.ObjectOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
+import edu.gatech.cs2340.team27.lostandfound.data.Items;
+import edu.gatech.cs2340.team27.lostandfound.data.User;
+import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,8 +43,10 @@ public class Communication {
 	 * created, then create one.
 	 * 
 	 * @return the only instance of Communication
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public static Communication getInstance() {
+	public static Communication getInstance() throws IOException, ClassNotFoundException {
 		if (onlyInstance == null) {
 			onlyInstance = new Communication();
 		}
@@ -70,9 +76,11 @@ public class Communication {
 
 	/**
 	 * default Constructor of Communication
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
 	@SuppressWarnings("unchecked")
-	protected Communication() {
+	protected Communication() throws IOException, ClassNotFoundException {
 		try {
 			// FileInputStream in= appContext.openFileInput(filename);
 			// ObjectInputStream oIn=new ObjectInputStream(in);
@@ -193,11 +201,20 @@ public class Communication {
 	 *            true if want to create an administrator, false if want to
 	 *            create a normal user
 	 * @return true if success, false otherwise
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
 	public boolean createAccount(String username, String password,
-			boolean priviliged) {
-		String query = "USER/" + username.replace('/', '_');
+			boolean priviliged) throws IOException, ClassNotFoundException {
+		username = username.replace('/', '_');
+		String query = "USER/" + username;
+		
 		if (data.get(query) == null) {
+			if (data.get("Users")==null) data.put("Users", "");
+			String str = data.get("Users");
+			ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
+			sarr.add(username);
+			data.put("Users", serialize(sarr));
 			data.put(query, Long.toString((System.currentTimeMillis())));
 			data.put(query + "/COUNTER", "0");
 			// MessageDigest md=null;
@@ -255,24 +272,97 @@ public class Communication {
 	}
 
 	public void addItem(String username, Item item) throws IOException, ClassNotFoundException {
-		ArrayList<Item> items = getItems(username);
-		items.add(item);
-		data.put(username+"/ITEMS", items);
+		ArrayList<String> items = getItems(username);
+		String str = serializeItem(item);
+		if (items.contains(str)) return;
+		items.add(str);
+		data.put(username+"/ITEMS", serialize(items));
+		submit();
 	}
 	
-	public void addItem(Item item) {
+	public void addItem(Item item) throws IOException, ClassNotFoundException {
 		if (item.getLoser()!=null) {
-			
+			addItem(item.getLoser().getName(), item);
 		}
+		else 
+			addItem(item.getFounder().getName(), item);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<Item> getItems(String username) throws IOException, ClassNotFoundException {
-		return (ArrayList<Item>) deserialize(data.get(username+"/ITEMS"));
+	public ArrayList<String> getItems(String username) throws IOException, ClassNotFoundException {
+		return (ArrayList<String>) deserialize(data.get(username+"/ITEMS"));
 	}
 	
-	public ArrayList<Item> getItems() {
-		data.get("/ITEMS");
-		return null;
+	public Items getItems() throws IOException, ClassNotFoundException {
+		if (data.get("Users")==null) data.put("Users", "");
+		String str = data.get("Users");
+		ArrayList<String> namearr = (ArrayList<String>) deserialize(str);
+		ArrayList<Item> ret = new ArrayList<Item>();
+		if (namearr.size()==0) {
+			Items.getInstance().initialize(ret);
+			return Items.getInstance();
+		}
+		ArrayList<String> eachperson = new ArrayList<String>();
+		for (String eachName : namearr) {
+			eachperson = getItems(eachName);
+			for (String eachItem : eachperson) {
+				ret.add(deserializeItem(eachItem));
+			}
+		}
+		Items.getInstance().initialize(ret);
+		return Items.getInstance();
+	}
+	
+	public String serializeItem(Item i) throws IOException{
+		ArrayList<String> sarr = new ArrayList<String>();
+		sarr.add(serialize(i.getStatus()));
+		sarr.add(i.getName());
+		sarr.add(i.getLoca());
+		sarr.add(i.getDescri());
+		sarr.add(serialize(i.getLostDate()));
+		sarr.add(serialize(i.getFoundDate()));
+		sarr.add(serialize(i.getResolvedDate()));
+		sarr.add(serializeUser(i.getLoser()));
+		sarr.add(serializeUser(i.getFounder()));
+		return serialize(sarr);
+	}
+
+	public String serializeUser(User u) throws IOException {
+		ArrayList<String> sarr = new ArrayList<String>();
+		sarr.add(u.getName());
+		sarr.add(u.getAddress());
+		sarr.add(u.getPhoneNumber());
+		sarr.add(u.getEmail());
+		return serialize(sarr);
+	}
+	
+	public Item deserializeItem(String str) throws IOException, ClassNotFoundException {
+		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
+		ItemStatus status = (ItemStatus) deserialize(sarr.get(0));
+		String name = sarr.get(1);
+		String location= sarr.get(2);
+		String description= sarr.get(3);
+		Date lostDate = (Date) deserialize(sarr.get(4));
+		Date foundDate = (Date) deserialize(sarr.get(5));
+		Date resolvedDate = (Date) deserialize(sarr.get(6));
+		User loser = deserializeUser(sarr.get(7));
+		User founder= deserializeUser(sarr.get(8));
+		Date date;
+		User user;
+		if (lostDate!=null) date = lostDate;
+		else if (foundDate!=null) date = foundDate;
+		else date = resolvedDate;
+		if (loser!=null) user = loser;
+		else user = founder;
+		return new Item(status, name, location, description, date, user);
+	}
+	
+	public User deserializeUser(String str) throws IOException, ClassNotFoundException {
+		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
+		String name = sarr.get(0);
+		String address = sarr.get(1);
+		String phoneNumber = sarr.get(2);
+		String email = sarr.get(3);
+		return new User(name, address, phoneNumber, email);
 	}
 }
