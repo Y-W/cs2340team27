@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class LostItem extends Activity {
@@ -28,12 +29,16 @@ public class LostItem extends Activity {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
-//				startActivity(intent);
-		    	new AlertDialog.Builder(parent.getContext())
-			    .setTitle("Error")
-			    .setMessage("Confirm password is different from your password")
-			    .show();
+//		    	TextView tv=(TextView) parent.findViewById(R.id.itemname);
+//		    	tv.setText(""+position);
+		    	LostItemInfo.temp=" "+position;
+		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
+				startActivity(intent);
+//		    	new AlertDialog.Builder(parent.getContext())
+//			    .setTitle("Hint")
+//			    .setMessage("Position: "+position+"; ID: "+id)
+//			    .setPositiveButton("OK", null)
+//			    .show();
 		    }
 		}); 
 	}
