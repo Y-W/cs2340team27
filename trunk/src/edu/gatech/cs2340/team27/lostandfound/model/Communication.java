@@ -11,6 +11,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * Handles communication
@@ -21,6 +23,9 @@ import android.content.Context;
 public class Communication {
 	private static Communication onlyInstance;
 	private static Context appContext;
+	private static final String prefName="lostAndFound";
+	private SharedPreferences pref;
+	private SharedPreferences.Editor editor;
 
 	/**
 	 * Returns the only instance of Communication. If there's no instance ever created, then create one.
@@ -33,6 +38,9 @@ public class Communication {
 		}
 		return onlyInstance;
 	}
+	private Context getContext() {
+		return appContext;
+	}
 	/**
 	 * set the AppContext to be used
 	 * @param appContext the AppContext to be used
@@ -40,6 +48,7 @@ public class Communication {
 	public static void setAppContext(Context appContext){
 		Communication.appContext=appContext;
 	}
+	
 	
 	private HashMap<String, String> data;
 	private String currentUsername;
@@ -54,14 +63,15 @@ public class Communication {
 	@SuppressWarnings("unchecked")
 	protected Communication(){
 		try {
-			FileInputStream in= appContext.openFileInput(filename);
-			ObjectInputStream oIn=new ObjectInputStream(in);
-			oIn.close();
-			in.close();
-			data=(HashMap<String, String>) oIn.readObject();
+//			FileInputStream in= appContext.openFileInput(filename);
+//			ObjectInputStream oIn=new ObjectInputStream(in);
+//			oIn.close();
+//			in.close();
+			pref= getContext().getSharedPreferences(prefName, 0);
+			editor= pref.edit();
+			data=(HashMap<String, String>) pref.getAll();
 		} catch (Exception e) {
-			data=new HashMap<String, String>();
-			
+			Log.v("reading fails", "reading fails");
 		}
 		createAccount("test","test",false);
 	}
@@ -70,13 +80,22 @@ public class Communication {
 	 * Stores data.
 	 */
 	protected void finalize() throws IOException{
-		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-		ObjectOutputStream oOut=new ObjectOutputStream(out);
-		oOut.writeObject(data);
-		oOut.close();
-		out.close();
+//		FileOutputStream out= appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+//		ObjectOutputStream oOut=new ObjectOutputStream(out);
+//		oOut.writeObject(data);
+//		oOut.flush();
+//		oOut.close();
+//		out.close();
+		submit();
 	}
-
+	
+	private void submit() {
+		for (String s : data.keySet()) {
+			editor.putString(s, data.get(s));
+	    }
+		editor.commit();
+	}
+	
 	/**
 	 * Status of login attempt.
 	 */
@@ -114,32 +133,36 @@ public class Communication {
 			currentUsername=username;
 			currentPassword=password;
 			data.put(query+"/COUNTER", "0");
-			try {
-				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-				ObjectOutputStream oOut=new ObjectOutputStream(out);
-				oOut.writeObject(data);
-				oOut.close();
-				out.close();
-			}
-			catch(Exception e){
-
-			}
+			submit();
+//			try {
+//				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+//				ObjectOutputStream oOut=new ObjectOutputStream(out);
+//				oOut.writeObject(data);
+//				oOut.flush();
+//				oOut.close();
+//				out.close();
+//			}
+//			catch(Exception e){
+//
+//			}
 			return LogStatus.SUCCESS;
 		}
 		else{
 			data.put(query+"/COUNTER", 
 					Integer.valueOf(Integer.parseInt(data.get(query+"/COUNTER"))+1).toString()
 					);
-			try {
-				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-				ObjectOutputStream oOut=new ObjectOutputStream(out);
-				oOut.writeObject(data);
-				oOut.close();
-				out.close();
-			}
-			catch(Exception e){
-
-			}
+//			try {
+//				FileOutputStream out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+//				ObjectOutputStream oOut=new ObjectOutputStream(out);
+//				oOut.writeObject(data);
+//				oOut.flush();
+//				oOut.close();
+//				out.close();
+//			}
+//			catch(Exception e){
+//
+//			}
+			submit();
 			return LogStatus.FAILURE;
 		}
 	}
@@ -168,17 +191,19 @@ public class Communication {
 //			String digest=new String(md.digest());
 			data.put(query+"/PASSWORD", password);
 			
-			FileOutputStream out;
-			try {
-				out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-				ObjectOutputStream oOut=new ObjectOutputStream(out);
-				oOut.writeObject(data);
-				oOut.close();
-				out.close();
-			}
-			catch(Exception e){
-
-			}
+//			FileOutputStream out;
+//			try {
+//				out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
+//				ObjectOutputStream oOut=new ObjectOutputStream(out);
+//				oOut.writeObject(data);
+//				oOut.flush();
+//				oOut.close();
+//				out.close();
+//			}
+//			catch(Exception e){
+//
+//			}
+			submit();
 			return true;
 		}
 		return false;
