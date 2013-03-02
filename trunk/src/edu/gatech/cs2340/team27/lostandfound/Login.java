@@ -13,6 +13,9 @@ import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 
 public class Login extends Activity {
 
+	/**
+	 * a simplified name for edu.gatech.cs2340.team27.lostandfound.MESSAGE
+	 */
 	public final static String STATUS_MESSAGE = "edu.gatech.cs2340.team27.lostandfound.MESSAGE";
 	
 	@Override
