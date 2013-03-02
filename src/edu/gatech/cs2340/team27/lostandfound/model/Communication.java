@@ -89,7 +89,7 @@ public class Communication {
 		} catch (Exception e) {
 			Log.v("reading fails", "reading fails");
 		}
-		createAccount("test", "test", false);
+		createAccount("test", "test", "", "", false);
 	}
 
 	/**
@@ -194,6 +194,8 @@ public class Communication {
 	 *            desired user name
 	 * @param password
 	 *            desired password
+	 * @param realname
+	 * @param phone
 	 * @param priviliged
 	 *            true if want to create an administrator, false if want to
 	 *            create a normal user
@@ -201,7 +203,7 @@ public class Communication {
 	 * @throws ClassNotFoundException 
 	 * @throws IOException 
 	 */
-	public boolean createAccount(String username, String password,
+	public boolean createAccount(String username, String password, String realname, String phone, 
 			boolean priviliged) throws IOException, ClassNotFoundException {
 		username = username.replace('/', '_');
 		String query = "USER/" + username;
@@ -215,11 +217,13 @@ public class Communication {
 			else {
 				sarr = (ArrayList<String>) deserialize(str);
 			}
+			User newUser = new User(realname, phone, username);
 			sarr.add(username);
 			data.put("Users", serialize(sarr));
 			data.put(query, Long.toString((System.currentTimeMillis())));
+			data.put(query + "/INFO", serializeUser(newUser));
 			data.put(query + "/COUNTER", "0");
-			data.put(query + "/ITEMS", "");
+			//data.put(query + "/ITEMS", "");
 			// MessageDigest md=null;
 			// try {
 			// md = MessageDigest.getInstance(digestMethod);
@@ -331,7 +335,6 @@ public class Communication {
 	public String serializeUser(User u) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
 		sarr.add(u.getName());
-		sarr.add(u.getAddress());
 		sarr.add(u.getPhoneNumber());
 		sarr.add(u.getEmail());
 		return serialize(sarr);
@@ -364,7 +367,7 @@ public class Communication {
 		String address = sarr.get(1);
 		String phoneNumber = sarr.get(2);
 		String email = sarr.get(3);
-		return new User(name, address, phoneNumber, email);
+		return new User(name, phoneNumber, email);
 	}
 }
 

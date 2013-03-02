@@ -8,20 +8,17 @@ package edu.gatech.cs2340.team27.lostandfound.data;
 public class User {
 	
 	protected String name;
-	protected String address;
 	protected String phoneNumber;
 	protected String email;
 	
 	/**
 	 * Constructor. 
 	 * @param name
-	 * @param address
 	 * @param phoneNumber
 	 * @param email
 	 */
-	public User(String name, String address, String phoneNumber, String email) {
+	public User(String name, String phoneNumber, String email) {
 		this.name = name;
-		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
@@ -32,14 +29,6 @@ public class User {
 	 */
 	public String getName() {
 		return name;
-	}
-	
-	/**
-	 * Getter
-	 * @return address
-	 */
-	public String getAddress() {
-		return address;
 	}
 	
 	/**
