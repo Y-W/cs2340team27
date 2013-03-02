@@ -8,14 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Register" >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:onClick="goBack"
-        android:text="@string/cancel" />
-
     <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
@@ -68,6 +60,15 @@
         android:ems="10"
         android:hint="@string/confirmpw"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_below="@+id/editText3"
+        android:onClick="goBack"
+        android:text="@string/cancel" />
 
     <Button
         android:id="@+id/button1"
