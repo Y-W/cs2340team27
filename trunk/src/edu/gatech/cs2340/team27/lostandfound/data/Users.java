@@ -1,6 +1,9 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 
 /**
@@ -14,18 +17,20 @@ public class Users {
 	private ArrayList<User> list;
 	private static Users onlyInstance;
 	
-	public static Users getInstance() {
+	public static Users getInstance() throws IOException, ClassNotFoundException {
 		if(onlyInstance == null) {
 			onlyInstance = new Users();
+			onlyInstance.list = Communication.getInstance().getUserList();
+			onlyInstance.currentUser = Communication.getInstance().getCurrentUser();
 		}
 		return onlyInstance;
 	}
 	
-	public void initialize(ArrayList<User> users, User current) {
+/*	public void initialize(ArrayList<User> users, User current) {
 		list = users;
 		currentUser = current;
 	}
-	
+*/	
 	public User getCurrentUser() {
 		return currentUser;
 	}
