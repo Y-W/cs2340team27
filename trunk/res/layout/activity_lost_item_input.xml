@@ -24,7 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
         android:text="@string/lostItemInfo"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -33,21 +34,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textView1"
         android:ems="10"
-        android:hint="@string/itemName" >
-
-        <requestFocus />
-    </EditText>
+        android:hint="@string/itemName" />
 
     <DatePicker
         android:id="@+id/datePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="35dp" />
+        android:layout_below="@+id/editText1" />
 
     <EditText
         android:id="@+id/editText2"
@@ -55,10 +51,12 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/datePicker1"
         android:layout_below="@+id/datePicker1"
-        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="@string/locatioin"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/editText3"
@@ -66,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
-        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="@string/discription"
         android:inputType="textMultiLine" />
@@ -76,10 +73,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText3"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="21dp"
-        android:text="@string/confirm"
-        android:onClick="confirmLostItemInfo" />
+        android:layout_below="@+id/editText3"
+        android:onClick="confirmLostItemInfo"
+        android:text="@string/confirm" />
 
     <Button
         android:id="@+id/button2"
@@ -87,8 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="@string/cancel"
-        android:onClick="cancelLostItemInfo" />
+        android:layout_alignRight="@+id/editText3"
+        android:onClick="cancelLostItemInfo"
+        android:text="@string/cancel" />
 
 </RelativeLayout>
