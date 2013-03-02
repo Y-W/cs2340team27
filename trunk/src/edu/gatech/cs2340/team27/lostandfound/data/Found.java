@@ -1,8 +1,5 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
-public class Item {
-	 
-	ItemRole role;
-	
-	
+public class Found implements ItemRole {
+
 }
