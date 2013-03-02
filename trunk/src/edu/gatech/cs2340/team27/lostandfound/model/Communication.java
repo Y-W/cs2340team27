@@ -293,14 +293,15 @@ public class Communication {
 		return (ArrayList<String>) deserialize(data.get(username+"/ITEMS"));
 	}
 	
-	public Items getItems() throws IOException, ClassNotFoundException {
+	public ArrayList<Item> getItems() throws IOException, ClassNotFoundException {
 		if (data.get("Users")==null) data.put("Users", "");
 		String str = data.get("Users");
 		ArrayList<String> namearr = (ArrayList<String>) deserialize(str);
 		ArrayList<Item> ret = new ArrayList<Item>();
 		if (namearr.size()==0) {
-			Items.getInstance().initialize(ret);
-			return Items.getInstance();
+//			Items.getInstance().initialize(ret);
+//			return Items.getInstance();
+			return ret;
 		}
 		ArrayList<String> eachperson = new ArrayList<String>();
 		for (String eachName : namearr) {
@@ -309,8 +310,9 @@ public class Communication {
 				ret.add(deserializeItem(eachItem));
 			}
 		}
-		Items.getInstance().initialize(ret);
-		return Items.getInstance();
+//		Items.getInstance().initialize(ret);
+//		return Items.getInstance();
+		return ret;
 	}
 	
 	public String serializeItem(Item i) throws IOException{

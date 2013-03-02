@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -49,8 +51,10 @@ public class Login extends Activity {
 	 * if the password is incorrect, pop up wrong message
 	 * if the password is incorrect for three times in a row, lock the account
 	 * @param view
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public void loginAttempt(View view) {
+	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
 		EditText username = (EditText) findViewById(R.id.editText1);
 		EditText password = (EditText) findViewById(R.id.editText2);

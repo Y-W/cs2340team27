@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
@@ -40,15 +41,19 @@ public class Items {
 	 * @param description description of the item
 	 * @param date date of losing
 	 * @param user the user who creates the item
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) {
+	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException {
 		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
 		update();
 	}
 	/**
 	 * update items
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public void update() {
+	public void update() throws IOException, ClassNotFoundException {
 		list = Communication.getInstance().getItems();
 	}
 	/**

@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -73,8 +75,10 @@ public class Register extends Activity {
 	 * pop up wrong message
 	 * otherwise create a new account
 	 * @param view
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public void registerAccount(View view){
+	public void registerAccount(View view) throws IOException, ClassNotFoundException{
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
 		String pConfirm = pswdConfirm.getText().toString();

@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
 import java.util.Date;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
@@ -39,8 +40,10 @@ public class LostItemInput extends Activity {
 	/**
 	 * Processes the onClick event of the confirm button.
 	 * @param view
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public void confirmLostItemInfo(View view){
+	public void confirmLostItemInfo(View view) throws IOException, ClassNotFoundException{
 		String name=((TextView)(this.findViewById(R.id.editText1))).getText().toString();
 		String location=((TextView)(this.findViewById(R.id.editText2))).getText().toString();
 		String description=((TextView)(this.findViewById(R.id.editText3))).getText().toString();
