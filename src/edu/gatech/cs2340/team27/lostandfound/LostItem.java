@@ -26,13 +26,14 @@ import android.widget.TextView;
 public class LostItem extends Activity {
 	
 	private ArrayList<Item> lostlist = Items.getInstance().getLost();
+	
 	/**
 	 * Processes the onCreate event.
 	 * create a namelist, arrayadapter and use listview to show a
 	 * list of lost items
 	 * when click to lost item, redirect to detail info
+	 * @param savedInstanceState
 	 */
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ public class LostItem extends Activity {
 
 	/**
 	 * Processes the onCreateOptionsMenu event.
+	 * @param menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
