@@ -10,7 +10,13 @@ import android.view.View;
 import android.widget.EditText;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
-
+/**
+ * Login page
+ * check username password
+ * can lock user if enter wrong password three times
+ * @author all
+ *
+ */
 public class Login extends Activity {
 
 	/**

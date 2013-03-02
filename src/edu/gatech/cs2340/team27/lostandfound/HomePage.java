@@ -5,7 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-
+	/**
+	 * Homepage
+	 * five buttons
+	 * each button directs to a new page
+	 * @author all
+	 *
+	 */
 public class HomePage extends Activity {
 
 	@Override

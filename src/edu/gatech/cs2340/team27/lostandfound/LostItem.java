@@ -17,7 +17,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
+/**
+ * LostItem page
+ * show lost item list
+ * @author all
+ *
+ */
 public class LostItem extends Activity {
 	
 	private ArrayList<Item> lostlist = Items.getInstance().getLost();
