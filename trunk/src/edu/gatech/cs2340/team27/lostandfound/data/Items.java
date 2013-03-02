@@ -2,7 +2,6 @@ package edu.gatech.cs2340.team27.lostandfound.data;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
@@ -11,7 +10,7 @@ public class Items {
 	private ArrayList<Item> list;
 	private static Items onlyInstance;
 	
-	public Items getInstance() {
+	public static Items getInstance() {
 		if(onlyInstance == null) {
 			onlyInstance = new Items();
 		}
