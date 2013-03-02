@@ -52,8 +52,7 @@ public class Items {
 	 * @throws IOException 
 	 */
 	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException {
-		Communication i = Communication.getInstance();
-		i.addItem(new Item(status, name, location, description, date, user));
+		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
 		update();
 	}
 	/**
