@@ -1,10 +1,18 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.util.Date;
+
+import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
+import edu.gatech.cs2340.team27.lostandfound.data.Items;
+import edu.gatech.cs2340.team27.lostandfound.data.Users;
+import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 public class LostItemInput extends Activity {
 	/**
@@ -29,7 +37,12 @@ public class LostItemInput extends Activity {
 	 * @param view
 	 */
 	public void confirmLostItemInfo(View view){
-		//TODO - addUserInfo
+		String name=((TextView)(this.findViewById(R.id.editText1))).getText().toString();
+		String location=((TextView)(this.findViewById(R.id.editText2))).getText().toString();
+		String description=((TextView)(this.findViewById(R.id.editText3))).getText().toString();
+		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
+		Date date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
+		Items.getInstance().addItem(ItemStatus.LOST, name, location, description, date, null);//TODO give current user.
 		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
 	}
