@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,18 +22,25 @@ public class LostItem extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lost_item);
 		String[] temp={"a", "b", "c"};
-		ArrayAdapter adapter = new ArrayAdapter<String>(this, 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
 		        android.R.layout.simple_list_item_1, temp);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		        
+//		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
+//				startActivity(intent);
+		    	new AlertDialog.Builder(parent.getContext())
+			    .setTitle("Error")
+			    .setMessage("Confirm password is different from your password")
+			    .show();
 		    }
-
 		}); 
 	}
 
+	/**
+	 * Processes the onCreateOptionsMenu event.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
