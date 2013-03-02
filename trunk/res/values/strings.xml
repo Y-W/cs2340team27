@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Lost and Found</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -29,4 +30,6 @@
     <string name="lostDate">Date of Losing</string>
     <string name="emailhint">user@domain.com</string>
     <string name="title_activity_lost_item">LostItem</string>
+    <string name="title_activity_lost_item_info">LostItemInfo</string>
+
 </resources>
