@@ -80,6 +80,17 @@ public class Register extends Activity {
 				Communication.getInstance().createAccount(userText, psText, false);
 		if (registerStatus)
 			goBack(view);
+		else{
+			new AlertDialog.Builder(this)
+			.setTitle("Error")
+			.setMessage("User name already existed.")
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) { 
+					clear();
+				}
+			})
+			.show();
+		}
 	}
 	
 }
