@@ -341,6 +341,7 @@ public class Communication {
 	}
 	
 	public Item deserializeItem(String str) throws IOException, ClassNotFoundException {
+		if (str==null || str.equals("")) return null;
 		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
 		ItemStatus status = (ItemStatus) deserialize(sarr.get(0));
 		String name = sarr.get(1);
@@ -362,12 +363,32 @@ public class Communication {
 	}
 	
 	public User deserializeUser(String str) throws IOException, ClassNotFoundException {
+		if (str==null || str.equals("")) return null;
 		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
 		String name = sarr.get(0);
 		String address = sarr.get(1);
 		String phoneNumber = sarr.get(2);
 		String email = sarr.get(3);
 		return new User(name, phoneNumber, email);
+	}
+	
+	public User getUser(String username) throws IOException, ClassNotFoundException {
+		if (username==null || username.equals("")) return null;
+		return deserializeUser(data.get("USER/" + username+"/INFO"));
+	}
+	
+	public User getCurrentUser() throws IOException, ClassNotFoundException{
+		return getUser(currentUsername);
+	}
+	
+	public ArrayList<User> getUserList() throws IOException, ClassNotFoundException{
+		if (data.get("Users")==null) data.put("Users", "");
+		ArrayList<String> namearr = (ArrayList<String>) deserialize(data.get("Users"));
+		ArrayList<User> ret = new ArrayList<User>();
+		for (String eachName : namearr) {
+			ret.add(getUser(eachName));
+		}
+		return ret;
 	}
 }
 
