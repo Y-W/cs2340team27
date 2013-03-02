@@ -42,7 +42,7 @@ public class LostItemInput extends Activity {
 		String description=((TextView)(this.findViewById(R.id.editText3))).getText().toString();
 		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
 		Date date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
-		Items.getInstance().addItem(ItemStatus.LOST, name, location, description, date, null);//TODO give current user.
+		Items.getInstance().addItem(ItemStatus.LOST, name, location, description, date, Users.getInstance().getCurrentUser());//TODO give current user.
 		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
 	}
