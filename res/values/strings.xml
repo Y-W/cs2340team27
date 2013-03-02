@@ -28,5 +28,6 @@
     <string name="realname">Real Name</string>
     <string name="phone">Phone Number</string>
     <string name="emailhint">user@domain.com</string>
+    <string name="title_activity_lost_item">LostItem</string>
 
 </resources>
