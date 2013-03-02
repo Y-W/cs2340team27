@@ -42,16 +42,13 @@ public class Login extends Activity {
 	 * @param view
 	 */
 	public void loginAttempt(View view) {
-		Intent intent = new Intent(this, LoginStatus.class);
+		Intent intent = new Intent(this, HomePage.class);
 		EditText username = (EditText) findViewById(R.id.editText1);
 		EditText password = (EditText) findViewById(R.id.editText2);
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
 		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
-		String message;
 		if(status == LogStatus.SUCCESS) {
-			message = "Login Successful.";
-			intent.putExtra(STATUS_MESSAGE, message);
 			startActivity(intent);
 		}
 		
