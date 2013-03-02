@@ -28,6 +28,22 @@ public class Item {
 		}
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public String getLoca() {
+		return location;
+	}
+	
+	public String getDescri() {
+		return description;
+	}
+	
+	public ItemStatus getStatus() {
+		return status;
+	}
+	
 	public enum ItemStatus{
 		LOST,
 		FOUND,

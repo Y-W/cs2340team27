@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
+import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 public class Items {
 	
@@ -22,6 +23,21 @@ public class Items {
 	}
 	
 	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) {
-		list.add(new Item(status, name, location, description, date, user));
+		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
+		update();
+	}
+	
+	public void update() {
+		list = Communication.getInstance().getItems();
+	}
+	
+	public ArrayList<Item> getLost() {
+		ArrayList<Item> lost = new ArrayList<Item>();
+		for(Item item : list) {
+			if(item.getStatus() == ItemStatus.LOST) {
+				lost.add(item);
+			}
+		}
+		return lost;
 	}
 }
