@@ -44,6 +44,10 @@
             android:name="edu.gatech.cs2340.team27.lostandfound.LostItem"
             android:label="@string/title_activity_lost_item" >
         </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.LostItemInfo"
+            android:label="@string/title_activity_lost_item_info" >
+        </activity>
     </application>
 
 </manifest>
