@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/textView2" />
+        android:layout_below="@+id/itemname" />
 
     <EditText
         android:id="@+id/editText2"
@@ -52,7 +52,7 @@
         android:layout_alignLeft="@+id/datePicker1"
         android:layout_below="@+id/datePicker1"
         android:ems="10"
-        android:hint="@string/locatioin"
+        android:hint="@string/location"
         android:inputType="textPostalAddress" >
 
         <requestFocus />
@@ -88,7 +88,7 @@
         android:text="@string/cancel" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/itemname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"

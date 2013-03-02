@@ -23,7 +23,7 @@
     <string name="title_activity_lost_item_input">LostItemInput</string>
     <string name="lostItemInfo">Lost Item Info</string>
     <string name="itemName">Item Name</string>
-    <string name="locatioin">Location</string>
+    <string name="location">Location</string>
     <string name="discription">Discription</string>
     <string name="realname">Real Name</string>
     <string name="phone">Phone Number</string>
