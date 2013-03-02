@@ -12,6 +12,13 @@ public class User {
 	protected String phoneNumber;
 	protected String email;
 	
+	/**
+	 * Constructor. 
+	 * @param name
+	 * @param address
+	 * @param phoneNumber
+	 * @param email
+	 */
 	public User(String name, String address, String phoneNumber, String email) {
 		this.name = name;
 		this.address = address;
