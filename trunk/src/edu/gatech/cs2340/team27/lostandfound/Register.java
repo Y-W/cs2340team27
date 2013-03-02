@@ -19,9 +19,11 @@ import edu.gatech.cs2340.team27.lostandfound.R;
  */
 public class Register extends Activity {
 
-	private EditText username;
+	private EditText email;
 	private EditText password;
 	private EditText pswdConfirm;
+	private EditText realname;
+	private EditText phone;
 	
 	@Override
 	/**
@@ -30,9 +32,11 @@ public class Register extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		username = (EditText) findViewById(R.id.editText1);
+		email = (EditText) findViewById(R.id.editText1);
 		password = (EditText) findViewById(R.id.editText2);
 		pswdConfirm = (EditText) findViewById(R.id.editText3);
+		realname = (EditText) findViewById(R.id.editText4);
+		phone = (EditText) findViewById(R.id.editText5);
 	}
 
 	@Override
@@ -61,17 +65,17 @@ public class Register extends Activity {
 		pswdConfirm.setText("");
 	}
 	/**
-	 * clear username
+	 * clear email
 	 */
-	public void usernameclear(){
-		username.setText("");
+	public void emailclear(){
+		email.setText("");
 	
 	}
 	/**
-	 * get username, password and confirmpassword
+	 * get email, password and confirmpassword
 	 * if password and confirmpassword doesnt match
 	 * pop up wrong message
-	 * if username is already existed
+	 * if email is already existed
 	 * pop up wrong message
 	 * otherwise create a new account
 	 * @param view
@@ -79,9 +83,11 @@ public class Register extends Activity {
 	 * @throws IOException 
 	 */
 	public void registerAccount(View view) throws IOException, ClassNotFoundException{
-		String userText = username.getText().toString();
+		String userText = email.getText().toString();
 		String psText = password.getText().toString();
 		String pConfirm = pswdConfirm.getText().toString();
+		String nameText = realname.getText().toString();
+		String phoneText = phone.getText().toString();
 		if (!psText.equals(pConfirm)) {
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
@@ -95,7 +101,7 @@ public class Register extends Activity {
 			return;
 		}
 		boolean registerStatus = edu.gatech.cs2340.team27.lostandfound.model.
-				Communication.getInstance().createAccount(userText, psText, false);
+				Communication.getInstance().createAccount(userText, psText, nameText, phoneText, false);
 		if (registerStatus)
 			goBack(view);
 		else{
@@ -105,7 +111,7 @@ public class Register extends Activity {
 			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) { 
 					clear();
-					usernameclear();
+					emailclear();
 				}
 			})
 			.show();
