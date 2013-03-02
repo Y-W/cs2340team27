@@ -32,8 +32,8 @@ public class HomePage extends Activity {
 	}
 	
 	public void lostinfoAttempt(View view){
-	//	Intent intent = new Intent(this,.class);
-	//	startActivity(intent);
+		Intent intent = new Intent(this,LostItem.class);
+		startActivity(intent);
 	}
 	
 	public void foundinfoAttempt(View view){
