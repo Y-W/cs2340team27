@@ -42,38 +42,75 @@ public class Item {
 		}
 	}
 	
+	/**
+	 * Getter. 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return location
+	 */
 	public String getLoca() {
 		return location;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return description
+	 */
 	public String getDescri() {
 		return description;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return status
+	 */
 	public ItemStatus getStatus() {
 		return status;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return lostDate
+	 */
 	public Date getLostDate() {
 		return lostDate;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return foundDate
+	 */
 	public Date getFoundDate() {
 		return foundDate;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return loser
+	 */
 	public User getLoser() {
 		return loser;
 	}
 	
+	/**
+	 * Getter. 
+	 * @return founder
+	 */
 	public User getFounder() {
 		return founder;
 	}
 	
+	/**
+	 * Different item status
+	 * @author Yiqi Chen
+	 *
+	 */
 	public enum ItemStatus{
 		LOST,
 		FOUND,
