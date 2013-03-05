@@ -18,11 +18,17 @@ public class Items {
 	private ArrayList<Item> list;
 	private static Items onlyInstance;
 	
+	/**
+	 * Constructor
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 * @throws ParseException 
+	 */
 	public Items() throws IOException, ClassNotFoundException, ParseException {
 		list = Communication.getInstance().getItems();
 	}
 	/**
-	 * 
+	 * This method is used as the singleton design pattern
 	 * @return the only instance of this class
 	 * @throws ClassNotFoundException 
 	 * @throws IOException 
