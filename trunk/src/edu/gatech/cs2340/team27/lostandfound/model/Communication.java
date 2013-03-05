@@ -1,15 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
-//import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
-//import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
-//import java.io.FileOutputStream;
 import java.io.IOException;
-//import java.io.ObjectInputStream;
-//import java.io.ObjectOutputStream;
-//import java.security.MessageDigest;
-//import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -82,10 +74,6 @@ public class Communication {
 	@SuppressWarnings("unchecked")
 	protected Communication() throws IOException, ClassNotFoundException {
 		try {
-			// FileInputStream in= appContext.openFileInput(filename);
-			// ObjectInputStream oIn=new ObjectInputStream(in);
-			// oIn.close();
-			// in.close();
 			pref = getContext().getSharedPreferences(prefName, 0);
 			editor = pref.edit();
 			data = (HashMap<String, String>) pref.getAll();
@@ -99,13 +87,6 @@ public class Communication {
 	 * Stores data.
 	 */
 	protected void finalize() throws IOException {
-		// FileOutputStream out=
-		// appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-		// ObjectOutputStream oOut=new ObjectOutputStream(out);
-		// oOut.writeObject(data);
-		// oOut.flush();
-		// oOut.close();
-		// out.close();
 		submit();
 	}
 
@@ -135,15 +116,6 @@ public class Communication {
 	 * @throws IOException 
 	 */
 	public LogStatus loginAttempt(String username, String password) throws IOException, ClassNotFoundException {
-		// MessageDigest md=null;
-		// try {
-		// md = MessageDigest.getInstance(digestMethod);
-		// } catch (NoSuchAlgorithmException e) {
-		// //impossible to reach here
-		// }
-		// md.reset();
-		// md.digest(password.getBytes());
-		// String digest=new String(md.digest());
 		String query = "USER/" + username.replace('/', '_');
 		if (data.get(query) == null) {
 			return LogStatus.FAILURE;
@@ -156,18 +128,6 @@ public class Communication {
 			currentPassword = password;
 			data.put(query + "/COUNTER", "0");
 			submit();
-			// try {
-			// FileOutputStream out =
-			// appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-			// ObjectOutputStream oOut=new ObjectOutputStream(out);
-			// oOut.writeObject(data);
-			// oOut.flush();
-			// oOut.close();
-			// out.close();
-			// }
-			// catch(Exception e){
-			//
-			// }
 			Users.getInstance().updateCurrentUser();
 			return LogStatus.SUCCESS;
 		} else {
@@ -176,18 +136,6 @@ public class Communication {
 					Integer.valueOf(
 							Integer.parseInt(data.get(query + "/COUNTER")) + 1)
 							.toString());
-			// try {
-			// FileOutputStream out =
-			// appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-			// ObjectOutputStream oOut=new ObjectOutputStream(out);
-			// oOut.writeObject(data);
-			// oOut.flush();
-			// oOut.close();
-			// out.close();
-			// }
-			// catch(Exception e){
-			//
-			// }
 			submit();
 			return LogStatus.FAILURE;
 		}
@@ -227,58 +175,64 @@ public class Communication {
 			data.put(query + "/INFO", serializeUser(newUser));
 			data.put(query + "/COUNTER", "0");
 			data.put(username + "/ITEMS", "[]");
-			// MessageDigest md=null;
-			// try {
-			// md = MessageDigest.getInstance(digestMethod);
-			// } catch (NoSuchAlgorithmException e) {
-			// //impossible to reach here
-			// }
-			// md.reset();
-			// md.digest(password.getBytes());
-			// String digest=new String(md.digest());
 			data.put(query + "/PASSWORD", password);
-
-			// FileOutputStream out;
-			// try {
-			// out = appContext.openFileOutput(filename,Context.MODE_PRIVATE);
-			// ObjectOutputStream oOut=new ObjectOutputStream(out);
-			// oOut.writeObject(data);
-			// oOut.flush();
-			// oOut.close();
-			// out.close();
-			// }
-			// catch(Exception e){
-			//
-			// }
 			submit();
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * default serialize function
+	 * 
+	 * @param a
+	 * 			The ArrayList to be serialized
+	 * @return
+	 * 			serializing result
+	 * @throws IOException
+	 */
 	public String serialize(ArrayList<String> a) throws IOException {
-//		ByteArrayOutputStream bout = new ByteArrayOutputStream();
-//		ObjectOutputStream out = new ObjectOutputStream(bout);
-//		out.writeObject(o);
-//		out.close();
-//		byte[] strin = bout.toByteArray(); 
-//        return new String(Base64.encode(strin));
 		return serialize(a, "##");
 	}
 	
+	/**
+	 * serialize ItemStatus
+	 * 
+	 * @param a
+	 * 			The ItemStatus to be serialized
+	 * @return
+	 * 			serializing result
+	 */
 	public String serialize(ItemStatus a) {
 		return a.name();
 	}
 	
+	/**
+	 * deserialize ItemStatus
+	 * 
+	 * @param str  The String to be deserialized
+	 * @return  deserializing result
+	 */
 	public ItemStatus deserialize(String str) {
 		return ItemStatus.valueOf(str);
 	}
 	
+	/**
+	 * serialize date
+	 * @param d  The date to be serialized
+	 * @return  serializing result
+	 */
 	public String serialize(Date d) {
 		if (d==null) return "[]";
 		return DateFormat.getDateInstance().format(d);
 	}
 	
+	/**
+	 * advanced serialize function
+	 * @param a  The ArrayList to be serialized
+	 * @param delimiter  The delimiter to be added between entries
+	 * @return serializing result
+	 */
 	public String serialize(ArrayList<String> a, String delimiter) {
 		String ret = "";
 		for (String each : a) {
@@ -289,22 +243,36 @@ public class Communication {
 		return ret;
 	}
 	
+	/**
+	 * deserialize date
+	 * @param str  The String to be deserialized
+	 * @param ret  Any date object for overriding need
+	 * @return deserializing result
+	 * @throws ParseException
+	 */
 	public Date deserialize(String str, Date ret) throws ParseException {
 		if (str==null || str.equals("[]")) return null;
 		ret = DateFormat.getDateInstance().parse(str);
 		return ret;
 	}
 
+	/**
+	 * deserialize arraylist
+	 * @param str  The String to be deserialized
+	 * @param ret  Any arraylist object for overriding need
+	 * @return deserializing result
+	 */
 	public ArrayList<String> deserialize(String str, ArrayList<String> ret) {
-//		if (str==null) return null;
-//		if (str.equals("")) return null;
-//		byte[] restoredBytes = Base64.decode(str); 
-//  	  ByteArrayInputStream bin = new ByteArrayInputStream(restoredBytes);
-//       ObjectInputStream in = new ObjectInputStream(bin);
-//       return in.readObject();
 		return deserialize(str, ret, "##");
 	}
 	
+	/**
+	 * advanced function for deserializing arraylist
+	 * @param str  The String to be deserialized
+	 * @param ret  Any arraylist object for overriding need
+	 * @param delimiter  The delimiter that is between entries
+	 * @return deserializing result
+	 */
 	public ArrayList<String> deserialize(String str, ArrayList<String> ret, String delimiter) {
 		ret.clear();
 		if (str==null) return ret;
@@ -316,6 +284,13 @@ public class Communication {
 		return ret;
 	}
 
+	/**
+	 * add a item to certain user
+	 * @param username  The email address of the user to whom the item is added
+	 * @param item  The item to be added
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void addItem(String username, Item item) throws IOException, ClassNotFoundException {
 		ArrayList<String> items = getItems(username);
 		String str = serializeItem(item);
@@ -325,6 +300,12 @@ public class Communication {
 		submit();
 	}
 	
+	/**
+	 * add the item and choose targeting users automatically
+	 * @param item  The item to be added
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void addItem(Item item) throws IOException, ClassNotFoundException {
 		if (item.getLoser()!=null) {
 			addItem(item.getLoser().getEmail(), item);
@@ -333,11 +314,25 @@ public class Communication {
 			addItem(item.getFounder().getEmail(), item);
 	}
 
+	/**
+	 * get all items of certain users
+	 * @param username The email address of the user
+	 * @return An arraylist that contains serials of all items 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getItems(String username) throws IOException, ClassNotFoundException {
 		return deserialize(data.get(username+"/ITEMS"), new ArrayList<String>());
 	}
 	
+	/**
+	 * get items of all users
+	 * @return An arraylist that contains items of all users
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws ParseException
+	 */
 	public ArrayList<Item> getItems() throws IOException, ClassNotFoundException, ParseException {
 		if (data.get("Users")==null) data.put("Users", "");
 		String str = data.get("Users");
@@ -345,8 +340,6 @@ public class Communication {
 		namearr = deserialize(str, namearr);
 		ArrayList<Item> ret = new ArrayList<Item>();
 		if (namearr.size()==0) {
-//			Items.getInstance().initialize(ret);
-//			return Items.getInstance();
 			return ret;
 		}
 		ArrayList<String> eachperson = new ArrayList<String>();
@@ -360,11 +353,15 @@ public class Communication {
 				ret.add(tmp);
 			}
 		}
-//		Items.getInstance().initialize(ret);
-//		return Items.getInstance();
 		return ret;
 	}
 	
+	/**
+	 * serialize an item
+	 * @param i The item to be serialized
+	 * @return serializing result
+	 * @throws IOException
+	 */
 	public String serializeItem(Item i) throws IOException{
 		if (i==null) return "[]";
 		ArrayList<String> sarr = new ArrayList<String>();
@@ -381,6 +378,12 @@ public class Communication {
 	}
 
 
+	/**
+	 * serialize an user
+	 * @param u The user to be serialized
+	 * @return serializing result
+	 * @throws IOException
+	 */
 	public String serializeUser(User u) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
 		if (u==null) return "[]";
@@ -390,6 +393,14 @@ public class Communication {
 		return serialize(sarr, "%user%");
 	}
 	
+	/**
+	 * deserialize an item
+	 * @param str The string to be deserialized
+	 * @return deserializing result
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public Item deserializeItem(String str) throws ParseException, IOException, ClassNotFoundException {
 		if (str==null || str.equals("[]")) return null;
 		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%item%");
@@ -412,6 +423,13 @@ public class Communication {
 		return new Item(status, name, location, description, date, user);
 	}
 	
+	/**
+	 * deserialize a user
+	 * @param str The String to be deserialized
+	 * @return deserializing result
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public User deserializeUser(String str) throws IOException, ClassNotFoundException {
 		if (str==null || str.equals("[]")) return null;
 		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%user%");
@@ -421,15 +439,34 @@ public class Communication {
 		return new User(name, phoneNumber, email);
 	}
 	
+	/**
+	 * get all the information of certain user
+	 * @param username the email address of the user
+	 * @return An user object that contains all the information of certain user.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public User getUser(String username) throws IOException, ClassNotFoundException {
 		if (username==null || username.equals("")) return null;
 		return deserializeUser(data.get("USER/" + username+"/INFO"));
 	}
 	
+	/**
+	 * get the information of current user
+	 * @return An user object that contains all the information of current user.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public User getCurrentUser() throws IOException, ClassNotFoundException{
 		return getUser(currentUsername);
 	}
 	
+	/**
+	 * Get user information of all users
+	 * @return An arraylist that contains user information.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public ArrayList<User> getUserList() throws IOException, ClassNotFoundException{
 		if (data.get("Users")==null) data.put("Users", "");
 		ArrayList<String> namearr = deserialize(data.get("Users"), new ArrayList<String>());
