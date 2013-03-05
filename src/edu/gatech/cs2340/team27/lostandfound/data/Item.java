@@ -32,6 +32,7 @@ public class Item {
 		this.status = status;
 		this.location = location;
 		this.description = description;
+		this.name = name;
 		if(status == ItemStatus.LOST) {
 			lostDate = date;
 			loser = user;

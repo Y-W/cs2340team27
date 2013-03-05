@@ -1,18 +1,20 @@
 package edu.gatech.cs2340.team27.lostandfound.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+//import java.io.ByteArrayInputStream;
+//import java.io.ByteArrayOutputStream;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+//import java.io.ObjectInputStream;
+//import java.io.ObjectOutputStream;
+//import java.security.MessageDigest;
+//import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.text.DateFormat;
+import java.text.ParseException;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
@@ -207,15 +209,12 @@ public class Communication {
 			boolean priviliged) throws IOException, ClassNotFoundException {
 		username = username.replace('/', '_');
 		String query = "USER/" + username;
-		ArrayList<String> sarr;
+		ArrayList<String> sarr = new ArrayList<String>();;
 		if (data.get(query) == null) {
 			if (data.get("Users")==null) data.put("Users", "");
 			String str = data.get("Users");
-			if (str.equals("") || str==null) {
-				sarr = new ArrayList<String>();
-			}
-			else {
-				sarr = (ArrayList<String>) deserialize(str);
+			if (str!=null && !str.equals("")) {
+				sarr = (ArrayList<String>) deserialize(str, sarr);
 			}
 			User newUser = new User(realname, phone, username);
 			sarr.add(username);
@@ -223,7 +222,7 @@ public class Communication {
 			data.put(query, Long.toString((System.currentTimeMillis())));
 			data.put(query + "/INFO", serializeUser(newUser));
 			data.put(query + "/COUNTER", "0");
-			//data.put(query + "/ITEMS", "");
+			data.put(username + "/ITEMS", "[]");
 			// MessageDigest md=null;
 			// try {
 			// md = MessageDigest.getInstance(digestMethod);
@@ -253,22 +252,64 @@ public class Communication {
 		return false;
 	}
 
-	public String serialize(Object o) throws IOException {
-		ByteArrayOutputStream bout = new ByteArrayOutputStream();
-		ObjectOutputStream out = new ObjectOutputStream(bout);
-		out.writeObject(o);
-		out.close();
-		byte[] strin = bout.toByteArray(); 
-        return new String(Base64.encode(strin));
+	public String serialize(ArrayList<String> a) throws IOException {
+//		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+//		ObjectOutputStream out = new ObjectOutputStream(bout);
+//		out.writeObject(o);
+//		out.close();
+//		byte[] strin = bout.toByteArray(); 
+//        return new String(Base64.encode(strin));
+		return serialize(a, "##");
+	}
+	
+	public String serialize(ItemStatus a) {
+		return a.name();
+	}
+	
+	public ItemStatus deserialize(String str) {
+		return ItemStatus.valueOf(str);
+	}
+	
+	public String serialize(Date d) {
+		if (d==null) return "[]";
+		return DateFormat.getDateInstance().format(d);
+	}
+	
+	public String serialize(ArrayList<String> a, String delimiter) {
+		String ret = "";
+		for (String each : a) {
+			//don't escape here
+			if (each==null || each.equals("")) each = "[]";
+			ret = ret + each +delimiter;
+		}
+		return ret;
+	}
+	
+	public Date deserialize(String str, Date ret) throws ParseException {
+		if (str==null || str.equals("[]")) return null;
+		ret = DateFormat.getDateInstance().parse(str);
+		return ret;
 	}
 
-	public Object deserialize(String str) throws IOException, ClassNotFoundException {
-		if (str==null) return null;
-		if (str.equals("")) return null;
-		byte[] restoredBytes = Base64.decode(str); 
-  	  ByteArrayInputStream bin = new ByteArrayInputStream(restoredBytes);
-       ObjectInputStream in = new ObjectInputStream(bin);
-       return in.readObject();
+	public ArrayList<String> deserialize(String str, ArrayList<String> ret) {
+//		if (str==null) return null;
+//		if (str.equals("")) return null;
+//		byte[] restoredBytes = Base64.decode(str); 
+//  	  ByteArrayInputStream bin = new ByteArrayInputStream(restoredBytes);
+//       ObjectInputStream in = new ObjectInputStream(bin);
+//       return in.readObject();
+		return deserialize(str, ret, "##");
+	}
+	
+	public ArrayList<String> deserialize(String str, ArrayList<String> ret, String delimiter) {
+		ret.clear();
+		if (str==null) return ret;
+		String[] arr = str.split(delimiter);
+		for (String each : arr) {
+			if (each.equals("[]")) ret.add(null);
+			else ret.add(each);
+		}
+		return ret;
 	}
 
 	public void addItem(String username, Item item) throws IOException, ClassNotFoundException {
@@ -282,21 +323,22 @@ public class Communication {
 	
 	public void addItem(Item item) throws IOException, ClassNotFoundException {
 		if (item.getLoser()!=null) {
-			addItem(item.getLoser().getName(), item);
+			addItem(item.getLoser().getEmail(), item);
 		}
 		if (item.getFounder()!=null) 
-			addItem(item.getFounder().getName(), item);
+			addItem(item.getFounder().getEmail(), item);
 	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getItems(String username) throws IOException, ClassNotFoundException {
-		return (ArrayList<String>) deserialize(data.get(username+"/ITEMS"));
+		return deserialize(data.get(username+"/ITEMS"), new ArrayList<String>());
 	}
 	
-	public ArrayList<Item> getItems() throws IOException, ClassNotFoundException {
+	public ArrayList<Item> getItems() throws IOException, ClassNotFoundException, ParseException {
 		if (data.get("Users")==null) data.put("Users", "");
 		String str = data.get("Users");
-		ArrayList<String> namearr = (ArrayList<String>) deserialize(str);
+		ArrayList<String> namearr = new ArrayList<String>();
+		namearr = deserialize(str, namearr);
 		ArrayList<Item> ret = new ArrayList<Item>();
 		if (namearr.size()==0) {
 //			Items.getInstance().initialize(ret);
@@ -309,6 +351,7 @@ public class Communication {
 			if (eachperson == null) continue;
 			for (String eachItem : eachperson) {
 				Item tmp = deserializeItem(eachItem);
+				if (tmp==null) continue;
 				if (ret.contains(tmp)) continue;
 				ret.add(tmp);
 			}
@@ -319,6 +362,7 @@ public class Communication {
 	}
 	
 	public String serializeItem(Item i) throws IOException{
+		if (i==null) return "[]";
 		ArrayList<String> sarr = new ArrayList<String>();
 		sarr.add(serialize(i.getStatus()));
 		sarr.add(i.getName());
@@ -329,27 +373,29 @@ public class Communication {
 		sarr.add(serialize(i.getResolvedDate()));
 		sarr.add(serializeUser(i.getLoser()));
 		sarr.add(serializeUser(i.getFounder()));
-		return serialize(sarr);
+		return serialize(sarr, "%item%");
 	}
+
 
 	public String serializeUser(User u) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
+		if (u==null) return "[]";
 		sarr.add(u.getName());
 		sarr.add(u.getPhoneNumber());
 		sarr.add(u.getEmail());
-		return serialize(sarr);
+		return serialize(sarr, "%user%");
 	}
 	
-	public Item deserializeItem(String str) throws IOException, ClassNotFoundException {
-		if (str==null || str.equals("")) return null;
-		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
-		ItemStatus status = (ItemStatus) deserialize(sarr.get(0));
+	public Item deserializeItem(String str) throws ParseException, IOException, ClassNotFoundException {
+		if (str==null || str.equals("[]")) return null;
+		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%item%");
+		ItemStatus status = deserialize(sarr.get(0));
 		String name = sarr.get(1);
 		String location= sarr.get(2);
 		String description= sarr.get(3);
-		Date lostDate = (Date) deserialize(sarr.get(4));
-		Date foundDate = (Date) deserialize(sarr.get(5));
-		Date resolvedDate = (Date) deserialize(sarr.get(6));
+		Date lostDate = deserialize(sarr.get(4), new Date());
+		Date foundDate = deserialize(sarr.get(5), new Date());
+		Date resolvedDate = deserialize(sarr.get(6), new Date());
 		User loser = deserializeUser(sarr.get(7));
 		User founder= deserializeUser(sarr.get(8));
 		Date date;
@@ -363,12 +409,11 @@ public class Communication {
 	}
 	
 	public User deserializeUser(String str) throws IOException, ClassNotFoundException {
-		if (str==null || str.equals("")) return null;
-		ArrayList<String> sarr = (ArrayList<String>) deserialize(str);
+		if (str==null || str.equals("[]")) return null;
+		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%user%");
 		String name = sarr.get(0);
-		String address = sarr.get(1);
-		String phoneNumber = sarr.get(2);
-		String email = sarr.get(3);
+		String phoneNumber = sarr.get(1);
+		String email = sarr.get(2);
 		return new User(name, phoneNumber, email);
 	}
 	
@@ -383,166 +428,11 @@ public class Communication {
 	
 	public ArrayList<User> getUserList() throws IOException, ClassNotFoundException{
 		if (data.get("Users")==null) data.put("Users", "");
-		ArrayList<String> namearr = (ArrayList<String>) deserialize(data.get("Users"));
+		ArrayList<String> namearr = deserialize(data.get("Users"), new ArrayList<String>());
 		ArrayList<User> ret = new ArrayList<User>();
 		for (String eachName : namearr) {
 			ret.add(getUser(eachName));
 		}
 		return ret;
 	}
-}
-
-class Base64 {
-    static byte[] encodeData;
-    static String charSet = 
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    
-    static {
-    	encodeData = new byte[64];
-	for (int i = 0; i<64; i++) {
-	    byte c = (byte) charSet.charAt(i);
-	    encodeData[i] = c;
-	}
-    }
-
-    private Base64() {}
-
-    /**
-     * base-64 encode a string
-     * @param s		The ascii string to encode
-     * @returns		The base64 encoded result
-     */
-
-    public static String
-    encode(String s) {
-        return encode(s.getBytes());
-    }
-
-    /**
-     * base-64 encode a byte array
-     * @param src	The byte array to encode
-     * @returns		The base64 encoded result
-     */
-
-    public static String
-    encode(byte[] src) {
-	return encode(src, 0, src.length);
-    }
-
-    /**
-     * base-64 encode a byte array
-     * @param src	The byte array to encode
-     * @param start	The starting index
-     * @param len	The number of bytes
-     * @returns		The base64 encoded result
-     */
-
-    public static String
-    encode(byte[] src, int start, int length) {
-        byte[] dst = new byte[(length+2)/3 * 4 + length/72];
-        int x = 0;
-        int dstIndex = 0;
-        int state = 0;	// which char in pattern
-        int old = 0;	// previous byte
-        int len = 0;	// length decoded so far
-	int max = length + start;
-        for (int srcIndex = start; srcIndex<max; srcIndex++) {
-	    x = src[srcIndex];
-	    switch (++state) {
-	    case 1:
-	        dst[dstIndex++] = encodeData[(x>>2) & 0x3f];
-		break;
-	    case 2:
-	        dst[dstIndex++] = encodeData[((old<<4)&0x30) 
-	            | ((x>>4)&0xf)];
-		break;
-	    case 3:
-	        dst[dstIndex++] = encodeData[((old<<2)&0x3C) 
-	            | ((x>>6)&0x3)];
-		dst[dstIndex++] = encodeData[x&0x3F];
-		state = 0;
-		break;
-	    }
-	    old = x;
-	    if (++len >= 72) {
-	    	dst[dstIndex++] = (byte) '\n';
-	    	len = 0;
-	    }
-	}
-
-	/*
-	 * now clean up the end bytes
-	 */
-
-	switch (state) {
-	case 1: dst[dstIndex++] = encodeData[(old<<4) & 0x30];
-	   dst[dstIndex++] = (byte) '=';
-	   dst[dstIndex++] = (byte) '=';
-	   break;
-	case 2: dst[dstIndex++] = encodeData[(old<<2) & 0x3c];
-	   dst[dstIndex++] = (byte) '=';
-	   break;
-	}
-	return new String(dst);
-    }
-
-    /**
-     * A Base64 decoder.  This implementation is slow, and 
-     * doesn't handle wrapped lines.
-     * The output is undefined if there are errors in the input.
-     * @param s		a Base64 encoded string
-     * @returns		The byte array eith the decoded result
-     */
-
-    public static byte[]
-    decode(String s) {
-      int end = 0;	// end state
-      if (s.endsWith("=")) {
-	  end++;
-      }
-      if (s.endsWith("==")) {
-	  end++;
-      }
-      int len = (s.length() + 3)/4 * 3 - end;
-      byte[] result = new byte[len];
-      int dst = 0;
-      try {
-	  for(int src = 0; src< s.length(); src++) {
-	      int code =  charSet.indexOf(s.charAt(src));
-	      if (code == -1) {
-	          break;
-	      }
-	      switch (src%4) {
-	      case 0:
-	          result[dst] = (byte) (code<<2);
-	          break;
-	      case 1: 
-	          result[dst++] |= (byte) ((code>>4) & 0x3);
-	          result[dst] = (byte) (code<<4);
-	          break;
-	      case 2:
-	          result[dst++] |= (byte) ((code>>2) & 0xf);
-	          result[dst] = (byte) (code<<6);
-	          break;
-	      case 3:
-	          result[dst++] |= (byte) (code & 0x3f);
-	          break;
-	      }
-	  }
-      } catch (ArrayIndexOutOfBoundsException e) {}
-      return result;
-    }
-
-    /**
-     * Test the decoder and encoder.
-     * Call as <code>Base64 [string]</code>.
-     */
-
-//    public static void
-//    main(String[] args) {
-//    	System.out.println("encode: " + args[0]  + " -> (" 
-//    	    + encode(args[0]) + ")");
-//    	System.out.println("decode: " + args[0]  + " -> (" 
-//    	    + new String(decode(args[0])) + ")");
-//    }
 }

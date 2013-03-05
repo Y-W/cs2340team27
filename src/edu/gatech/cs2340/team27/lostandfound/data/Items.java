@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
@@ -17,7 +18,7 @@ public class Items {
 	private ArrayList<Item> list;
 	private static Items onlyInstance;
 	
-	public Items() throws IOException, ClassNotFoundException {
+	public Items() throws IOException, ClassNotFoundException, ParseException {
 		list = Communication.getInstance().getItems();
 	}
 	/**
@@ -25,8 +26,9 @@ public class Items {
 	 * @return the only instance of this class
 	 * @throws ClassNotFoundException 
 	 * @throws IOException 
+	 * @throws ParseException 
 	 */
-	public static Items getInstance() throws IOException, ClassNotFoundException {
+	public static Items getInstance() throws IOException, ClassNotFoundException, ParseException {
 		if(onlyInstance == null) {
 			onlyInstance = new Items();
 		}
@@ -50,8 +52,9 @@ public class Items {
 	 * @param user the user who creates the item
 	 * @throws ClassNotFoundException 
 	 * @throws IOException 
+	 * @throws ParseException 
 	 */
-	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException {
+	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException, ParseException {
 		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
 		update();
 	}
@@ -59,8 +62,9 @@ public class Items {
 	 * update items
 	 * @throws ClassNotFoundException 
 	 * @throws IOException 
+	 * @throws ParseException 
 	 */
-	public void update() throws IOException, ClassNotFoundException {
+	public void update() throws IOException, ClassNotFoundException, ParseException {
 		list = Communication.getInstance().getItems();
 	}
 	/**
@@ -71,6 +75,7 @@ public class Items {
 		ArrayList<Item> lost = new ArrayList<Item>();
 		if (list==null) return lost;
 		for(Item item : list) {
+			if (item==null) continue;
 			if(item.getStatus() == ItemStatus.LOST) {
 				lost.add(item);
 			}
