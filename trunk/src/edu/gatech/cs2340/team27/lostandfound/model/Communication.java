@@ -19,6 +19,7 @@ import java.text.ParseException;
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import edu.gatech.cs2340.team27.lostandfound.data.User;
+import edu.gatech.cs2340.team27.lostandfound.data.Users;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 
 import android.content.Context;
@@ -130,8 +131,10 @@ public class Communication {
 	 * @param password
 	 *            intended password
 	 * @return the status of login attempt
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public LogStatus loginAttempt(String username, String password) {
+	public LogStatus loginAttempt(String username, String password) throws IOException, ClassNotFoundException {
 		// MessageDigest md=null;
 		// try {
 		// md = MessageDigest.getInstance(digestMethod);
@@ -165,6 +168,7 @@ public class Communication {
 			// catch(Exception e){
 			//
 			// }
+			Users.getInstance().updateCurrentUser();
 			return LogStatus.SUCCESS;
 		} else {
 			data.put(
