@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
@@ -42,6 +43,7 @@ public class LostItem extends Activity {
 			lostlist = Items.getInstance().getLost();
 		} catch (IOException e) {
 		} catch (ClassNotFoundException e) {
+		} catch (ParseException e) {
 		}
 		setContentView(R.layout.activity_lost_item);
 		String[] nameList=new String[lostlist.size()];
