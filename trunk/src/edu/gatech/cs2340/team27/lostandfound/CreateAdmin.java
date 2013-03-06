@@ -20,6 +20,9 @@ public class CreateAdmin extends Activity {
 	private EditText pswdConfirm;
 	private EditText realname;
 	private EditText phone;
+/**
+ * build in method
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,7 +33,9 @@ public class CreateAdmin extends Activity {
 		realname = (EditText) findViewById(R.id.editText1);
 		phone = (EditText) findViewById(R.id.editText2);
 	}
-
+/**
+ * build in method
+ */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

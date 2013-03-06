@@ -22,6 +22,9 @@ import android.widget.AdapterView.OnItemClickListener;
 public class UserList extends Activity {
 	
 	private List<User> userlist;
+	/**
+	 * build in method
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +53,9 @@ public class UserList extends Activity {
 		}); 
 		
 	}
-
+	/**
+	 * build in method
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
