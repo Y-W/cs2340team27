@@ -25,7 +25,7 @@ public class Users {
 	public Users() throws IOException, ClassNotFoundException {
 		list = Communication.getInstance().getUserList();
 		currentUser = Communication.getInstance().getCurrentUser();
-		if(Communication.getInstance().isPriviliged(currentUser)){
+		if(Communication.getInstance().checkPrivilege(currentUser.email)){
 			currentUser=new Admin(currentUser);
 		}
 	}
@@ -81,7 +81,7 @@ public class Users {
 	 */
 	public void updateCurrentUser() throws IOException, ClassNotFoundException {
 		currentUser = Communication.getInstance().getCurrentUser();
-		if(Communication.getInstance().isPriviliged(currentUser)){
+		if(Communication.getInstance().checkPrivilege(currentUser.email)){
 			currentUser=new Admin(currentUser);
 		}
 	}
