@@ -29,7 +29,7 @@ public class Admin extends User {
 		Communication.getInstance().unlockUser(email);
 	}
 	
-	public void addAdmin(String email, String password, String realname, String phone) throws IOException, ClassNotFoundException {
-		Communication.getInstance().createAccount(email, password, realname, phone, true);
+	public boolean addAdmin(String email, String password, String realname, String phone) throws IOException, ClassNotFoundException {
+		return Communication.getInstance().createAccount(email, password, realname, phone, true);
 	}
 }
