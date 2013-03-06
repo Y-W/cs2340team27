@@ -35,7 +35,7 @@ public class AdministrateUser extends Activity {
 	    startActivity(intent);
 	}
 	
-	public void deleteuser() throws IOException, ClassNotFoundException{
+	public void deleteuser(View view) throws IOException, ClassNotFoundException{
 		if(((Admin)(Users.getInstance().getCurrentUser())).deleteUser(email)){
 			new AlertDialog.Builder(this)
 		    .setTitle("Success")
@@ -60,7 +60,7 @@ public class AdministrateUser extends Activity {
 		}
 	}
 	
-	public void unlockuser() throws IOException, ClassNotFoundException{
+	public void unlockuser(View view) throws IOException, ClassNotFoundException{
 		if(Users.getInstance().isPriviliged()){
 			((Admin)(Users.getInstance().getCurrentUser())).unlockUser(email);
 			new AlertDialog.Builder(this)

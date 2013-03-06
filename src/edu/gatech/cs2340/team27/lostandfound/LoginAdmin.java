@@ -36,5 +36,14 @@ public class LoginAdmin extends Activity {
 		Intent intent = new Intent(this, CreateAdmin.class);
 	    startActivity(intent);
 	}
-
+	
+	/**
+	 * log out
+	 * directs to Login page
+	 * @param view
+	 */
+	public void logoutAttempt(View view){
+		Intent intent = new Intent(this,Login.class);
+		startActivity(intent);
+	}
 }

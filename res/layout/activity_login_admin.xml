@@ -29,4 +29,15 @@
         android:text="@string/administrate"
         android:onClick="userListAttempt" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="37dp"
+        android:layout_marginRight="27dp"
+         android:text="@string/logout" 
+        android:onClick="logoutAttempt"/>
+
 </RelativeLayout>
