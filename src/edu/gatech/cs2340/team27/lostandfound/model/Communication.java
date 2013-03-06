@@ -225,6 +225,7 @@ public class Communication {
 		}
 		adminarr.remove(email);
 		data.put("AdminList", serialize(adminarr));
+		data.remove("USER/" + email);
 		data.remove("USER/" + email + "/INFO");
 		data.remove("USER/" + email + "/COUNTER");
 		data.remove("USER/" + email + "/PASSWORD");
