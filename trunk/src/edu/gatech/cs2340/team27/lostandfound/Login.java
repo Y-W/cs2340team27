@@ -132,9 +132,10 @@ public class Login extends Activity {
 	 */
 	public void loginAdminAttempt(View view)throws IOException, ClassNotFoundException {
 		Intent intentadmin = new Intent(this, LoginAdmin.class);
-	   if( Users.getInstance().isPriviliged()){
+	 
 	   
 	    if(checkPwd()==1) {
+	    	  if( Users.getInstance().isPriviliged())
 			startActivity(intentadmin);
 		}
 		
@@ -163,7 +164,7 @@ public class Login extends Activity {
 		     .show();
 			return;
 			}
-	   }
+	   
 	   else{
 		   new AlertDialog.Builder(this)
 		    .setTitle("Error")
