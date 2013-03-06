@@ -54,7 +54,7 @@
         android:text="@string/lostDate" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/dolhere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView5"
@@ -66,13 +66,13 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/dolhere"
+        android:layout_below="@+id/dolhere"
         android:layout_marginTop="14dp"
         android:text="@string/location" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/lochere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView7"
@@ -84,8 +84,8 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/lochere"
+        android:layout_below="@+id/lochere"
         android:onClick="LostItemAttempt"
         android:text="@string/cancel" />
 

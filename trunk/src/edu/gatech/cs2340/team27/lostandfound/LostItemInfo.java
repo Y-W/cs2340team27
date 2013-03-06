@@ -42,9 +42,9 @@ public class LostItemInfo extends Activity {
     	tv.setText(itemname);
     	TextView tv4=(TextView) this.findViewById(R.id.textView4);
     	tv4.setText(discription);
-    	TextView tv6=(TextView) this.findViewById(R.id.textView6);
+    	TextView tv6=(TextView) this.findViewById(R.id.dolhere);
     	tv6.setText(date.toString());
-    	TextView tv8=(TextView) this.findViewById(R.id.textView8);
+    	TextView tv8=(TextView) this.findViewById(R.id.lochere);
     	tv8.setText(location);
 	}
 
