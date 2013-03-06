@@ -230,6 +230,17 @@ public class Communication {
 		submit();
 	}
 	
+	public boolean checkPrivilege(String email) {
+		ArrayList<String> adminarr = new ArrayList<String>();
+		if (data.get("AdminList")==null) data.put("AdminList", "");
+		String adminlist = data.get("AdminList");
+		if (adminlist!=null && !adminlist.equals("")) {
+			adminarr = (ArrayList<String>) deserialize(adminlist, adminarr);
+		}
+		if (adminarr.contains(email)) return true;
+		else return false;
+	}
+	
 	/**
 	 * default serialize function
 	 * 
@@ -438,6 +449,7 @@ public class Communication {
 		sarr.add(u.getName());
 		sarr.add(u.getPhoneNumber());
 		sarr.add(u.getEmail());
+		sarr.add(new Boolean(u.isLocked()).toString());
 		return serialize(sarr, "%user%");
 	}
 	
@@ -484,7 +496,8 @@ public class Communication {
 		String name = sarr.get(0);
 		String phoneNumber = sarr.get(1);
 		String email = sarr.get(2);
-		return new User(name, phoneNumber, email);
+		boolean isLocked = Boolean.valueOf(sarr.get(3));
+		return new User(name, phoneNumber, email, isLocked);
 	}
 	
 	/**
