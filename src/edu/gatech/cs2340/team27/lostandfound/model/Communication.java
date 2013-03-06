@@ -130,11 +130,10 @@ public class Communication {
 			Users.getInstance().updateCurrentUser();
 			return LogStatus.SUCCESS;
 		} else {
+			int locknum = Integer.parseInt(data.get(query + "/COUNTER")) + 1;
 			data.put(
 					query + "/COUNTER",
-					Integer.valueOf(
-							Integer.parseInt(data.get(query + "/COUNTER")) + 1)
-							.toString());
+					Integer.valueOf(locknum).toString());
 			submit();
 			return LogStatus.FAILURE;
 		}
@@ -449,7 +448,7 @@ public class Communication {
 		sarr.add(u.getName());
 		sarr.add(u.getPhoneNumber());
 		sarr.add(u.getEmail());
-		sarr.add(new Boolean(u.isLocked()).toString());
+//		sarr.add(new Boolean(u.isLocked()).toString());
 		return serialize(sarr, "%user%");
 	}
 	
@@ -496,7 +495,11 @@ public class Communication {
 		String name = sarr.get(0);
 		String phoneNumber = sarr.get(1);
 		String email = sarr.get(2);
-		boolean isLocked = Boolean.valueOf(sarr.get(3));
+//		boolean isLocked = Boolean.valueOf(sarr.get(3));
+		boolean isLocked;
+		int locknum = Integer.parseInt(data.get(email+"/COUNTER"));
+		if (locknum>=3) isLocked = true;
+		else isLocked = false;
 		return new User(name, phoneNumber, email, isLocked);
 	}
 	
