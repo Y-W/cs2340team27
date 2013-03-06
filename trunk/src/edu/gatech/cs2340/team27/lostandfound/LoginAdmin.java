@@ -28,5 +28,13 @@ public class LoginAdmin extends Activity {
 		Intent intent = new Intent(this, UserList.class);
 	    startActivity(intent);
 	}
+	/**
+	 * redirects createAdmin page
+	 * @param view
+	 */
+	public void createAdminAttempt(View view) {
+		Intent intent = new Intent(this, CreateAdmin.class);
+	    startActivity(intent);
+	}
 
 }

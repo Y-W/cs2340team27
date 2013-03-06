@@ -39,5 +39,6 @@
     <string name="title_activity_administrate_user">AdministrateUser</string>
     <string name="deleteuser">Delete this User</string>
     <string name="unlockuser">Unlock this User</string>
+    <string name="title_activity_create_admin">CreateAdmin</string>
 
 </resources>

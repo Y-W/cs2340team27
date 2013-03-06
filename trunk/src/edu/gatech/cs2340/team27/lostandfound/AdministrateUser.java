@@ -1,13 +1,19 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
+
+import edu.gatech.cs2340.team27.lostandfound.data.Admin;
+import edu.gatech.cs2340.team27.lostandfound.data.Users;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
 public class AdministrateUser extends Activity {
-
+	public static String email;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,6 +33,46 @@ public class AdministrateUser extends Activity {
 	public void userListAttempt(View view) {
 		Intent intent = new Intent(this, UserList.class);
 	    startActivity(intent);
+	}
+	
+	public void deleteuser() throws IOException, ClassNotFoundException{
+		if(((Admin)(Users.getInstance().getCurrentUser())).deleteUser(email)){
+			new AlertDialog.Builder(this)
+		    .setTitle("Success")
+		    .setMessage("Delete this User Successfully.")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        }
+		     })
+		     .show();
+			return;
+		}
+		else{
+			new AlertDialog.Builder(this)
+		    .setTitle("Wrong")
+		    .setMessage("Cannot delete yourself!")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        }
+		     })
+		     .show();
+			return;
+		}
+	}
+	
+	public void unlockuser() throws IOException, ClassNotFoundException{
+		if(Users.getInstance().isPriviliged()){
+			((Admin)(Users.getInstance().getCurrentUser())).unlockUser(email);
+			new AlertDialog.Builder(this)
+		    .setTitle("Success")
+		    .setMessage("Unlock this User Successfully.")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        }
+		     })
+		     .show();
+			return;
+		}
 	}
 
 }

@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="29dp"
         android:layout_marginTop="36dp"
-        android:text="@string/createadmin" />
+        android:text="@string/createadmin"
+        android:onClick="createadminAttempt" />
 
     <Button
         android:id="@+id/button2"

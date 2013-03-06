@@ -61,6 +61,10 @@
             android:name="edu.gatech.cs2340.team27.lostandfound.AdministrateUser"
             android:label="@string/title_activity_administrate_user" >
         </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.CreateAdmin"
+            android:label="@string/title_activity_create_admin" >
+        </activity>
     </application>
 
 </manifest>
