@@ -6,13 +6,13 @@ import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 public class Admin extends User {
 
-	public Admin(String name, String phoneNumber, String email) {
-		super(name, phoneNumber, email);
+	public Admin(String name, String phoneNumber, String email, boolean isLocked) {
+		super(name, phoneNumber, email, isLocked);
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Admin(User user){
-		super(user.getName(), user.getPhoneNumber(), user.getEmail());
+		super(user.getName(), user.getPhoneNumber(), user.getEmail(), user.isLocked());
 	}
 	
 	public void deleteUser(String email) {

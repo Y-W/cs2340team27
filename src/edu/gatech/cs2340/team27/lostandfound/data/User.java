@@ -18,11 +18,11 @@ public class User {
 	 * @param phoneNumber
 	 * @param email
 	 */
-	public User(String name, String phoneNumber, String email) {
+	public User(String name, String phoneNumber, String email, boolean isLocked) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		isLocked = false;
+		this.isLocked = isLocked;
 	}
 	
 	/**
