@@ -36,5 +36,8 @@
     <string name="createadmin">Create an Admin</string>
     <string name="administrate">Administrate User</string>
     <string name="title_activity_user_list">UserList</string>
+    <string name="title_activity_administrate_user">AdministrateUser</string>
+    <string name="deleteuser">Delete this User</string>
+    <string name="unlockuser">Unlock this User</string>
 
 </resources>
