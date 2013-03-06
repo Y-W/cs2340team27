@@ -43,7 +43,7 @@ public class UserList extends Activity {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
+		    	AdministrateUser.email=userlist.get(position).getEmail();
 		    	Intent intent = new Intent(parent.getContext(), AdministrateUser.class);
 				startActivity(intent);
 		    }

@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="26dp"
-        android:text="@string/deleteuser" />
+        android:text="@string/deleteuser"
+        android:onClick="deleteuser" />
 
     <Button
         android:id="@+id/button2"
@@ -25,7 +26,8 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="24dp"
-        android:text="@string/unlockuser" />
+        android:text="@string/unlockuser" 
+        android:onClick="unlockuser"/>
 
     <Button
         android:id="@+id/button3"
