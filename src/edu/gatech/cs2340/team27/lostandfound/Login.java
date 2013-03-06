@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import edu.gatech.cs2340.team27.lostandfound.data.Users;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
 /**
@@ -25,6 +26,7 @@ public class Login extends Activity {
 	 * a simplified name for edu.gatech.cs2340.team27.lostandfound.MESSAGE
 	 */
 	public final static String STATUS_MESSAGE = "edu.gatech.cs2340.team27.lostandfound.MESSAGE";
+	
 	
 	@Override
 	/**
@@ -56,16 +58,12 @@ public class Login extends Activity {
 	 */
 	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
-		EditText username = (EditText) findViewById(R.id.editText1);
-		EditText password = (EditText) findViewById(R.id.editText2);
-		String userText = username.getText().toString();
-		String psText = password.getText().toString();
-		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
-		if(status == LogStatus.SUCCESS) {
+		
+		if(checkPwd()==1) {
 			startActivity(intent);
 		}
 		
-		else if (status==LogStatus.FAILURE) {
+		else if (checkPwd()==-1) {
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
 		    .setMessage("Wrong Password.")
@@ -77,7 +75,7 @@ public class Login extends Activity {
 		     .show();
 			return;
 		}
-		else{
+		else if(checkPwd()==0){
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
 		    .setMessage("Account Locked!")
@@ -91,6 +89,19 @@ public class Login extends Activity {
 			return;
 		}
 		
+	}
+	public int checkPwd() throws IOException, ClassNotFoundException{
+		EditText username = (EditText) findViewById(R.id.editText1);
+		EditText password = (EditText) findViewById(R.id.editText2);
+		String userText = username.getText().toString();
+		String psText = password.getText().toString();
+		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
+		if (status==LogStatus.SUCCESS) 
+			return 1;//success
+		else if (status==LogStatus.FAILURE) 
+			return -1;//fail
+		else
+			return 0;//locked
 	}
 	/**
 	 * clear usename
@@ -119,9 +130,56 @@ public class Login extends Activity {
 	/**
 	 * redirects to loginAdmin page
 	 */
-	public void loginAdminAttempt(View view) {
-		Intent intent = new Intent(this, LoginAdmin.class);
-	    startActivity(intent);
-	}
+	public void loginAdminAttempt(View view)throws IOException, ClassNotFoundException {
+		Intent intentadmin = new Intent(this, LoginAdmin.class);
+	   if( Users.getInstance().isPriviliged()){
+	   
+	    if(checkPwd()==1) {
+			startActivity(intentadmin);
+		}
+		
+		else if (checkPwd()==-1) {
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Wrong Password.")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            passwordclear();
+		        }
+		     })
+		     .show();
+			return;
+		}
+		else if(checkPwd()==0){
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Account Locked!")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            usernameclear();
+		            passwordclear();
+		        }
+		     })
+		     .show();
+			return;
+			}
+	   }
+	   else{
+		   new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Wrong Password.")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            passwordclear();
+		        }
+		     })
+		     .show();
+			return;
+	   }
+	    
+		}
+	
+	   
+
 
 }
