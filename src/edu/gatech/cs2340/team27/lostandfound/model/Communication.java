@@ -225,10 +225,10 @@ public class Communication {
 		}
 		adminarr.remove(email);
 		data.put("AdminList", serialize(adminarr));
-		data.remove(email + "/INFO");
-		data.remove(email + "/COUNTER");
-		data.remove(email + "/PASSWORD");
-		data.remove(email + "/ITEMS");
+		data.remove("USER/" + email + "/INFO");
+		data.remove("USER/" + email + "/COUNTER");
+		data.remove("USER/" + email + "/PASSWORD");
+		data.remove("USER/" + email + "/ITEMS");
 		submit();
 	}
 	
