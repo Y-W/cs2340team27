@@ -232,6 +232,11 @@ public class Communication {
 		submit();
 	}
 	
+	/**
+	 * Check whether the user is a admin user.
+	 * @param email The email of the user to be checked
+	 * @return checking result
+	 */
 	public boolean checkPrivilege(String email) {
 		ArrayList<String> adminarr = new ArrayList<String>();
 		if (data.get("AdminList")==null) data.put("AdminList", "");
