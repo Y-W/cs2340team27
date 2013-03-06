@@ -135,8 +135,20 @@ public class Login extends Activity {
 	 
 	   
 	    if(checkPwd()==1) {
-	    	  if( Users.getInstance().isPriviliged())
-			startActivity(intentadmin);
+	    	  if( Users.getInstance().isPriviliged()){
+			startActivity(intentadmin);}
+	    	  else{
+	    		  new AlertDialog.Builder(this)
+	  		    .setTitle("Error")
+	  		    .setMessage("Wrong Password.")
+	  		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	  		        public void onClick(DialogInterface dialog, int which) { 
+	  		            passwordclear();
+	  		        }
+	  		     })
+	  		     .show();
+	  			return; 
+	    	  }
 		}
 		
 		else if (checkPwd()==-1) {
