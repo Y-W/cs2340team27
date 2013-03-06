@@ -168,7 +168,7 @@ public class Communication {
 			if (str!=null && !str.equals("")) {
 				sarr = (ArrayList<String>) deserialize(str, sarr);
 			}
-			User newUser = new User(realname, phone, username);
+			User newUser = new User(realname, phone, username,false);
 			sarr.add(username);
 			data.put("Users", serialize(sarr));
 			data.put(query, Long.toString((System.currentTimeMillis())));
