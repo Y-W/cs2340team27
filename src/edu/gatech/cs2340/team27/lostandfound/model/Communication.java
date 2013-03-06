@@ -500,7 +500,22 @@ public class Communication {
 		String email = sarr.get(2);
 //		boolean isLocked = Boolean.valueOf(sarr.get(3));
 		boolean isLocked;
-		int locknum = Integer.parseInt(data.get(email+"/COUNTER"));
+		int locknum;
+		if (email==null || email.equals("")) locknum = 0;
+		else {
+			String s = data.get("USER/" + email+"/COUNTER");
+			if (s==null || s.equals("") || s.equals("null")) {
+				locknum = 0;
+			}
+			else {
+				Log.v("value of s", s);
+				try {
+					locknum = Integer.parseInt(s);
+				} catch (NumberFormatException e) {
+					locknum = 0;
+				}
+			}
+		}
 		if (locknum>=3) isLocked = true;
 		else isLocked = false;
 		return new User(name, phoneNumber, email, isLocked);
