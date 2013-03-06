@@ -10,6 +10,7 @@ public class User {
 	protected String name;
 	protected String phoneNumber;
 	protected String email;
+	protected boolean isLocked;
 	
 	/**
 	 * Constructor. 
@@ -21,6 +22,7 @@ public class User {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		isLocked = false;
 	}
 	
 	/**
@@ -47,4 +49,15 @@ public class User {
 		return email;
 	}
 	
+	public boolean isLocked(){
+		return isLocked;
+	}
+	
+	public void lock() {
+		
+	}
+	
+	public void unlock() {
+		
+	}
 }
