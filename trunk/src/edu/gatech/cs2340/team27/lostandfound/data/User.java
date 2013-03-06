@@ -54,10 +54,10 @@ public class User {
 	}
 	
 	public void lock() {
-		
+		isLocked = true;
 	}
 	
 	public void unlock() {
-		
+		isLocked = false;
 	}
 }
