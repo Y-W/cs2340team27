@@ -191,12 +191,21 @@ public class Communication {
 		return false;
 	}
 
+	/**
+	 * unlock a user
+	 * @param email The email of the user to be unlocked
+	 */
 	public void unlockUser(String email) {
 		if (data.get(email+"/COUNTER")==null) return;
 		else data.put(email+"/COUNTER","0");
 		submit();
 	}
 	
+	/**
+	 * remove a user
+	 * @param email The email address of the user to be removed
+	 * @throws IOException
+	 */
 	public void removeUser(String email) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
 		if (data.get("Users")==null) data.put("Users", "");
