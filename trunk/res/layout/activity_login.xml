@@ -66,4 +66,13 @@
         android:onClick="registerAttempt"
         android:text="@string/register" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:text="@string/loginasadmin"
+        android:onClick="loginAdminAttempt" />
+
 </RelativeLayout>

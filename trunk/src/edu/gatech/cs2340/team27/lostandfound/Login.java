@@ -115,5 +115,13 @@ public class Login extends Activity {
 		Intent intent = new Intent(this, Register.class);
 	    startActivity(intent);
 	}
+	
+	/**
+	 * redirects to loginAdmin page
+	 */
+	public void loginAdminAttempt(View view) {
+		Intent intent = new Intent(this, LoginAdmin.class);
+	    startActivity(intent);
+	}
 
 }
