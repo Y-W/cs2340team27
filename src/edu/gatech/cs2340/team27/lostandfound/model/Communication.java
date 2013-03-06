@@ -198,8 +198,8 @@ public class Communication {
 	 * @param email The email of the user to be unlocked
 	 */
 	public void unlockUser(String email) {
-		if (data.get(email+"/COUNTER")==null) return;
-		else data.put(email+"/COUNTER","0");
+		if (data.get("USER/" + email+"/COUNTER")==null) return;
+		else data.put("USER/" + email+"/COUNTER","0");
 		submit();
 	}
 	
