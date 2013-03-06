@@ -2,6 +2,7 @@ package edu.gatech.cs2340.team27.lostandfound.data;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
@@ -24,6 +25,17 @@ public class Users {
 	public Users() throws IOException, ClassNotFoundException {
 		list = Communication.getInstance().getUserList();
 		currentUser = Communication.getInstance().getCurrentUser();
+		if(Communication.getInstance().isPriviliged(currentUser)){
+			currentUser=new Admin(currentUser);
+		}
+	}
+	
+	/**
+	 * 
+	 * @return true if current account is admin
+	 */
+	public boolean isPriviliged(){
+		return currentUser instanceof Admin;
 	}
 	
 	/**
@@ -53,12 +65,25 @@ public class Users {
 	}
 	
 	/**
+	 * Getter
+	 * @return the newest list of users
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 */
+	public List<User> getListofUsers() throws IOException, ClassNotFoundException{
+		return (list = Communication.getInstance().getUserList());
+	}
+	
+	/**
 	 * Update current user
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
 	public void updateCurrentUser() throws IOException, ClassNotFoundException {
 		currentUser = Communication.getInstance().getCurrentUser();
+		if(Communication.getInstance().isPriviliged(currentUser)){
+			currentUser=new Admin(currentUser);
+		}
 	}
 	
 	/**
