@@ -31,5 +31,10 @@
     <string name="emailhint">user@domain.com</string>
     <string name="title_activity_lost_item">LostItem</string>
     <string name="title_activity_lost_item_info">LostItemInfo</string>
+    <string name="loginasadmin">Login As Admin</string>
+    <string name="title_activity_login_admin">LoginAdmin</string>
+    <string name="createadmin">Create an Admin</string>
+    <string name="administrate">Administrate User</string>
+    <string name="title_activity_user_list">UserList</string>
 
 </resources>
