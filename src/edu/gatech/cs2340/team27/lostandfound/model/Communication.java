@@ -62,8 +62,6 @@ public class Communication {
 	private HashMap<String, String> data;
 	private String currentUsername;
 	private String currentPassword;
-	private static final String filename = "Data";
-	private static final String digestMethod = "SHA-1";
 	private static final int lockTime = 3;
 
 	/**
@@ -81,6 +79,7 @@ public class Communication {
 			Log.v("reading fails", "reading fails");
 		}
 		createAccount("test", "test", "", "", false);
+		createAccount("admin", "admin", "", "", true);
 	}
 
 	/**
@@ -161,7 +160,8 @@ public class Communication {
 			boolean priviliged) throws IOException, ClassNotFoundException {
 		username = username.replace('/', '_');
 		String query = "USER/" + username;
-		ArrayList<String> sarr = new ArrayList<String>();;
+		ArrayList<String> sarr = new ArrayList<String>();
+		ArrayList<String> adminarr = new ArrayList<String>();
 		if (data.get(query) == null) {
 			if (data.get("Users")==null) data.put("Users", "");
 			String str = data.get("Users");
@@ -176,12 +176,51 @@ public class Communication {
 			data.put(query + "/COUNTER", "0");
 			data.put(username + "/ITEMS", "[]");
 			data.put(query + "/PASSWORD", password);
+			if (priviliged) {
+				if (data.get("AdminList")==null) data.put("AdminList", "");
+				String adminlist = data.get("AdminList");
+				if (adminlist!=null && !adminlist.equals("")) {
+					adminarr = (ArrayList<String>) deserialize(adminlist, adminarr);
+				}
+				adminarr.add(username);
+				data.put("AdminList", serialize(adminarr));
+			}
 			submit();
 			return true;
 		}
 		return false;
 	}
 
+	public void unlockUser(String email) {
+		if (data.get(email+"/COUNTER")==null) return;
+		else data.put(email+"/COUNTER","0");
+		submit();
+	}
+	
+	public void removeUser(String email) throws IOException {
+		ArrayList<String> sarr = new ArrayList<String>();
+		if (data.get("Users")==null) data.put("Users", "");
+		String str = data.get("Users");
+		if (str!=null && !str.equals("")) {
+			sarr = (ArrayList<String>) deserialize(str, sarr);
+		}
+		sarr.remove(email);
+		data.put("Users", serialize(sarr));
+		ArrayList<String> adminarr = new ArrayList<String>();
+		if (data.get("AdminList")==null) data.put("AdminList", "");
+		String adminlist = data.get("AdminList");
+		if (adminlist!=null && !adminlist.equals("")) {
+			adminarr = (ArrayList<String>) deserialize(adminlist, adminarr);
+		}
+		adminarr.remove(email);
+		data.put("AdminList", serialize(adminarr));
+		data.remove(email + "/INFO");
+		data.remove(email + "/COUNTER");
+		data.remove(email + "/PASSWORD");
+		data.remove(email + "/ITEMS");
+		submit();
+	}
+	
 	/**
 	 * default serialize function
 	 * 
