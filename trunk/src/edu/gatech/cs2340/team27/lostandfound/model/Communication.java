@@ -89,6 +89,9 @@ public class Communication {
 		submit();
 	}
 
+	/**
+	 * save data to local file
+	 */
 	private void submit() {
 		for (String s : data.keySet()) {
 			editor.putString(s, data.get(s));
