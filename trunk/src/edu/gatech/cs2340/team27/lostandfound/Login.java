@@ -58,12 +58,12 @@ public class Login extends Activity {
 	 */
 	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
-		
-		if(checkPwd()==1) {
+		int status = checkPwd();
+		if(status==1) {
 			startActivity(intent);
 		}
 		
-		else if (checkPwd()==-1) {
+		else if (status==-1) {
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
 		    .setMessage("Wrong Password.")
@@ -75,7 +75,7 @@ public class Login extends Activity {
 		     .show();
 			return;
 		}
-		else if(checkPwd()==0){
+		else if(status==0){
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
 		    .setMessage("Account Locked!")
