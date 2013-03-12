@@ -34,6 +34,7 @@ public class LostItemInfo extends Activity {
 	/**
 	 * get details from lostitem list
 	 * set text
+	 * @param savedInstanceState Android system bundle
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class LostItemInfo extends Activity {
 	@Override
 	/**
 	 * build in method
+	 * @param menu Android system parameter
 	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -59,7 +61,7 @@ public class LostItemInfo extends Activity {
 	}
 	/**
 	 * go back to LostItem Page
-	 * @param view
+	 * @param view Android system parameter
 	 */
 	public void LostItemAttempt(View view){
 		Intent intent = new Intent(this,LostItem.class);

@@ -24,6 +24,7 @@ public class UserList extends Activity {
 	private List<User> userlist;
 	/**
 	 * build in method
+	 * @param savedInstanceState Android system parameter
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class UserList extends Activity {
 	}
 	/**
 	 * build in method
+	 * @param menu Android system parameter
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,6 +66,7 @@ public class UserList extends Activity {
 	}
 	/**
 	 * redirects to loginAdmin page
+	 * @param view Android system parameter
 	 */
 	public void loginAdminAttempt(View view) {
 		Intent intent = new Intent(this, LoginAdmin.class);

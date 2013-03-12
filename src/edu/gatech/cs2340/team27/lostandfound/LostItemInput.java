@@ -23,6 +23,7 @@ import android.widget.TextView;
 public class LostItemInput extends Activity {
 	/**
 	 * Processes the onCreate event.
+	 * @param savedInstanceState Android system parameter
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class LostItemInput extends Activity {
 	}
 	/**
 	 * Processes the onCreateOptionsMenu event.
+	 * @param menu Android system parameter
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,10 +42,10 @@ public class LostItemInput extends Activity {
 	}
 	/**
 	 * Processes the onClick event of the confirm button.
-	 * @param view
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @param view Android system parameter
+	 * @throws ClassNotFoundException throw when class is not found
+	 * @throws IOException throw when file is not found
+	 * @throws ParseException throw when parse input fails
 	 */
 	public void confirmLostItemInfo(View view) throws IOException, ClassNotFoundException, ParseException{
 		String name=((TextView)(this.findViewById(R.id.editText1))).getText().toString();
@@ -57,7 +59,7 @@ public class LostItemInput extends Activity {
 	}
 	/**
 	 * Processes the onClick event of the cancel button.
-	 * @param view
+	 * @param view Android system parameter
 	 */
 	public void cancelLostItemInfo(View view){
 		Intent intent = new Intent(this,LostItem.class);
