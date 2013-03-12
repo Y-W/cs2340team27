@@ -66,7 +66,7 @@ public class FoundItemInfo extends Activity {
 	 * @param view Android system parameter
 	 */
 	public void FoundItemAttempt(View view){
-		Intent intent = new Intent(this,FoundItem.class);
+		Intent intent = new Intent(this,DisplayItem.class);
 		startActivity(intent);
 	}
 
