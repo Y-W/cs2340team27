@@ -10,6 +10,7 @@ import java.util.Date;
 public class Item {
 	 
 	private ItemStatus status;
+	private Category category;
 	private String name;
 	private String location;
 	private String description;
@@ -27,8 +28,9 @@ public class Item {
 	 * @param description the input description
 	 * @param date the date of the item
 	 * @param user user who adds this item
+	 * @param category the category of this item
 	 */
-	public Item(ItemStatus status, String name, String location, String description, Date date, User user) {
+	public Item(ItemStatus status, String name, String location, String description, Date date, User user, Category category) {
 		this.status = status;
 		this.location = location;
 		this.description = description;
@@ -41,6 +43,14 @@ public class Item {
 			foundDate = date;
 			founder = user;
 		}
+	}
+	
+	/**
+	 * Gets the category of this item.
+	 * @return the category of this item
+	 */
+	public Category getCategory(){
+		return category;
 	}
 	
 	/**
@@ -124,5 +134,16 @@ public class Item {
 		LOST,
 		FOUND,
 		RESOLVED;
+	}
+	/**
+	 * Category of the item
+	 * @author Yijie Wang
+	 *
+	 */
+	public enum Category{
+		ANIMAL,
+		CLOTH,
+		ELECTRONICS,
+		OTHER;
 	}
 }
