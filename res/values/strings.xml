@@ -49,5 +49,7 @@
     <string name="fdate">By Date</string>
     <string name="fstatus">By Status</string>
     <string name="fcatagory">By Category</string>
+    <string name="litemname">Lost Item Name</string>
+    <string name="fitemname">Found Item Name</string>
 
 </resources>
