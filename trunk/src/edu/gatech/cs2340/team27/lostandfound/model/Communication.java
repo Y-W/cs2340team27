@@ -9,9 +9,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
-import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import edu.gatech.cs2340.team27.lostandfound.data.User;
 import edu.gatech.cs2340.team27.lostandfound.data.Users;
+import edu.gatech.cs2340.team27.lostandfound.data.Item.Category;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 
 import android.content.Context;
@@ -274,14 +274,22 @@ public class Communication {
 		return a.name();
 	}
 	
+	public String serialize(Category c) {
+		return c.name();
+	}
+	
 	/**
 	 * deserialize ItemStatus
 	 * 
 	 * @param str  The String to be deserialized
 	 * @return  deserializing result
 	 */
-	public ItemStatus deserialize(String str) {
+	public ItemStatus deserializeStatus(String str) {
 		return ItemStatus.valueOf(str);
+	}
+	
+	public Category deserializeCategory(String str) {
+		return Category.valueOf(str);
 	}
 	
 	/**
@@ -441,6 +449,7 @@ public class Communication {
 		sarr.add(serialize(i.getResolvedDate()));
 		sarr.add(serializeUser(i.getLoser()));
 		sarr.add(serializeUser(i.getFounder()));
+		sarr.add(serialize(i.getCategory()));
 		return serialize(sarr, "%item%");
 	}
 
@@ -472,7 +481,7 @@ public class Communication {
 	public Item deserializeItem(String str) throws ParseException, IOException, ClassNotFoundException {
 		if (str==null || str.equals("[]")) return null;
 		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%item%");
-		ItemStatus status = deserialize(sarr.get(0));
+		ItemStatus status = deserializeStatus(sarr.get(0));
 		String name = sarr.get(1);
 		String location= sarr.get(2);
 		String description= sarr.get(3);
@@ -481,6 +490,7 @@ public class Communication {
 		Date resolvedDate = deserialize(sarr.get(6), new Date());
 		User loser = deserializeUser(sarr.get(7));
 		User founder= deserializeUser(sarr.get(8));
+		Category c = deserializeCategory(sarr.get(9));
 		Date date;
 		User user;
 		if (lostDate!=null) date = lostDate;
@@ -488,7 +498,7 @@ public class Communication {
 		else date = resolvedDate;
 		if (loser!=null) user = loser;
 		else user = founder;
-		return new Item(status, name, location, description, date, user);
+		return new Item(status, name, location, description, date, user, c);
 	}
 	
 	/**
