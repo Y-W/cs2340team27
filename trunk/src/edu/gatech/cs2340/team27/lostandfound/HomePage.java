@@ -65,7 +65,7 @@ public class HomePage extends Activity {
 	 * @param view default
 	 */
 	public void foundinfoAttempt(View view){
-		Intent intent = new Intent(this,FoundItemInfo.class);
+		Intent intent = new Intent(this,FoundItem.class);
 		startActivity(intent);
 	}
 	
