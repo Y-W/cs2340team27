@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_activity_filter">Filter</string>
+    <string name="fdate">By Date</string>
+    <string name="fstatus">By Status</string>
+    <string name="fcatagory">By Category</string>
+    <string name="litemname">Lost Item Name</string>
+    <string name="fitemname">Found Item Name</string>
 
     <string name="app_name">Lost and Found</string>
     <string name="action_settings">Settings</string>
@@ -18,6 +24,7 @@
     <string name="loser">I Lost Something</string>
     <string name="lostinfo">Lost Item Info</string>
     <string name="foundinfo">Found Item Info</string>
+    <string name="filter">Display Items</string>
     <string name="logout">Log Out</string>
     <string name="title_activity_home_page">HomePage</string>
     <string name="title_activity_lost_item_input">LostItemInput</string>
@@ -45,11 +52,6 @@
     <string name="title_activity_found_item">FoundItem</string>
     <string name="title_activity_found_item_info">FoundItemInfo</string>
     <string name="foundDate">Date of Found</string>
-    <string name="title_activity_filter">Filter</string>
-    <string name="fdate">By Date</string>
-    <string name="fstatus">By Status</string>
-    <string name="fcatagory">By Category</string>
-    <string name="litemname">Lost Item Name</string>
-    <string name="fitemname">Found Item Name</string>
+    <string name="title_activity_display_item">DisplayItem</string>
 
 </resources>
