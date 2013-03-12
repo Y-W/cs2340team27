@@ -4,23 +4,33 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+import android.widget.TextView;
+import edu.gatech.cs2340.team27.lostandfound.data.Item.Category;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import edu.gatech.cs2340.team27.lostandfound.data.Users;
-import edu.gatech.cs2340.team27.lostandfound.model.Communication;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.TextView;
 /**
  * Processes the creation of lost items.
  * @author all
  *
  */
 public class LostItemInput extends Activity {
+	
+	ArrayAdapter<String> adapter;
+	Category cate;
+	
 	/**
 	 * Processes the onCreate event.
 	 * @param savedInstanceState Android system parameter
@@ -28,6 +38,13 @@ public class LostItemInput extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		String[] category = {"Animal", "Cloth", "Electronics", "Other"};
+		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,category);
+		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
+		spinner.setVisibility(View.VISIBLE);
 		setContentView(R.layout.activity_lost_item_input);
 	}
 	/**
@@ -53,7 +70,20 @@ public class LostItemInput extends Activity {
 		String description=((TextView)(this.findViewById(R.id.editText3))).getText().toString();
 		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
 		Date date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
-		Items.getInstance().addItem(ItemStatus.LOST, name, location, description, date, Users.getInstance().getCurrentUser());//TODO give current user.
+		if(cate != null) {
+			Items.getInstance().addItem(ItemStatus.LOST, name, location, description, date, Users.getInstance().getCurrentUser(), cate);//TODO give current user.
+		}
+		else {
+			new AlertDialog.Builder(this)
+		    .setTitle("Error")
+		    .setMessage("Confirm password is different from your password")
+		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        }
+		     })
+		     .show();
+			return;
+		}
 		Intent intent = new Intent(this,LostItem.class);
 		startActivity(intent);
 	}
@@ -64,5 +94,28 @@ public class LostItemInput extends Activity {
 	public void cancelLostItemInfo(View view){
 		Intent intent = new Intent(this,LostItem.class);
 		startActivity(intent);
+	}
+	
+	private class SpinnerSelectedListener implements OnItemSelectedListener {
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
+                long arg3) {  
+			switch(arg2) {
+			case 0: 
+				cate = Category.ANIMAL;
+				break;
+			case 1:
+				cate = Category.CLOTH;
+				break;
+			case 2: 
+				cate = Category.ELECTRONICS;
+				break;
+			case 3:
+				cate = Category.OTHER;
+			}
+        }  
+  
+        public void onNothingSelected(AdapterView<?> arg0) {
+        	cate = null;
+        }  
 	}
 }
