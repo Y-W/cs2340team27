@@ -78,5 +78,10 @@ public class HomePage extends Activity {
 		Intent intent = new Intent(this,Login.class);
 		startActivity(intent);
 	}
+	
+	public void displayItems(View view) {
+		Intent intent = new Intent(this, Filter.class);
+	    startActivity(intent);
+	}
 
 }
