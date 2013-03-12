@@ -41,5 +41,7 @@
     <string name="unlockuser">Unlock this User</string>
     <string name="title_activity_create_admin">CreateAdmin</string>
     <string name="catagory">Catagory</string>
+    <string name="title_activity_found_item_info">FoundItemInfo</string>
+    <string name="foundDate">Date of Found</string>
 
 </resources>
