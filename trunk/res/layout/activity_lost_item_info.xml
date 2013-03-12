@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
-        android:text="@string/itemName" />
+        android:text="@string/litemname" />
 
     <TextView
         android:id="@+id/itemname"
