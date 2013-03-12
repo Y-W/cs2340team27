@@ -44,6 +44,7 @@ public class Item {
 			founder = user;
 		}
 		this.category=category;
+		if(category == null){throw new RuntimeException("!!!");}
 	}
 	
 	/**
