@@ -63,7 +63,8 @@
         android:layout_below="@+id/datePicker1"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="15dp"
-        android:text="@string/confirm" />
+        android:text="@string/confirm"
+        android:onClick="filterItems" />
 
     <Button
         android:id="@+id/button2"
@@ -71,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button1"
         android:layout_alignRight="@+id/checkBox2"
-        android:text="@string/cancel" />
+        android:text="@string/cancel"
+        android:onClick="returnParent" />
 
 </RelativeLayout>
