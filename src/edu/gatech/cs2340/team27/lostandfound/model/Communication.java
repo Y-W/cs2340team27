@@ -290,7 +290,7 @@ public class Communication {
 	}
 	
 	public Category deserializeCategory(String str) {
-		if (str.equals("[]")) return null;
+		if (str==null && str.equals("[]")) return null;
 		return Category.valueOf(str);
 	}
 	
