@@ -27,6 +27,9 @@ public class Filter extends Activity {
 	Category cate;
 	ItemStatus status;
 	Date date;
+	boolean filterCate;
+	boolean filterStatus;
+	boolean filterDate;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,48 @@ public class Filter extends Activity {
 		statusSpinner.setAdapter(statusAdapter);
 		statusSpinner.setOnItemSelectedListener(new statusSelectedListener());
 		statusSpinner.setVisibility(View.VISIBLE);
-		
+		CheckBox checkStatus=(CheckBox)findViewById(R.id.checkBox1); 
+		CheckBox checkCate=(CheckBox)findViewById(R.id.checkBox2); 
+		CheckBox checkDate=(CheckBox)findViewById(R.id.checkBox3); 
+		checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
+            @Override 
+            public void onCheckedChanged(CompoundButton buttonView, 
+                    boolean isChecked) { 
+                // TODO Auto-generated method stub 
+                if(isChecked){ 
+                    filterStatus = true;
+                } 
+                else {
+                	filterStatus = false;
+                }
+            } 
+        }); 
+		checkCate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
+            @Override 
+            public void onCheckedChanged(CompoundButton buttonView, 
+                    boolean isChecked) { 
+                // TODO Auto-generated method stub 
+                if(isChecked){ 
+                	filterCate = true;
+                } 
+                else {
+                	filterCate = false;
+                }
+            } 
+        }); 
+		checkDate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
+            @Override 
+            public void onCheckedChanged(CompoundButton buttonView, 
+                    boolean isChecked) { 
+                // TODO Auto-generated method stub 
+            	if(isChecked){ 
+                	filterDate = true;
+                } 
+                else {
+                	filterDate = false;
+                }
+            } 
+        }); 
 	}
 
 	@Override
@@ -59,39 +103,15 @@ public class Filter extends Activity {
 	public void filterItems(View view) throws IOException, ClassNotFoundException, ParseException {
 		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
 		date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
-		CheckBox checkStatus=(CheckBox)findViewById(R.id.checkBox1); 
-		CheckBox checkCate=(CheckBox)findViewById(R.id.checkBox2); 
-		CheckBox checkDate=(CheckBox)findViewById(R.id.checkBox3); 
-		checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
-            public void onCheckedChanged(CompoundButton buttonView, 
-                    boolean isChecked) { 
-                // TODO Auto-generated method stub 
-                if(!isChecked){ 
-                    status = null;
-                } 
-            } 
-        }); 
-		checkCate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
-            public void onCheckedChanged(CompoundButton buttonView, 
-                    boolean isChecked) { 
-                // TODO Auto-generated method stub 
-                if(!isChecked){ 
-                    cate = null;
-                } 
-            } 
-        }); 
-		checkDate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
-            public void onCheckedChanged(CompoundButton buttonView, 
-                    boolean isChecked) { 
-                // TODO Auto-generated method stub 
-                if(!isChecked){ 
-                    date = null;
-                }
-            } 
-        }); 
+		if(!filterStatus) {
+			status = null;
+		}
+		if(!filterCate) {
+			cate = null;
+		}
+		if(!filterDate) {
+			date = null;
+		}
 		DisplayItem.setList(Items.getInstance().filter(cate, date, status));
 		Intent intent = new Intent(this, DisplayItem.class);
 	    startActivity(intent);
