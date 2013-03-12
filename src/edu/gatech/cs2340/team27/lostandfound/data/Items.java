@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
@@ -97,9 +98,22 @@ public class Items {
 	 * @param category the desired category, null if no limitation
 	 * @param date the desired date, null if no limitation
 	 * @param status the desired status, null if no limitation
-	 * @return
+	 * @return the list of items that are filtered out
 	 */
 	public List<Item> filter(Item.Category category, Date date, ItemStatus status){
-		return null;
+		LinkedList<Item> res=new LinkedList<Item>();
+		for(Item it: list){
+			if(category != null && !it.getCategory().equals(category) ){
+				continue;
+			}
+			if(date != null && !it.getLostDate().equals(date) ){
+				continue;
+			}
+			if(status !=null && !it.getStatus().equals(status)){
+				continue;
+			}
+			res.add(it);
+		}
+		return res;
 	}
 }
