@@ -60,7 +60,7 @@ private static LinkedList<Item> list;
 		    	else {
 		    		LostItemInfo.itemname=list.get(position).getName();
 			    	LostItemInfo.discription=list.get(position).getDescri();
-			    	LostItemInfo.date=list.get(position).getFoundDate();
+			    	LostItemInfo.date=list.get(position).getLostDate();
 			    	LostItemInfo.location=list.get(position).getLoca();
 			    	LostItemInfo.catagory=list.get(position).getCategory();
 			    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
