@@ -28,6 +28,7 @@ public class Register extends Activity {
 	@Override
 	/**
 	 * build in method
+	 * @param savedInstanceState Android system parameter
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class Register extends Activity {
 	@Override
 	/**
 	 * build in method
+	 * @param menu Android system parameter
 	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -50,7 +52,7 @@ public class Register extends Activity {
 	}
 	/**
 	 * go back to login page
-	 * @param view
+	 * @param view Android system parameter
 	 */
 	public void goBack(View view) {
 		Intent intent = new Intent(this, Login.class);
@@ -78,9 +80,9 @@ public class Register extends Activity {
 	 * if email is already existed
 	 * pop up wrong message
 	 * otherwise create a new account
-	 * @param view
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @param view Android system parameter
+	 * @throws ClassNotFoundException throw when class is not found
+	 * @throws IOException throw when file is not found
 	 */
 	public void registerAccount(View view) throws IOException, ClassNotFoundException{
 		String userText = email.getText().toString();
