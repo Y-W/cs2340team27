@@ -54,7 +54,7 @@ public class Login extends Activity {
 	 * if the password is incorrect for three times in a row, lock the account
 	 * @param view default
 	 * @throws ClassNotFoundException when class is not found
-	 * @throws IOException ioe
+	 * @throws IOException when file is not found
 	 */
 	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
