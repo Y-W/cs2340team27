@@ -75,7 +75,7 @@ public class LostItemInfo extends Activity {
 	 * @param view Android system parameter
 	 */
 	public void LostItemAttempt(View view){
-		Intent intent = new Intent(this,LostItem.class);
+		Intent intent = new Intent(this,DisplayItem.class);
 		startActivity(intent);
 	}
 
