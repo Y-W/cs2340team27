@@ -21,12 +21,12 @@ public class Item {
 
 	/**
 	 * Constructor. 
-	 * @param status
-	 * @param name
-	 * @param location
-	 * @param description
-	 * @param date
-	 * @param user
+	 * @param status the status of the item
+	 * @param name the name of the item
+	 * @param location the location of the item
+	 * @param description the input description
+	 * @param date the date of the item
+	 * @param user user who adds this item
 	 */
 	public Item(ItemStatus status, String name, String location, String description, Date date, User user) {
 		this.status = status;

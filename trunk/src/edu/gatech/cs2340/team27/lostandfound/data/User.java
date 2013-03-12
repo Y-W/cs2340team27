@@ -14,9 +14,9 @@ public class User {
 	
 	/**
 	 * Constructor. 
-	 * @param name
-	 * @param phoneNumber
-	 * @param email
+	 * @param name the name of the user
+	 * @param phoneNumber the phone # of the user
+	 * @param email the email of the user
 	 */
 	public User(String name, String phoneNumber, String email, boolean isLocked) {
 		this.name = name;
@@ -35,7 +35,7 @@ public class User {
 	
 	/**
 	 * Getter
-	 * @return 
+	 * @return phone number
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;

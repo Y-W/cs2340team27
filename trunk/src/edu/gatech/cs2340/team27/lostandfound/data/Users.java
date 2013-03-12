@@ -19,8 +19,8 @@ public class Users {
 	
 	/**
 	 * Constructor
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when IO fails
+	 * @throws ClassNotFoundException won't throw this exception
 	 */
 	public Users() throws IOException, ClassNotFoundException {
 		list = Communication.getInstance().getUserList();
@@ -41,8 +41,8 @@ public class Users {
 	/**
 	 * This method is used as the singleton design pattern
 	 * @return the only instance of this class
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when IO fails
+	 * @throws ClassNotFoundException won't throw this exception
 	 */
 	public static Users getInstance() throws IOException, ClassNotFoundException {
 		if(onlyInstance == null) {
@@ -67,8 +67,8 @@ public class Users {
 	/**
 	 * Getter
 	 * @return the newest list of users
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws IOException when IO fails
 	 */
 	public List<User> getListofUsers() throws IOException, ClassNotFoundException{
 		return (list = Communication.getInstance().getUserList());
@@ -76,8 +76,8 @@ public class Users {
 	
 	/**
 	 * Update current user
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when IO fails
+	 * @throws ClassNotFoundException won't throw this exception
 	 */
 	public void updateCurrentUser() throws IOException, ClassNotFoundException {
 		currentUser = Communication.getInstance().getCurrentUser();
