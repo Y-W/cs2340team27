@@ -66,9 +66,18 @@
             android:label="@string/title_activity_create_admin" >
         </activity>
         <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.FoundItemInput"
+            android:label="@string/title_activity_found_item_input" >
+        </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.FoundItem"
+            android:label="@string/title_activity_found_item" >
+        </activity>
+        <activity
             android:name="edu.gatech.cs2340.team27.lostandfound.FoundItemInfo"
             android:label="@string/title_activity_found_item_info" >
         </activity>
     </application>
+
 
 </manifest>
