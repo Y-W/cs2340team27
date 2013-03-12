@@ -20,9 +20,9 @@ public class Items {
 	
 	/**
 	 * Constructor
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws IOException when IO fails
+	 * @throws ParseException when parsing input fails
 	 */
 	public Items() throws IOException, ClassNotFoundException, ParseException {
 		list = Communication.getInstance().getItems();
@@ -30,9 +30,9 @@ public class Items {
 	/**
 	 * This method is used as the singleton design pattern
 	 * @return the only instance of this class
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws IOException when IO fails
+	 * @throws ParseException when parsing input fails
 	 */
 	public static Items getInstance() throws IOException, ClassNotFoundException, ParseException {
 		if(onlyInstance == null) {
@@ -56,9 +56,9 @@ public class Items {
 	 * @param description description of the item
 	 * @param date date of losing
 	 * @param user the user who creates the item
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws IOException when IO fails
+	 * @throws ParseException when parsing input fails
 	 */
 	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException, ParseException {
 		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
@@ -66,9 +66,9 @@ public class Items {
 	}
 	/**
 	 * update items
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ParseException 
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws IOException when IO fails
+	 * @throws ParseException when parsing input fails
 	 */
 	public void update() throws IOException, ClassNotFoundException, ParseException {
 		list = Communication.getInstance().getItems();
