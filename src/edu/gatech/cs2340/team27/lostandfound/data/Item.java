@@ -43,7 +43,7 @@ public class Item {
 			foundDate = date;
 			founder = user;
 		}
-		category=this.category;
+		this.category=category;
 	}
 	
 	/**
