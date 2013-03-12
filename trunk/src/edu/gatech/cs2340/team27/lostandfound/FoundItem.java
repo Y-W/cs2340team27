@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.team27.foundandfound;
+package edu.gatech.cs2340.team27.lostandfound;
 
 import java.io.IOException;
 import java.text.ParseException;
