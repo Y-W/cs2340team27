@@ -56,12 +56,13 @@ public class Items {
 	 * @param description description of the item
 	 * @param date date of losing
 	 * @param user the user who creates the item
+	 * @param category the category of the item 
 	 * @throws ClassNotFoundException won't throw this exception
 	 * @throws IOException when IO fails
 	 * @throws ParseException when parsing input fails
 	 */
-	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user) throws IOException, ClassNotFoundException, ParseException {
-		Communication.getInstance().addItem(new Item(status, name, location, description, date, user));
+	public void addItem(ItemStatus status, String name, String location, String description, Date date, User user, Item.Category category) throws IOException, ClassNotFoundException, ParseException {
+		Communication.getInstance().addItem(new Item(status, name, location, description, date, user, category));
 		update();
 	}
 	/**
