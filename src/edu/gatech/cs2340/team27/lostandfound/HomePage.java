@@ -47,7 +47,7 @@ public class HomePage extends Activity {
 	 * @param view default
 	 */
 	public void founderAttempt(View view){
-		Intent intent = new Intent(FoundItemInput,.class);
+		Intent intent = new Intent(this,FoundItemInput.class);
 		startActivity(intent);
 	}
 	/**
@@ -65,7 +65,7 @@ public class HomePage extends Activity {
 	 * @param view default
 	 */
 	public void foundinfoAttempt(View view){
-		Intent intent = new Intent(FoundItemInfo,.class);
+		Intent intent = new Intent(this,FoundItemInfo.class);
 		startActivity(intent);
 	}
 	
