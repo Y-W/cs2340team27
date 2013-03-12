@@ -90,4 +90,22 @@
         android:onClick="LostItemAttempt"
         android:text="@string/cancel" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lochere"
+        android:layout_below="@+id/lochere"
+        android:layout_marginTop="16dp"
+        android:text="@string/catagory" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="14dp"
+        android:text="TextView" />
+
 </RelativeLayout>
