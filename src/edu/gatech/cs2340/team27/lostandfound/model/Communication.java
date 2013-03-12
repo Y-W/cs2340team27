@@ -275,6 +275,7 @@ public class Communication {
 	}
 	
 	public String serialize(Category c) {
+		if (c==null) return "[]";
 		return c.name();
 	}
 	
@@ -289,6 +290,7 @@ public class Communication {
 	}
 	
 	public Category deserializeCategory(String str) {
+		if (str.equals("[]")) return null;
 		return Category.valueOf(str);
 	}
 	
