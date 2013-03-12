@@ -36,9 +36,9 @@ public class AdministrateUser extends Activity {
 	}
 /**
  * delete user
- * @param view
+ * @param view default
  * @throws IOException
- * @throws ClassNotFoundException
+ * @throws ClassNotFoundException when class is not found
  */
 	public void deleteuser(View view) throws IOException, ClassNotFoundException{
 		if(((Admin)(Users.getInstance().getCurrentUser())).deleteUser(email)){
@@ -66,9 +66,9 @@ public class AdministrateUser extends Activity {
 	}
 /**
  * unlock user
- * @param view
+ * @param view default
  * @throws IOException
- * @throws ClassNotFoundException
+ * @throws ClassNotFoundException when class is not found
  */
 	public void unlockuser(View view) throws IOException, ClassNotFoundException{
 		if(Users.getInstance().isPriviliged()){

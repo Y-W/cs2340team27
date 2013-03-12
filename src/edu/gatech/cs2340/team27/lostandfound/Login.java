@@ -52,9 +52,9 @@ public class Login extends Activity {
 	 * if it is correct, redirects to home page
 	 * if the password is incorrect, pop up wrong message
 	 * if the password is incorrect for three times in a row, lock the account
-	 * @param view
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @param view default
+	 * @throws ClassNotFoundException when class is not found
+	 * @throws IOException ioe
 	 */
 	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
@@ -120,7 +120,7 @@ public class Login extends Activity {
 	
 	/**
 	 * redirects to register page
-	 * @param view
+	 * @param view default
 	 */
 	public void registerAttempt(View view) {
 		Intent intent = new Intent(this, Register.class);

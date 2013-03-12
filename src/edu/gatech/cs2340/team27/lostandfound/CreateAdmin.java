@@ -44,7 +44,7 @@ public class CreateAdmin extends Activity {
 	}
 	/**
 	 * go back to login page
-	 * @param view
+	 * @param view default
 	 */
 	public void goBack(View view) {
 		Intent intent = new Intent(this, LoginAdmin.class);
@@ -72,9 +72,9 @@ public class CreateAdmin extends Activity {
 	 * if email is already existed
 	 * pop up wrong message
 	 * otherwise create a new account
-	 * @param view
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @param view default
+	 * @throws ClassNotFoundException when class is not found
+	 * @throws IOException ioe
 	 */
 	public void registerAccount(View view) throws IOException, ClassNotFoundException{
 		String userText = email.getText().toString();
