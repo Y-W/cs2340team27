@@ -35,6 +35,7 @@ public class LostItem extends Activity {
 	 * list of lost items
 	 * when click to lost item, redirect to detail info
 	 * @param savedInstanceState default
+	 * @param listview List of lost item
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

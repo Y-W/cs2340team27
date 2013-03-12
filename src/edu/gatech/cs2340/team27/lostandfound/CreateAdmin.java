@@ -73,6 +73,11 @@ public class CreateAdmin extends Activity {
 	 * pop up wrong message
 	 * otherwise create a new account
 	 * @param view default
+	 * @param userText email Text
+	 * @param psText password Text
+	 * @param pConfirm password confirm
+	 * @param nameText real name text
+	 * @param phoneText phone number text
 	 * @throws ClassNotFoundException when class is not found
 	 * @throws IOException when file is not found
 	 */
