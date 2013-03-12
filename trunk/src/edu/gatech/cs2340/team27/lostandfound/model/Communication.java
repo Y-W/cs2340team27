@@ -35,8 +35,8 @@ public class Communication {
 	 * created, then create one.
 	 * 
 	 * @return the only instance of Communication
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @throws ClassNotFoundException when class not found
+	 * @throws IOException when io error happens
 	 */
 	public static Communication getInstance() throws IOException, ClassNotFoundException {
 		if (onlyInstance == null) {
@@ -66,8 +66,8 @@ public class Communication {
 
 	/**
 	 * default Constructor of Communication
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @throws ClassNotFoundException when class not found
+	 * @throws IOException when io error happens
 	 */
 	@SuppressWarnings("unchecked")
 	protected Communication() throws IOException, ClassNotFoundException {
@@ -114,8 +114,8 @@ public class Communication {
 	 * @param password
 	 *            intended password
 	 * @return the status of login attempt
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @throws ClassNotFoundException when class not found
+	 * @throws IOException when io error happens
 	 */
 	public LogStatus loginAttempt(String username, String password) throws IOException, ClassNotFoundException {
 		String query = "USER/" + username.replace('/', '_');
@@ -155,8 +155,8 @@ public class Communication {
 	 *            true if want to create an administrator, false if want to
 	 *            create a normal user
 	 * @return true if success, false otherwise
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @throws ClassNotFoundException when class not found
+	 * @throws IOException when io error happens
 	 */
 	public boolean createAccount(String username, String password, String realname, String phone, 
 			boolean priviliged) throws IOException, ClassNotFoundException {
@@ -206,7 +206,7 @@ public class Communication {
 	/**
 	 * remove a user
 	 * @param email The email address of the user to be removed
-	 * @throws IOException
+	 * @throws IOException when io error happens.
 	 */
 	public void removeUser(String email) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
@@ -256,7 +256,7 @@ public class Communication {
 	 * 			The ArrayList to be serialized
 	 * @return
 	 * 			serializing result
-	 * @throws IOException
+	 * @throws IOException when io error happens
 	 */
 	public String serialize(ArrayList<String> a) throws IOException {
 		return serialize(a, "##");
@@ -315,7 +315,7 @@ public class Communication {
 	 * @param str  The String to be deserialized
 	 * @param ret  Any date object for overriding need
 	 * @return deserializing result
-	 * @throws ParseException
+	 * @throws ParseException when parse error happens
 	 */
 	public Date deserialize(String str, Date ret) throws ParseException {
 		if (str==null || str.equals("[]")) return null;
@@ -355,8 +355,8 @@ public class Communication {
 	 * add a item to certain user
 	 * @param username  The email address of the user to whom the item is added
 	 * @param item  The item to be added
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public void addItem(String username, Item item) throws IOException, ClassNotFoundException {
 		ArrayList<String> items = getItems(username);
@@ -370,8 +370,8 @@ public class Communication {
 	/**
 	 * add the item and choose targeting users automatically
 	 * @param item  The item to be added
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public void addItem(Item item) throws IOException, ClassNotFoundException {
 		if (item.getLoser()!=null) {
@@ -385,8 +385,8 @@ public class Communication {
 	 * get all items of certain users
 	 * @param username The email address of the user
 	 * @return An arraylist that contains serials of all items 
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getItems(String username) throws IOException, ClassNotFoundException {
@@ -396,9 +396,9 @@ public class Communication {
 	/**
 	 * get items of all users
 	 * @return An arraylist that contains items of all users
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ParseException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
+	 * @throws ParseException when parsing error happens
 	 */
 	public ArrayList<Item> getItems() throws IOException, ClassNotFoundException, ParseException {
 		if (data.get("Users")==null) data.put("Users", "");
@@ -427,7 +427,7 @@ public class Communication {
 	 * serialize an item
 	 * @param i The item to be serialized
 	 * @return serializing result
-	 * @throws IOException
+	 * @throws IOException when io errors happen
 	 */
 	public String serializeItem(Item i) throws IOException{
 		if (i==null) return "[]";
@@ -449,7 +449,7 @@ public class Communication {
 	 * serialize an user
 	 * @param u The user to be serialized
 	 * @return serializing result
-	 * @throws IOException
+	 * @throws IOException when io error happens
 	 */
 	public String serializeUser(User u) throws IOException {
 		ArrayList<String> sarr = new ArrayList<String>();
@@ -465,9 +465,9 @@ public class Communication {
 	 * deserialize an item
 	 * @param str The string to be deserialized
 	 * @return deserializing result
-	 * @throws ParseException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws ParseException when parse error happens
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public Item deserializeItem(String str) throws ParseException, IOException, ClassNotFoundException {
 		if (str==null || str.equals("[]")) return null;
@@ -495,8 +495,8 @@ public class Communication {
 	 * deserialize a user
 	 * @param str The String to be deserialized
 	 * @return deserializing result
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public User deserializeUser(String str) throws IOException, ClassNotFoundException {
 		if (str==null || str.equals("[]")) return null;
@@ -531,8 +531,8 @@ public class Communication {
 	 * get all the information of certain user
 	 * @param username the email address of the user
 	 * @return An user object that contains all the information of certain user.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public User getUser(String username) throws IOException, ClassNotFoundException {
 		if (username==null || username.equals("")) return null;
@@ -542,8 +542,8 @@ public class Communication {
 	/**
 	 * get the information of current user
 	 * @return An user object that contains all the information of current user.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public User getCurrentUser() throws IOException, ClassNotFoundException{
 		return getUser(currentUsername);
@@ -552,8 +552,8 @@ public class Communication {
 	/**
 	 * Get user information of all users
 	 * @return An arraylist that contains user information.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when io error happens
+	 * @throws ClassNotFoundException when class not found
 	 */
 	public ArrayList<User> getUserList() throws IOException, ClassNotFoundException{
 		if (data.get("Users")==null) data.put("Users", "");
