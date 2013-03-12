@@ -34,7 +34,7 @@ public class LostItem extends Activity {
 	 * create a namelist, arrayadapter and use listview to show a
 	 * list of lost items
 	 * when click to lost item, redirect to detail info
-	 * @param savedInstanceState
+	 * @param savedInstanceState default
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class LostItem extends Activity {
 
 	/**
 	 * Processes the onCreateOptionsMenu event.
-	 * @param menu
+	 * @param menu menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,7 +82,7 @@ public class LostItem extends Activity {
 	
 	/**
 	 * Processes the cancel button's onClick event.
-	 * @param view
+	 * @param view default
 	 */
 	public void returnParent(View view) {
 		Intent intent = new Intent(this, HomePage.class);

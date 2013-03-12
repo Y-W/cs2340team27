@@ -35,7 +35,7 @@ public class HomePage extends Activity {
 	/**
 	 * loserAttempt
 	 * directs to lostItemInput page
-	 * @param view
+	 * @param view default
 	 */
 	public void loserAttempt(View view){
 		Intent intent = new Intent(this,LostItemInput.class);
@@ -44,7 +44,7 @@ public class HomePage extends Activity {
 	/**
 	 * founderAttempt
 	 * directs to FoundItemInput page
-	 * @param view
+	 * @param view default
 	 */
 	public void founderAttempt(View view){
 	//	Intent intent = new Intent(this,.class);
@@ -53,7 +53,7 @@ public class HomePage extends Activity {
 	/**
 	 * lostinfoAttempt
 	 * directs to lostItem page
-	 * @param view
+	 * @param view default
 	 */
 	public void lostinfoAttempt(View view){
 		Intent intent = new Intent(this,LostItem.class);
@@ -62,7 +62,7 @@ public class HomePage extends Activity {
 	/**
 	 * foundinfoAttempt
 	 * directs to FoundItem page
-	 * @param view
+	 * @param view default
 	 */
 	public void foundinfoAttempt(View view){
 	//	Intent intent = new Intent(this,.class);
@@ -72,7 +72,7 @@ public class HomePage extends Activity {
 	/**
 	 * log out
 	 * directs to Login page
-	 * @param view
+	 * @param view default
 	 */
 	public void logoutAttempt(View view){
 		Intent intent = new Intent(this,Login.class);

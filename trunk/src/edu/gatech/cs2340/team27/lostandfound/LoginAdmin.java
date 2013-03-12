@@ -26,7 +26,7 @@ public class LoginAdmin extends Activity {
 	}
 	/**
 	 * redirects userlist page
-	 * @param view
+	 * @param view default
 	 */
 	public void userListAttempt(View view) {
 		Intent intent = new Intent(this, UserList.class);
@@ -34,7 +34,7 @@ public class LoginAdmin extends Activity {
 	}
 	/**
 	 * redirects createAdmin page
-	 * @param view
+	 * @param view default
 	 */
 	public void createAdminAttempt(View view) {
 		Intent intent = new Intent(this, CreateAdmin.class);
@@ -44,7 +44,7 @@ public class LoginAdmin extends Activity {
 	/**
 	 * log out
 	 * directs to Login page
-	 * @param view
+	 * @param view default
 	 */
 	public void logoutAttempt(View view){
 		Intent intent = new Intent(this,Login.class);
