@@ -94,6 +94,22 @@ public class Items {
 	}
 	
 	/**
+	 * 
+	 * @return the list of found items
+	 */
+	public ArrayList<Item> getFound() {
+		ArrayList<Item> lost = new ArrayList<Item>();
+		if (list==null) return lost;
+		for(Item item : list) {
+			if (item==null) continue;
+			if(item.getStatus() == ItemStatus.FOUND) {
+				lost.add(item);
+			}
+		}
+		return lost;
+	}
+	
+	/**
 	 * Filters out the desired item.
 	 * @param category the desired category, null if no limitation
 	 * @param date the desired date, null if no limitation
