@@ -112,7 +112,7 @@ public class Items {
 	/**
 	 * Filters out the desired item.
 	 * @param category the desired category, null if no limitation
-	 * @param date the desired date, null if no limitation
+	 * @param date the desired date (only return items whose date is equals to or later than this date), null if no limitation
 	 * @param status the desired status, null if no limitation
 	 * @return the list of items that are filtered out
 	 */
@@ -122,8 +122,20 @@ public class Items {
 			if(category != null && !it.getCategory().equals(category) ){
 				continue;
 			}
-			if(date != null && !it.getLostDate().equals(date) ){
-				continue;
+			if(date != null){
+				if(it.getStatus().equals(ItemStatus.FOUND)
+						&& it.getFoundDate().compareTo(date) < 0){
+					continue;
+				}
+				if(it.getStatus().equals(ItemStatus.LOST)
+						&& it.getLostDate().compareTo(date) < 0){
+					continue;
+				}
+				if(it.getStatus().equals(ItemStatus.RESOLVED)
+						&& (it.getFoundDate().compareTo(date) < 0
+								|| it.getLostDate().compareTo(date)<0)){
+					continue;
+				}
 			}
 			if(status !=null && !it.getStatus().equals(status)){
 				continue;
