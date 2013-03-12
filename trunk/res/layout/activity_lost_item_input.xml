@@ -71,16 +71,6 @@
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/itemname" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="39dp"
-        android:onClick="confirmLostItemInfo"
-        android:text="@string/confirm" />
-
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
@@ -103,5 +93,14 @@
         android:layout_alignRight="@+id/editText2"
         android:onClick="cancelLostItemInfo"
         android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText2"
+        android:onClick="confirmLostItemInfo"
+        android:text="@string/confirm" />
 
 </RelativeLayout>
