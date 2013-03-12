@@ -2,6 +2,8 @@ package edu.gatech.cs2340.team27.lostandfound;
 
 import java.util.Date;
 
+import edu.gatech.cs2340.team27.lostandfound.data.Item;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -30,6 +32,11 @@ public class LostItemInfo extends Activity {
 	 * location contains lost location
 	 */
 	public static String location;
+	/**
+	 * catagory contains the catagory
+	 */
+	public static Item.Category catagory;
+	
 	@Override
 	/**
 	 * get details from lostitem list
@@ -47,6 +54,9 @@ public class LostItemInfo extends Activity {
     	tv6.setText(date.toString());
     	TextView tv8=(TextView) this.findViewById(R.id.lochere);
     	tv8.setText(location);
+    	TextView tv10=(TextView) this.findViewById(R.id.textView6);
+    	//tv10.setText(catagory.toString());
+    	tv10.setText("miao");
 	}
 
 	@Override

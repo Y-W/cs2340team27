@@ -64,6 +64,7 @@ public class LostItem extends Activity {
 		    	LostItemInfo.discription=lostlist.get(position).getDescri();
 		    	LostItemInfo.date=lostlist.get(position).getLostDate();
 		    	LostItemInfo.location=lostlist.get(position).getLoca();
+		    	LostItemInfo.catagory=lostlist.get(position).getCategory();
 		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
 				startActivity(intent);
 		    }
