@@ -74,7 +74,7 @@ public class CreateAdmin extends Activity {
 	 * otherwise create a new account
 	 * @param view default
 	 * @throws ClassNotFoundException when class is not found
-	 * @throws IOException ioe
+	 * @throws IOException when file is not found
 	 */
 	public void registerAccount(View view) throws IOException, ClassNotFoundException{
 		String userText = email.getText().toString();
