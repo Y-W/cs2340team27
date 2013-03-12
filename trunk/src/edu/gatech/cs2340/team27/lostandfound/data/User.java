@@ -17,6 +17,7 @@ public class User {
 	 * @param name the name of the user
 	 * @param phoneNumber the phone # of the user
 	 * @param email the email of the user
+	 * @param isLocked true if the user is locked
 	 */
 	public User(String name, String phoneNumber, String email, boolean isLocked) {
 		this.name = name;
