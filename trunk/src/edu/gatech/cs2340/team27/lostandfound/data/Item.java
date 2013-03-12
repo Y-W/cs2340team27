@@ -130,7 +130,7 @@ public class Item {
 	 * @author Yiqi Chen
 	 *
 	 */
-	public enum ItemStatus{
+	public static enum ItemStatus{
 		LOST,
 		FOUND,
 		RESOLVED;
@@ -140,7 +140,7 @@ public class Item {
 	 * @author Yijie Wang
 	 *
 	 */
-	public enum Category{
+	public static enum Category{
 		ANIMAL,
 		CLOTH,
 		ELECTRONICS,
