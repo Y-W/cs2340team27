@@ -38,6 +38,7 @@ public class LostItemInput extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_lost_item_input);
 		String[] category = {"Animal", "Cloth", "Electronics", "Other"};
 		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,category);
 		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
@@ -45,7 +46,7 @@ public class LostItemInput extends Activity {
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
 		spinner.setVisibility(View.VISIBLE);
-		setContentView(R.layout.activity_lost_item_input);
+		
 	}
 	/**
 	 * Processes the onCreateOptionsMenu event.
