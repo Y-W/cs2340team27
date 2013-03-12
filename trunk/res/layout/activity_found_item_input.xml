@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/spinner1"
         android:layout_below="@+id/spinner1"
-        android:text="@string/lostDate"
+        android:text="@string/foundDate"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <DatePicker
