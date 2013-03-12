@@ -55,8 +55,9 @@ public class LostItemInfo extends Activity {
     	TextView tv8=(TextView) this.findViewById(R.id.lochere);
     	tv8.setText(location);
     	TextView tv10=(TextView) this.findViewById(R.id.textView6);
-    	tv10.setText(catagory.toString());
- 
+    	if(catagory!=null){
+        	tv10.setText(catagory.toString());
+    	}
 	}
 
 	@Override
