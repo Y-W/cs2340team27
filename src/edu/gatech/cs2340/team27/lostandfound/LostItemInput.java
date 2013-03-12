@@ -77,7 +77,7 @@ public class LostItemInput extends Activity {
 		else {
 			new AlertDialog.Builder(this)
 		    .setTitle("Error")
-		    .setMessage("Confirm password is different from your password")
+		    .setMessage("Please select category")
 		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
 		        }
