@@ -61,7 +61,7 @@ public class FoundItemInput extends Activity {
 	 * @throws IOException throw when file is not found
 	 * @throws ParseException throw when parse input fails
 	 */
-	public void confirmLostItemInfo(View view) throws IOException, ClassNotFoundException, ParseException{
+	public void confirmFoundItemInfo(View view) throws IOException, ClassNotFoundException, ParseException{
 		String name=((TextView)(this.findViewById(R.id.editText1))).getText().toString();
 		String location=((TextView)(this.findViewById(R.id.editText2))).getText().toString();
 		String description=((TextView)(this.findViewById(R.id.editText3))).getText().toString();
@@ -89,7 +89,7 @@ public class FoundItemInput extends Activity {
 	 * @param view Android system parameter
 	 */
 	public void cancelFoundItemInfo(View view){
-		Intent intent = new Intent(this,FoundItem.class);
+		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
 	}
 	
