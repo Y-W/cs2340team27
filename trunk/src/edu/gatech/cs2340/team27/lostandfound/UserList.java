@@ -1,12 +1,8 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.cs2340.team27.lostandfound.data.Item;
-import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import edu.gatech.cs2340.team27.lostandfound.data.User;
 import edu.gatech.cs2340.team27.lostandfound.data.Users;
 import android.os.Bundle;
