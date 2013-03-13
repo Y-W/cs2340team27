@@ -93,7 +93,7 @@ public class LostItemInput extends Activity {
 	 * @param view Android system parameter
 	 */
 	public void cancelLostItemInfo(View view){
-		Intent intent = new Intent(this,LostItem.class);
+		Intent intent = new Intent(this,HomePage.class);
 		startActivity(intent);
 	}
 	

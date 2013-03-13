@@ -26,7 +26,7 @@
         android:layout_alignLeft="@+id/linearLayout1"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:text="@string/lostItemInfo"
+        android:text="@string/foundItemInfo"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -91,7 +91,7 @@
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_alignRight="@+id/editText2"
-        android:onClick="cancelLostItemInfo"
+        android:onClick="cancelFoundItemInfo"
         android:text="@string/cancel" />
 
     <Button
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
-        android:onClick="confirmLostItemInfo"
+        android:onClick="confirmFoundItemInfo"
         android:text="@string/confirm" />
 
 </RelativeLayout>
