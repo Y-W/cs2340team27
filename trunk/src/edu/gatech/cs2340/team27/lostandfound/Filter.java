@@ -20,6 +20,10 @@ import edu.gatech.cs2340.team27.lostandfound.data.Item.Category;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
 
+/**
+ * This class allow users to filter the items to be displayed
+ * @author Yiqi Chen
+ */
 public class Filter extends Activity {
 
 	ArrayAdapter<String> cateAdapter;
@@ -31,6 +35,10 @@ public class Filter extends Activity {
 	boolean filterStatus;
 	boolean filterDate;
 	
+	/**
+	 * Create the page
+	 * @param savedInstanceState Default android parameter
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +61,12 @@ public class Filter extends Activity {
 		CheckBox checkCate=(CheckBox)findViewById(R.id.checkBox2); 
 		CheckBox checkDate=(CheckBox)findViewById(R.id.checkBox3); 
 		checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
+			/**
+			 * Action caused by the event
+			 * @param buttonView Default checkbox parameter
+			 * @param isChecked Whether the box is checked
+			 */
+			@Override 
             public void onCheckedChanged(CompoundButton buttonView, 
                     boolean isChecked) { 
                 // TODO Auto-generated method stub 
@@ -66,7 +79,12 @@ public class Filter extends Activity {
             } 
         }); 
 		checkCate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
+			/**
+			 * Action caused by the event
+			 * @param buttonView Default checkbox parameter
+			 * @param isChecked Whether the box is checked
+			 */
+			@Override 
             public void onCheckedChanged(CompoundButton buttonView, 
                     boolean isChecked) { 
                 // TODO Auto-generated method stub 
@@ -79,7 +97,12 @@ public class Filter extends Activity {
             } 
         }); 
 		checkDate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
-            @Override 
+			/**
+			 * Action caused by the event
+			 * @param buttonView Default checkbox parameter
+			 * @param isChecked Whether the box is checked
+			 */
+			@Override 
             public void onCheckedChanged(CompoundButton buttonView, 
                     boolean isChecked) { 
                 // TODO Auto-generated method stub 
@@ -93,6 +116,11 @@ public class Filter extends Activity {
         }); 
 	}
 
+	/**
+	 * Inflate the menu
+	 * @param menu default
+	 * @return successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -100,6 +128,13 @@ public class Filter extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Action caused by clicking "filter"
+	 * @param view Default android parameter
+	 * @throws IOException throw when file is not found
+	 * @throws ClassNotFoundException throw when class is not found
+	 * @throws ParseException throw when parse is incorrect
+	 */
 	public void filterItems(View view) throws IOException, ClassNotFoundException, ParseException {
 		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
 		date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
@@ -126,7 +161,19 @@ public class Filter extends Activity {
 	    startActivity(intent);
 	}
 	
+	/**
+	 * Action caused by selecting an item
+	 * @author Yiqi Chen
+	 */
 	private class cateSelectedListener implements OnItemSelectedListener {
+		
+		/**
+		 * Action caused by selecting an item
+		 * @param arg0 default
+		 * @param arg1 default
+		 * @param arg2 default
+		 * @param arg3 default
+		 */
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
                 long arg3) {  
 			switch(arg2) {
@@ -144,12 +191,28 @@ public class Filter extends Activity {
 			}
         }  
   
-        public void onNothingSelected(AdapterView<?> arg0) {
+		/**
+		 * Action when nothing is selected. 
+		 * @param arg0 default
+		 */
+		public void onNothingSelected(AdapterView<?> arg0) {
         	cate = null;
         }  
 	}
 	
+	/**
+	 * Action caused by selecting an item
+	 * @author Yiqi Chen
+	 */
 	private class statusSelectedListener implements OnItemSelectedListener {
+		
+		/**
+		 * Action caused by selecting an item
+		 * @param arg0 default
+		 * @param arg1 default
+		 * @param arg2 default
+		 * @param arg3 default
+		 */
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
                 long arg3) {  
 			switch(arg2) {
@@ -162,7 +225,11 @@ public class Filter extends Activity {
 			}
         }  
   
-        public void onNothingSelected(AdapterView<?> arg0) {
+		/**
+		 * Action when nothing is selected. 
+		 * @param arg0 default
+		 */
+		public void onNothingSelected(AdapterView<?> arg0) {
         	status = null;
         }  
 	}
