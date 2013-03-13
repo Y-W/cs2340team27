@@ -90,6 +90,10 @@ private static LinkedList<Item> list;
 	    startActivity(intent);
 	}
 	
+	/**
+	 * Pass in the filtered list
+	 * @param itemList the filtered list
+	 */
 	public static void setList(List<Item> itemList) {
 		list = (LinkedList<Item>)itemList;
 	}
