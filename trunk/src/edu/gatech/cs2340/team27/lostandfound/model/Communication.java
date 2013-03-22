@@ -61,6 +61,7 @@ public class Communication {
 
 	private HashMap<String, String> data;
 	private String currentUsername;
+	@SuppressWarnings("unused")
 	private String currentPassword;
 	private static final int lockTime = 3;
 
@@ -398,7 +399,6 @@ public class Communication {
 	 * @throws IOException when io error happens
 	 * @throws ClassNotFoundException when class not found
 	 */
-	@SuppressWarnings("unchecked")
 	public ArrayList<String> getItems(String username) throws IOException, ClassNotFoundException {
 		return deserialize(data.get(username+"/ITEMS"), new ArrayList<String>());
 	}
