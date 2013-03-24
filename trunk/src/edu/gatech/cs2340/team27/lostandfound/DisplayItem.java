@@ -21,7 +21,7 @@ import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
  */
 public class DisplayItem extends Activity {
 
-private static LinkedList<Item> list;
+    private static LinkedList<Item> list;
 	
 	/**
 	 * Processes the onCreate event.

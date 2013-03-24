@@ -81,7 +81,8 @@ public class FoundItemInput extends Activity {
 		     .show();
 			return;
 		}
-		Intent intent = new Intent(this,FoundItem.class);
+		DisplayItem.setList(Items.getInstance().filter(null, null, ItemStatus.FOUND));
+		Intent intent = new Intent(this,DisplayItem.class);
 		startActivity(intent);
 	}
 	/**
