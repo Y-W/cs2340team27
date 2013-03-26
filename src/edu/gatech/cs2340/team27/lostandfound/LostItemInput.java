@@ -85,7 +85,7 @@ public class LostItemInput extends Activity {
 		     .show();
 			return;
 		}
-		DisplayItem.setList(Items.getInstance().filter(null, null, ItemStatus.LOST));
+		DisplayItem.setList(Items.getInstance().filter(null, null, ItemStatus.LOST, null));
 		Intent intent = new Intent(this,DisplayItem.class);
 		startActivity(intent);
 	}
