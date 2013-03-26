@@ -384,10 +384,19 @@ public class Communication {
 	 * @param item
 	 * @throws IOException
 	 * @throws ClassNotFoundException
+	 * @throws ParseException 
 	 */
-	public void removeItem(String email, Item item) throws IOException, ClassNotFoundException {
+	public void removeItem(String email, Item item) throws IOException, ClassNotFoundException, ParseException {
 		ArrayList<String> items = getItems(email);
-		items.remove(item);
+		ArrayList<Item> is = new ArrayList<Item>();
+		for (String each : items) {
+			is.add(deserializeItem(each));
+		}
+		is.remove(item);
+		items.clear();
+		for (Item each : is) {
+			items.add(serializeItem(each));
+		}
 		data.put(email+"/ITEMS", serialize(items));
 		submit();
 	}
