@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
+import android.annotation.SuppressLint;
 import java.util.Date;
 
 /**
@@ -125,6 +126,10 @@ public class Item {
 	 */
 	public User getFounder() {
 		return founder;
+	}
+	
+	public boolean equals(Item item) {
+		return name.toLowerCase().equals(item.name.toLowerCase());
 	}
 	
 	/**
