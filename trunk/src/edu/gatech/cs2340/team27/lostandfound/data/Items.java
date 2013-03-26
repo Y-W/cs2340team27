@@ -116,7 +116,7 @@ public class Items {
 	 * @param status the desired status, null if no limitation
 	 * @return the list of items that are filtered out
 	 */
-	public List<Item> filter(Item.Category category, Date date, ItemStatus status){
+	public List<Item> filter(Item.Category category, Date date, ItemStatus status,String name){
 		LinkedList<Item> res=new LinkedList<Item>();
 		for(Item it: list){
 			if(category != null && !it.getCategory().equals(category) ){
@@ -138,6 +138,9 @@ public class Items {
 				}
 			}
 			if(status !=null && !it.getStatus().equals(status)){
+				continue;
+			}
+			if(name!=null && !it.getName().equals(name)){
 				continue;
 			}
 			res.add(it);
