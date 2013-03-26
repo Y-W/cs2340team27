@@ -54,5 +54,6 @@
     <string name="title_activity_found_item_info">FoundItemInfo</string>
     <string name="foundDate">Date of Found</string>
     <string name="title_activity_display_item">DisplayItem</string>
+    <string name="byName">By Name</string>
 
 </resources>

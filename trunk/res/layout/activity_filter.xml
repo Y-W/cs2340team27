@@ -56,17 +56,6 @@
         android:layout_below="@+id/checkBox3" />
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/datePicker1"
-        android:layout_below="@+id/datePicker1"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/confirm"
-        android:onClick="filterItems" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,5 +63,33 @@
         android:layout_alignRight="@+id/checkBox2"
         android:text="@string/cancel"
         android:onClick="returnParent" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/datePicker1"
+        android:layout_below="@+id/datePicker1"
+        android:text="@string/byName" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox4"
+        android:layout_below="@+id/checkBox4"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:onClick="filterItems"
+        android:text="@string/confirm" />
 
 </RelativeLayout>

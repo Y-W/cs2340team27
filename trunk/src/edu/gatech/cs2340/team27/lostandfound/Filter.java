@@ -31,9 +31,11 @@ public class Filter extends Activity {
 	Category cate;
 	ItemStatus status;
 	Date date;
+	String name;
 	boolean filterCate;
 	boolean filterStatus;
 	boolean filterDate;
+	boolean filterName;
 	
 	/**
 	 * Create the page
@@ -60,6 +62,8 @@ public class Filter extends Activity {
 		CheckBox checkStatus=(CheckBox)findViewById(R.id.checkBox1); 
 		CheckBox checkCate=(CheckBox)findViewById(R.id.checkBox2); 
 		CheckBox checkDate=(CheckBox)findViewById(R.id.checkBox3); 
+		CheckBox checkName=(CheckBox)findViewById(R.id.checkBox4); 
+		
 		checkStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
 			/**
 			 * Action caused by the event
@@ -114,6 +118,24 @@ public class Filter extends Activity {
                 }
             } 
         }); 
+		checkName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
+			/**
+			 * Action caused by the event
+			 * @param buttonView Default checkbox parameter
+			 * @param isChecked Whether the box is checked
+			 */
+			@Override 
+            public void onCheckedChanged(CompoundButton buttonView, 
+                    boolean isChecked) { 
+                // TODO Auto-generated method stub 
+                if(isChecked){ 
+                    filterName = true;
+                } 
+                else {
+                	filterName = false;
+                }
+            } 
+        }); 
 	}
 
 	/**
@@ -147,7 +169,10 @@ public class Filter extends Activity {
 		if(!filterDate) {
 			date = null;
 		}
-		DisplayItem.setList(Items.getInstance().filter(cate, date, status));
+		if(!filterName){
+			name=null;
+		}
+		DisplayItem.setList(Items.getInstance().filter(cate, date, status,name));
 		Intent intent = new Intent(this, DisplayItem.class);
 	    startActivity(intent);
 	}
