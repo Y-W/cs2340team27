@@ -379,6 +379,20 @@ public class Communication {
 	}
 	
 	/**
+	 * remove
+	 * @param email
+	 * @param item
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public void removeItem(String email, Item item) throws IOException, ClassNotFoundException {
+		ArrayList<String> items = getItems(email);
+		items.remove(item);
+		data.put(email+"/ITEMS", serialize(items));
+		submit();
+	}
+	
+	/**
 	 * add the item and choose targeting users automatically
 	 * @param item  The item to be added
 	 * @throws IOException when io error happens
