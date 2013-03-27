@@ -92,9 +92,9 @@ public class Users {
 	/**
 	 * Find potential match for a user
 	 * @return The list of potential match
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ParseException
+	 * @throws IOException won't throw this exception
+	 * @throws ClassNotFoundException won't throw this exception
+	 * @throws ParseException won't throw this exception
 	 */
 	public List<Item> getPotentialMatch() throws IOException, ClassNotFoundException, ParseException {
 		List<Item> match = new LinkedList<Item>();
@@ -111,11 +111,5 @@ public class Users {
 		}
 		return match;
 	}
-	
-	/**
-	 * Destruct this users instance
-	 */
-	public void destruct() {
-		onlyInstance = null;
-	}
+
 }
