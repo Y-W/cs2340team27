@@ -189,10 +189,10 @@ public class Items {
 			throw new RuntimeException("Match null item.");
 		}
 		if(f.equals(l)){
-				Communication.getInstance().removeItem(f.getFounder().getEmail(), f);
-		Communication.getInstance().removeItem(l.getLoser().getEmail(), l);
-		Item r= new Item(f,l);
-		Communication.getInstance().addItem(r);
+			Communication.getInstance().removeItem(f.getFounder().getEmail(), f);
+		    Communication.getInstance().removeItem(l.getLoser().getEmail(), l);
+		    Item r= new Item(f,l);
+		    Communication.getInstance().addItem(r);
 		return true;
 		}
 		return false;
