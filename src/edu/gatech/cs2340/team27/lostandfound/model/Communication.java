@@ -287,6 +287,8 @@ public class Communication {
 	 * @return  deserializing result
 	 */
 	public ItemStatus deserializeStatus(String str) {
+//		if (str==null || str.equals(""))
+//			return null;
 		return ItemStatus.valueOf(str);
 	}
 	
@@ -452,6 +454,8 @@ public class Communication {
 			eachperson = getItems(eachName);
 			if (eachperson == null) continue;
 			for (String eachItem : eachperson) {
+				if (eachItem==null) continue;
+				if (eachItem.equals("")) continue;
 				Item tmp = deserializeItem(eachItem);
 				if (tmp==null) continue;
 				if (ret.contains(tmp)) continue;
@@ -509,7 +513,7 @@ public class Communication {
 	 * @throws ClassNotFoundException when class not found
 	 */
 	public Item deserializeItem(String str) throws ParseException, IOException, ClassNotFoundException {
-		if (str==null || str.equals("[]")) return null;
+		if (str==null || str.equals("[]") || str.equals("")) return null;
 		ArrayList<String> sarr = deserialize(str, new ArrayList<String>(), "%item%");
 		ItemStatus status = deserializeStatus(sarr.get(0));
 		String name = sarr.get(1);
