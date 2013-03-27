@@ -44,8 +44,8 @@ public class MatchList extends Activity {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		    	
-		    	Intent intent = new Intent(parent.getContext(), AdministrateUser.class);
+		    	MatchInfo.foundItem = matchList.get(position);
+		    	Intent intent = new Intent(parent.getContext(), MatchInfo.class);
 				startActivity(intent);
 		    }
 		}); 
