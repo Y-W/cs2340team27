@@ -94,6 +94,27 @@ public class Items {
 	}
 	
 	/**
+	 * Get the list of item that a particular user has lost. 
+	 * @param user the user
+	 * @return The list of item that a particular user has lost.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws ParseException
+	 */
+	public LinkedList<Item> getLost(User user) throws IOException, ClassNotFoundException, ParseException {
+		LinkedList<Item> lost = new LinkedList<Item>();
+		update();
+		if (list==null) return lost;
+		for(Item item : list) {
+			if (item==null) continue;
+			if(item.getStatus() == ItemStatus.LOST && item.getLoser().equals(user)) {
+				lost.add(item);
+			}
+		}
+		return lost;
+	}
+	
+	/**
 	 * 
 	 * @return the list of found items
 	 */
@@ -115,9 +136,13 @@ public class Items {
 	 * @param date the desired date (only return items whose date is equals to or later than this date), null if no limitation
 	 * @param status the desired status, null if no limitation
 	 * @return the list of items that are filtered out
+	 * @throws ParseException 
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
 	 */
-	public List<Item> filter(Item.Category category, Date date, ItemStatus status,String name){
+	public List<Item> filter(Item.Category category, Date date, ItemStatus status,String name) throws IOException, ClassNotFoundException, ParseException{
 		LinkedList<Item> res=new LinkedList<Item>();
+		update();
 		for(Item it: list){
 			if(category != null && !it.getCategory().equals(category) ){
 				continue;

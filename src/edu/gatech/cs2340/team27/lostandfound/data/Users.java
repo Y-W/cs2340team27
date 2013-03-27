@@ -1,9 +1,12 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 
@@ -84,6 +87,28 @@ public class Users {
 		if(Communication.getInstance().checkPrivilege(currentUser.email)){
 			currentUser=new Admin(currentUser);
 		}
+	}
+	
+	/**
+	 * Find potential match for a user
+	 * @return The list of potential match
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws ParseException
+	 */
+	public List<Item> getPotentialMatch() throws IOException, ClassNotFoundException, ParseException {
+		List<Item> match = new LinkedList<Item>();
+		if(currentUser == null) return match;
+		List<Item> lost = Items.getInstance().getLost(currentUser);
+		List<Item> found = Items.getInstance().filter(null, null, ItemStatus.FOUND, null);
+		for(Item lostItem : lost) {
+			for(Item foundItem : found) {
+				if(lostItem.equals(foundItem)) {
+					match.add(foundItem);
+				}
+			}
+		}
+		return match;
 	}
 	
 	/**
