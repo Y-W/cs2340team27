@@ -83,5 +83,10 @@ public class HomePage extends Activity {
 		Intent intent = new Intent(this, Filter.class);
 	    startActivity(intent);
 	}
+	
+	public void goToMatchList(View view) {
+		Intent intent = new Intent(this, MatchList.class);
+		startActivity(intent);
+	}
 
 }
