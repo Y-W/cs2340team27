@@ -57,5 +57,6 @@
     <string name="byName">By Name</string>
     <string name="potMatch">Potential Matching</string>
     <string name="title_activity_match_list">MatchList</string>
+    <string name="title_activity_match_info">MatchInfo</string>
 
 </resources>
