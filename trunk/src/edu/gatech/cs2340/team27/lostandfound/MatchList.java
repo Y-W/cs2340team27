@@ -39,18 +39,16 @@ public class MatchList extends Activity {
 		}
 		setContentView(R.layout.activity_match_list);
 		List<String> founderList = new LinkedList<String>();
-//		for(Item i : matchList){
-		for (int i=0; i<matchList.size(); i=i+2)
+		for (int i=1; i<matchList.size(); i=i+2)
 			founderList.add(matchList.get(i).getName());
-		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
 		        android.R.layout.simple_list_item_1, founderList);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		    	MatchInfo.foundItem = matchList.get(2*position);
-		    	MatchInfo.lostItem = matchList.get(2*position+1);
+		    	MatchInfo.foundItem = matchList.get(2*position+1);
+		    	MatchInfo.lostItem = matchList.get(2*position);
 		    	Intent intent = new Intent(parent.getContext(), MatchInfo.class);
 				startActivity(intent);
 		    }
