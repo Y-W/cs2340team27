@@ -24,6 +24,9 @@ public class MatchList extends Activity {
 
 	private List<Item> matchList;
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,6 +54,9 @@ public class MatchList extends Activity {
 		}); 
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -58,4 +64,12 @@ public class MatchList extends Activity {
 		return true;
 	}
 
+	/**
+	 * go back to home page
+	 * @param view default
+	 */
+	public void goBack(View view){
+		Intent intent = new Intent(this, HomePage.class);
+	    startActivity(intent);
+	}
 }
