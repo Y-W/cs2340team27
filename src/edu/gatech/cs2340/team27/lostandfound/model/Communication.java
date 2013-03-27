@@ -379,12 +379,12 @@ public class Communication {
 	}
 	
 	/**
-	 * remove
-	 * @param email
-	 * @param item
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ParseException 
+	 * remove item.
+	 * @param email : the email address of the user of item.
+	 * @param item : the item to be removed
+	 * @throws IOException : when io error happens
+	 * @throws ClassNotFoundException : when class not found
+	 * @throws ParseException  : when parsing error happens
 	 */
 	public void removeItem(String email, Item item) throws IOException, ClassNotFoundException, ParseException {
 		ArrayList<String> items = getItems(email);
