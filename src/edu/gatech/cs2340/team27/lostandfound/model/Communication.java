@@ -392,7 +392,11 @@ public class Communication {
 		for (String each : items) {
 			is.add(deserializeItem(each));
 		}
-		is.remove(item);
+//		is.remove(item);
+		for (int i = 0; i<is.size(); i++) {
+			if (is.get(i)!=null && is.get(i).equals(item))
+				is.remove(i);
+		}
 		items.clear();
 		for (Item each : is) {
 			items.add(serializeItem(each));
