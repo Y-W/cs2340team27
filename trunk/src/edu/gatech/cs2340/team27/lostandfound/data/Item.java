@@ -54,7 +54,7 @@ public class Item {
 	 * @param l lost item
 	 */
 	public Item(Item f, Item l){
-		ItemStatus status  = ItemStatus.RESOLVED;
+		status  = ItemStatus.RESOLVED;
 		location = f.getLoca();
 		description = "Founder:"+f.getDescri()+"Loser:"+l.getDescri();
 		name = f.getName();

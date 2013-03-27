@@ -51,6 +51,15 @@ public class User {
 	}
 	
 	/**
+	 * Override equals method
+	 * @param user The user to compare
+	 * @return true if the email is the same
+	 */
+	public boolean equals(User user) {
+		return email.equals(user.email);
+	}
+	
+	/**
 	 * Getter
 	 * @return If it is locked
 	 */
