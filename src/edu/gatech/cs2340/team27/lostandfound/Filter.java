@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.Category;
 import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
@@ -160,6 +161,7 @@ public class Filter extends Activity {
 	public void filterItems(View view) throws IOException, ClassNotFoundException, ParseException {
 		DatePicker dp=(DatePicker)(this.findViewById(R.id.datePicker1));
 		date=new Date(dp.getYear() - 1900, dp.getMonth(), dp.getDayOfMonth());
+		name=((TextView)(this.findViewById(R.id.editText1))).getText().toString();
 		if(!filterStatus) {
 			status = null;
 		}
