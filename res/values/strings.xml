@@ -55,5 +55,6 @@
     <string name="foundDate">Date of Found</string>
     <string name="title_activity_display_item">DisplayItem</string>
     <string name="byName">By Name</string>
+    <string name="potMatch">Potential Matching</string>
 
 </resources>
