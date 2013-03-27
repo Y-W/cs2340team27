@@ -185,6 +185,9 @@ public class Items {
  * @throws ParseException
  */
 	public boolean match(Item f, Item l) throws IOException, ClassNotFoundException, ParseException{
+		if(f == null || l == null) {
+			throw new RuntimeException("Match null item.");
+		}
 		if(f.equals(l)){
 				Communication.getInstance().removeItem(f.getFounder().getEmail(), f);
 		Communication.getInstance().removeItem(l.getLoser().getEmail(), l);

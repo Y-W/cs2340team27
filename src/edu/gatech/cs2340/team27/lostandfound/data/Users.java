@@ -104,6 +104,7 @@ public class Users {
 		for(Item lostItem : lost) {
 			for(Item foundItem : found) {
 				if(lostItem.equals(foundItem)) {
+					match.add(lostItem);
 					match.add(foundItem);
 				}
 			}

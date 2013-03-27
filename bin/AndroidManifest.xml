@@ -85,5 +85,14 @@
             android:name="edu.gatech.cs2340.team27.lostandfound.Filter"
             android:label="@string/title_activity_filter" >
         </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.MatchList"
+            android:label="@string/title_activity_match_list" >
+        </activity>
+        <activity
+            android:name="edu.gatech.cs2340.team27.lostandfound.MatchInfo"
+            android:label="@string/title_activity_match_info" >
+        </activity>
     </application>
+
 </manifest>
