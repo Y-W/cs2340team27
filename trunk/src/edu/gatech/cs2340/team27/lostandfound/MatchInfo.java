@@ -46,7 +46,10 @@ public class MatchInfo extends Activity {
     	TextView tv12=(TextView) this.findViewById(R.id.textView9);
     	tv12.setText(foundItem.getFounder().getEmail());
 	}
-	
+	/**
+	 * default method
+	 * @param menu the default parameter
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
