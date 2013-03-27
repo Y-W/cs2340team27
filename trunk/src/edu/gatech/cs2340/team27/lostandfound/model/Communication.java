@@ -399,7 +399,8 @@ public class Communication {
 		}
 		items.clear();
 		for (Item each : is) {
-			items.add(serializeItem(each));
+			if (each!=null)
+				items.add(serializeItem(each));
 		}
 		data.put(email+"/ITEMS", serialize(items));
 		submit();
