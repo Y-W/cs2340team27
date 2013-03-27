@@ -17,6 +17,7 @@ import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 public class Users {
 	
 	private User currentUser;
+	@SuppressWarnings("unused")
 	private ArrayList<User> list;
 	private static Users onlyInstance;
 	
