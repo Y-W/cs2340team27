@@ -1,11 +1,14 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import edu.gatech.cs2340.team27.lostandfound.data.Item;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
 public class MatchInfo extends Activity {
-
+	public static Item foundItem;
+	public static Item lostItem;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
