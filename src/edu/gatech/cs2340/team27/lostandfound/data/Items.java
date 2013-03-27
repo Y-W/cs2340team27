@@ -165,7 +165,7 @@ public class Items {
 			if(status !=null && !it.getStatus().equals(status)){
 				continue;
 			}
-			if(name!=null && !it.getName().equals(name)){
+			if(name!=null && !it.getName().toLowerCase().equals(name.toLowerCase())){
 				continue;
 			}
 			res.add(it);
