@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
+import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -65,7 +66,7 @@ public class MatchInfo extends Activity {
 	 * @param view Android system parameter
 	 */
 	public void match(View view){
-		
+		Items.getInstance().match(foundItem, lostItem);
 		cancel(view);
 	}
 	
