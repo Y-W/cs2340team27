@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -39,12 +40,32 @@ public class Item {
 			lostDate = date;
 			loser = user;
 		}
-		else {
+		else if(status == ItemStatus.FOUND){
 			foundDate = date;
 			founder = user;
 		}
 		this.category=category;
 //		if(category == null){throw new RuntimeException("!!!");}
+	}
+	/**
+	 * constructor
+	 * construct resolved item
+	 * @param f found item
+	 * @param l lost item
+	 */
+	public Item(Item f, Item l){
+		ItemStatus status  = ItemStatus.RESOLVED;
+		location = f.getLoca();
+		description = "Founder:"+f.getDescri()+"Loser:"+l.getDescri();
+		name = f.getName();
+		foundDate = f.getFoundDate();
+		lostDate = l.getLostDate();
+		loser = l.getLoser();
+		founder = f.getFounder();
+		category = f.getCategory();
+		Calendar c = Calendar.getInstance();
+		resolvedDate = c.getTime();
+		
 	}
 	
 	/**

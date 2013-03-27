@@ -135,6 +135,7 @@ public class Items {
 	 * @param category the desired category, null if no limitation
 	 * @param date the desired date (only return items whose date is equals to or later than this date), null if no limitation
 	 * @param status the desired status, null if no limitation
+	 * @param name the desired name, null if no limitation
 	 * @return the list of items that are filtered out
 	 * @throws ParseException 
 	 * @throws ClassNotFoundException 
@@ -171,5 +172,27 @@ public class Items {
 			res.add(it);
 		}
 		return res;
+	}
+/**
+ * 
+ * @param f found item
+ * @param l lost item
+ * @return true if these two are match
+ * delete found and lost item
+ * add resolved item
+ * @throws IOException
+ * @throws ClassNotFoundException
+ * @throws ParseException
+ */
+	public boolean match(Item f, Item l) throws IOException, ClassNotFoundException, ParseException{
+		if(f.equals(l)){
+				Communication.getInstance().removeItem(f.getFounder().getEmail(), f);
+		Communication.getInstance().removeItem(l.getLoser().getEmail(), l);
+		Item r= new Item(f,l);
+		Communication.getInstance().addItem(r);
+		return true;
+		}
+		return false;
+		
 	}
 }
