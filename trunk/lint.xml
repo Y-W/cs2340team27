@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DefaultLocale">
+        <ignore path="src\edu\gatech\cs2340\team27\lostandfound\data\Item.java" />
+    </issue>
+</lint>

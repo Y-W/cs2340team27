@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.team27.lostandfound.data;
 
-import android.annotation.SuppressLint;
 import java.util.Date;
 
 /**
