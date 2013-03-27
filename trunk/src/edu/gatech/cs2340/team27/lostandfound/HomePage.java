@@ -79,11 +79,19 @@ public class HomePage extends Activity {
 		startActivity(intent);
 	}
 	
+	/**
+	 * display item
+	 * @param view default
+	 */
 	public void displayItems(View view) {
 		Intent intent = new Intent(this, Filter.class);
 	    startActivity(intent);
 	}
 	
+	/**
+	 * go to the matchlist page
+	 * @param view default
+	 */
 	public void goToMatchList(View view) {
 		Intent intent = new Intent(this, MatchList.class);
 		startActivity(intent);
