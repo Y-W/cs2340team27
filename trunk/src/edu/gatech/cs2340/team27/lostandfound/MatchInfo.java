@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.IOException;
+import java.text.ParseException;
+
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
 import edu.gatech.cs2340.team27.lostandfound.data.Items;
 import android.os.Bundle;
@@ -67,8 +70,11 @@ public class MatchInfo extends Activity {
 	/**
 	 * confirms the match
 	 * @param view Android system parameter
+	 * @throws ParseException not possible
+	 * @throws ClassNotFoundException not possible
+	 * @throws IOException when IO fails
 	 */
-	public void match(View view){
+	public void match(View view) throws IOException, ClassNotFoundException, ParseException{
 		Items.getInstance().match(foundItem, lostItem);
 		cancel(view);
 	}
