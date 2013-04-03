@@ -38,10 +38,12 @@ public class Filter extends Activity {
 	boolean filterDate;
 	boolean filterName;
 	
+
 	/**
 	 * Create the page
 	 * @param savedInstanceState Default android parameter
 	 */
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
