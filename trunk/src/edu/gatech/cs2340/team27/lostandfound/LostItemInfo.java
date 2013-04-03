@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+
 /**
  * Processes the display of the details of lost items.
+ * 
  * @author all
- *
+ * 
  */
 public class LostItemInfo extends Activity {
 	/**
@@ -36,7 +38,7 @@ public class LostItemInfo extends Activity {
 	 * catagory contains the catagory
 	 */
 	public static Item.Category catagory;
-	
+
 	@Override
 	/**
 	 * get details from lostitem list
@@ -46,18 +48,18 @@ public class LostItemInfo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lost_item_info);
-		TextView tv=(TextView) this.findViewById(R.id.itemname);
-    	tv.setText(itemname);
-    	TextView tv4=(TextView) this.findViewById(R.id.textView4);
-    	tv4.setText(discription);
-    	TextView tv6=(TextView) this.findViewById(R.id.dolhere);
-    	tv6.setText(date.toString());
-    	TextView tv8=(TextView) this.findViewById(R.id.lochere);
-    	tv8.setText(location);
-    	TextView tv10=(TextView) this.findViewById(R.id.textView6);
-    	if(catagory!=null){
-        	tv10.setText(catagory.toString());
-    	}
+		TextView tv = (TextView) this.findViewById(R.id.itemname);
+		tv.setText(itemname);
+		TextView tv4 = (TextView) this.findViewById(R.id.textView4);
+		tv4.setText(discription);
+		TextView tv6 = (TextView) this.findViewById(R.id.dolhere);
+		tv6.setText(date.toString());
+		TextView tv8 = (TextView) this.findViewById(R.id.lochere);
+		tv8.setText(location);
+		TextView tv10 = (TextView) this.findViewById(R.id.textView6);
+		if (catagory != null) {
+			tv10.setText(catagory.toString());
+		}
 	}
 
 	@Override
@@ -70,12 +72,15 @@ public class LostItemInfo extends Activity {
 		getMenuInflater().inflate(R.menu.lost_item_info, menu);
 		return true;
 	}
+
 	/**
 	 * go back to LostItem Page
-	 * @param view Android system parameter
+	 * 
+	 * @param view
+	 *            Android system parameter
 	 */
-	public void LostItemAttempt(View view){
-		Intent intent = new Intent(this,DisplayItem.class);
+	public void LostItemAttempt(View view) {
+		Intent intent = new Intent(this, DisplayItem.class);
 		startActivity(intent);
 	}
 

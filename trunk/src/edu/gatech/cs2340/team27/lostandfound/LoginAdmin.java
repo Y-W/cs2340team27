@@ -15,6 +15,7 @@ public class LoginAdmin extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_admin);
 	}
+
 	/**
 	 * build in method
 	 */
@@ -24,30 +25,37 @@ public class LoginAdmin extends Activity {
 		getMenuInflater().inflate(R.menu.login_admin, menu);
 		return true;
 	}
+
 	/**
 	 * redirects userlist page
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void userListAttempt(View view) {
 		Intent intent = new Intent(this, UserList.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
+
 	/**
 	 * redirects createAdmin page
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void createAdminAttempt(View view) {
 		Intent intent = new Intent(this, CreateAdmin.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
-	
+
 	/**
-	 * log out
-	 * directs to Login page
-	 * @param view default
+	 * log out directs to Login page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void logoutAttempt(View view){
-		Intent intent = new Intent(this,Login.class);
+	public void logoutAttempt(View view) {
+		Intent intent = new Intent(this, Login.class);
 		startActivity(intent);
 	}
 }

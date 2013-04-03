@@ -16,11 +16,14 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class UserList extends Activity {
-	
+
 	private List<User> userlist;
+
 	/**
 	 * build in method
-	 * @param savedInstanceState Android system parameter
+	 * 
+	 * @param savedInstanceState
+	 *            Android system parameter
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,30 +32,35 @@ public class UserList extends Activity {
 			userlist = Users.getInstance().getListofUsers();
 		} catch (IOException e) {
 		} catch (ClassNotFoundException e) {
-		} 
+		}
 		setContentView(R.layout.activity_user_list);
-		String[] usernameList=new String[userlist.size()];
+		String[] usernameList = new String[userlist.size()];
 		int a = 0;
-		for(User i : userlist){
-			usernameList[a]=i.getEmail();
+		for (User i : userlist) {
+			usernameList[a] = i.getEmail();
 			a++;
 		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-		        android.R.layout.simple_list_item_1, usernameList);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, usernameList);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		    	AdministrateUser.email=userlist.get(position).getEmail();
-		    	Intent intent = new Intent(parent.getContext(), AdministrateUser.class);
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				AdministrateUser.email = userlist.get(position).getEmail();
+				Intent intent = new Intent(parent.getContext(),
+						AdministrateUser.class);
 				startActivity(intent);
-		    }
-		}); 
-		
+			}
+		});
+
 	}
+
 	/**
 	 * build in method
-	 * @param menu Android system parameter
+	 * 
+	 * @param menu
+	 *            Android system parameter
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,14 +68,16 @@ public class UserList extends Activity {
 		getMenuInflater().inflate(R.menu.user_list, menu);
 		return true;
 	}
+
 	/**
 	 * redirects to loginAdmin page
-	 * @param view Android system parameter
+	 * 
+	 * @param view
+	 *            Android system parameter
 	 */
 	public void loginAdminAttempt(View view) {
 		Intent intent = new Intent(this, LoginAdmin.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
-
 
 }

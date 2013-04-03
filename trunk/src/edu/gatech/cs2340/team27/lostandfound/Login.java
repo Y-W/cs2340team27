@@ -13,12 +13,13 @@ import android.widget.EditText;
 import edu.gatech.cs2340.team27.lostandfound.data.Users;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication.LogStatus;
+
 /**
- * Login page
- * check username password
- * can lock user if enter wrong password three times
+ * Login page check username password can lock user if enter wrong password
+ * three times
+ * 
  * @author all
- *
+ * 
  */
 public class Login extends Activity {
 
@@ -26,8 +27,7 @@ public class Login extends Activity {
 	 * a simplified name for edu.gatech.cs2340.team27.lostandfound.MESSAGE
 	 */
 	public final static String STATUS_MESSAGE = "edu.gatech.cs2340.team27.lostandfound.MESSAGE";
-	
-	
+
 	@Override
 	/**
 	 * build in method
@@ -47,163 +47,182 @@ public class Login extends Activity {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
+
 	/**
-	 * get username and password, and see if the password is correct
-	 * if it is correct, redirects to home page
-	 * if the password is incorrect, pop up wrong message
-	 * if the password is incorrect for three times in a row, lock the account
-	 * @param view default
-	 * @throws ClassNotFoundException when class is not found
-	 * @throws IOException when file is not found
+	 * get username and password, and see if the password is correct if it is
+	 * correct, redirects to home page if the password is incorrect, pop up
+	 * wrong message if the password is incorrect for three times in a row, lock
+	 * the account
+	 * 
+	 * @param view
+	 *            default
+	 * @throws ClassNotFoundException
+	 *             when class is not found
+	 * @throws IOException
+	 *             when file is not found
 	 */
-	public void loginAttempt(View view) throws IOException, ClassNotFoundException {
+	public void loginAttempt(View view) throws IOException,
+			ClassNotFoundException {
 		Intent intent = new Intent(this, HomePage.class);
 		int status = checkPwd();
-		if(status==1) {
+		if (status == 1) {
 			startActivity(intent);
 		}
-		
-		else if (status==-1) {
+
+		else if (status == -1) {
 			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Wrong Password.")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            passwordclear();
-		        }
-		     })
-		     .show();
+					.setTitle("Error")
+					.setMessage("Wrong Password.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									passwordclear();
+								}
+							}).show();
+			return;
+		} else if (status == 0) {
+			new AlertDialog.Builder(this)
+					.setTitle("Error")
+					.setMessage("Account Locked!")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									usernameclear();
+									passwordclear();
+								}
+							}).show();
 			return;
 		}
-		else if(status==0){
-			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Account Locked!")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            usernameclear();
-		            passwordclear();
-		        }
-		     })
-		     .show();
-			return;
-		}
-		
+
 	}
+
 	/**
 	 * check pw status
-	 * @param username username
-	 * @param password password
-	 * @param userText user text
-	 * @param psText password text
-	 * @param status login status
+	 * 
+	 * @param username
+	 *            username
+	 * @param password
+	 *            password
+	 * @param userText
+	 *            user text
+	 * @param psText
+	 *            password text
+	 * @param status
+	 *            login status
 	 * @return check password status
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public int checkPwd() throws IOException, ClassNotFoundException{
+	public int checkPwd() throws IOException, ClassNotFoundException {
 		EditText username = (EditText) findViewById(R.id.editText1);
 		EditText password = (EditText) findViewById(R.id.editText2);
 		String userText = username.getText().toString();
 		String psText = password.getText().toString();
-		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication.getInstance().loginAttempt(userText, psText);
-		if (status==LogStatus.SUCCESS) 
-			return 1;//success
-		else if (status==LogStatus.FAILURE) 
-			return -1;//fail
+		LogStatus status = edu.gatech.cs2340.team27.lostandfound.model.Communication
+				.getInstance().loginAttempt(userText, psText);
+		if (status == LogStatus.SUCCESS)
+			return 1;// success
+		else if (status == LogStatus.FAILURE)
+			return -1;// fail
 		else
-			return 0;//locked
+			return 0;// locked
 	}
+
 	/**
 	 * clear usename
 	 */
-	public void usernameclear(){
+	public void usernameclear() {
 		EditText username = (EditText) findViewById(R.id.editText1);
 		username.setText("");
 	}
+
 	/**
 	 * clear password
 	 */
-	public void passwordclear(){
+	public void passwordclear() {
 		EditText password = (EditText) findViewById(R.id.editText2);
 		password.setText("");
 	}
-	
+
 	/**
 	 * redirects to register page
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void registerAttempt(View view) {
 		Intent intent = new Intent(this, Register.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
-	
+
 	/**
 	 * redirects to loginAdmin page
 	 */
-	public void loginAdminAttempt(View view)throws IOException, ClassNotFoundException {
+	public void loginAdminAttempt(View view) throws IOException,
+			ClassNotFoundException {
 		Intent intentadmin = new Intent(this, LoginAdmin.class);
-	 
-	   
-	    if(checkPwd()==1) {
-	    	  if( Users.getInstance().isPriviliged()){
-			startActivity(intentadmin);}
-	    	  else{
-	    		  new AlertDialog.Builder(this)
-	  		    .setTitle("Error")
-	  		    .setMessage("Wrong Password.")
-	  		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-	  		        public void onClick(DialogInterface dialog, int which) { 
-	  		            passwordclear();
-	  		        }
-	  		     })
-	  		     .show();
-	  			return; 
-	    	  }
-		}
-		
-		else if (checkPwd()==-1) {
-			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Wrong Password.")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            passwordclear();
-		        }
-		     })
-		     .show();
-			return;
-		}
-		else if(checkPwd()==0){
-			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Account Locked!")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            usernameclear();
-		            passwordclear();
-		        }
-		     })
-		     .show();
-			return;
-			}
-	   
-	   else{
-		   new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Wrong Password.")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            passwordclear();
-		        }
-		     })
-		     .show();
-			return;
-	   }
-	    
-		}
-	
-	   
 
+		if (checkPwd() == 1) {
+			if (Users.getInstance().isPriviliged()) {
+				startActivity(intentadmin);
+			} else {
+				new AlertDialog.Builder(this)
+						.setTitle("Error")
+						.setMessage("Wrong Password.")
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										passwordclear();
+									}
+								}).show();
+				return;
+			}
+		}
+
+		else if (checkPwd() == -1) {
+			new AlertDialog.Builder(this)
+					.setTitle("Error")
+					.setMessage("Wrong Password.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									passwordclear();
+								}
+							}).show();
+			return;
+		} else if (checkPwd() == 0) {
+			new AlertDialog.Builder(this)
+					.setTitle("Error")
+					.setMessage("Account Locked!")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									usernameclear();
+									passwordclear();
+								}
+							}).show();
+			return;
+		}
+
+		else {
+			new AlertDialog.Builder(this)
+					.setTitle("Error")
+					.setMessage("Wrong Password.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									passwordclear();
+								}
+							}).show();
+			return;
+		}
+
+	}
 
 }

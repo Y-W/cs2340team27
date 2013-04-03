@@ -20,9 +20,10 @@ public class CreateAdmin extends Activity {
 	private EditText pswdConfirm;
 	private EditText realname;
 	private EditText phone;
-/**
- * build in method
- */
+
+	/**
+	 * build in method
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,55 +34,68 @@ public class CreateAdmin extends Activity {
 		realname = (EditText) findViewById(R.id.editText1);
 		phone = (EditText) findViewById(R.id.editText2);
 	}
-/**
- * build in method
- */
+
+	/**
+	 * build in method
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.create_admin, menu);
 		return true;
 	}
+
 	/**
 	 * go back to login page
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void goBack(View view) {
 		Intent intent = new Intent(this, LoginAdmin.class);
 		startActivity(intent);
 	}
-	
+
 	/**
 	 * clear password and confirm textfields
 	 */
-	public void clear(){
+	public void clear() {
 		password.setText("");
 		pswdConfirm.setText("");
 	}
+
 	/**
 	 * clear email
 	 */
-	public void emailclear(){
+	public void emailclear() {
 		email.setText("");
-	
+
 	}
+
 	/**
-	 * get email, password and confirmpassword
-	 * if password and confirmpassword doesnt match
-	 * pop up wrong message
-	 * if email is already existed
-	 * pop up wrong message
-	 * otherwise create a new account
-	 * @param view default
-	 * @param userText email Text
-	 * @param psText password Text
-	 * @param pConfirm password confirm
-	 * @param nameText real name text
-	 * @param phoneText phone number text
-	 * @throws ClassNotFoundException when class is not found
-	 * @throws IOException when file is not found
+	 * get email, password and confirmpassword if password and confirmpassword
+	 * doesnt match pop up wrong message if email is already existed pop up
+	 * wrong message otherwise create a new account
+	 * 
+	 * @param view
+	 *            default
+	 * @param userText
+	 *            email Text
+	 * @param psText
+	 *            password Text
+	 * @param pConfirm
+	 *            password confirm
+	 * @param nameText
+	 *            real name text
+	 * @param phoneText
+	 *            phone number text
+	 * @throws ClassNotFoundException
+	 *             when class is not found
+	 * @throws IOException
+	 *             when file is not found
 	 */
-	public void registerAccount(View view) throws IOException, ClassNotFoundException{
+	public void registerAccount(View view) throws IOException,
+			ClassNotFoundException {
 		String userText = email.getText().toString();
 		String psText = password.getText().toString();
 		String pConfirm = pswdConfirm.getText().toString();
@@ -89,32 +103,35 @@ public class CreateAdmin extends Activity {
 		String phoneText = phone.getText().toString();
 		if (!psText.equals(pConfirm)) {
 			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Confirm password is different from your password")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            clear();
-		        }
-		     })
-		     .show();
+					.setTitle("Error")
+					.setMessage(
+							"Confirm password is different from your password")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									clear();
+								}
+							}).show();
 			return;
 		}
-		boolean registerStatus =((Admin)(Users.getInstance().getCurrentUser())).addAdmin(userText,psText,nameText,phoneText);
+		boolean registerStatus = ((Admin) (Users.getInstance().getCurrentUser()))
+				.addAdmin(userText, psText, nameText, phoneText);
 		if (registerStatus)
 			goBack(view);
-		else{
+		else {
 			new AlertDialog.Builder(this)
-			.setTitle("Error")
-			.setMessage("User name already existed.")
-			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) { 
-					clear();
-					emailclear();
-				}
-			})
-			.show();
+					.setTitle("Error")
+					.setMessage("User name already existed.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									clear();
+									emailclear();
+								}
+							}).show();
 		}
 	}
-	
 
 }

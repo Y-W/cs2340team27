@@ -14,6 +14,7 @@ import android.view.View;
 
 public class AdministrateUser extends Activity {
 	public static String email;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,61 +27,73 @@ public class AdministrateUser extends Activity {
 		getMenuInflater().inflate(R.menu.administrate_user, menu);
 		return true;
 	}
-	
+
 	/**
 	 * redirects to UserList page
 	 */
 	public void userListAttempt(View view) {
 		Intent intent = new Intent(this, UserList.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
-/**
- * delete user
- * @param view default
- * @throws IOException
- * @throws ClassNotFoundException when class is not found
- */
-	public void deleteuser(View view) throws IOException, ClassNotFoundException{
-		if(((Admin)(Users.getInstance().getCurrentUser())).deleteUser(email)){
+
+	/**
+	 * delete user
+	 * 
+	 * @param view
+	 *            default
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 *             when class is not found
+	 */
+	public void deleteuser(View view) throws IOException,
+			ClassNotFoundException {
+		if (((Admin) (Users.getInstance().getCurrentUser())).deleteUser(email)) {
 			new AlertDialog.Builder(this)
-		    .setTitle("Success")
-		    .setMessage("Delete this User Successfully.")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		        }
-		     })
-		     .show();
+					.setTitle("Success")
+					.setMessage("Delete this User Successfully.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
+			return;
+		} else {
+			new AlertDialog.Builder(this)
+					.setTitle("Wrong")
+					.setMessage("Cannot delete yourself!")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
 			return;
 		}
-		else{
-			new AlertDialog.Builder(this)
-		    .setTitle("Wrong")
-		    .setMessage("Cannot delete yourself!")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		        }
-		     })
-		     .show();
-			return;
-		}
 	}
-/**
- * unlock user
- * @param view default
- * @throws IOException
- * @throws ClassNotFoundException when class is not found
- */
-	public void unlockuser(View view) throws IOException, ClassNotFoundException{
-		if(Users.getInstance().isPriviliged()){
-			((Admin)(Users.getInstance().getCurrentUser())).unlockUser(email);
+
+	/**
+	 * unlock user
+	 * 
+	 * @param view
+	 *            default
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 *             when class is not found
+	 */
+	public void unlockuser(View view) throws IOException,
+			ClassNotFoundException {
+		if (Users.getInstance().isPriviliged()) {
+			((Admin) (Users.getInstance().getCurrentUser())).unlockUser(email);
 			new AlertDialog.Builder(this)
-		    .setTitle("Success")
-		    .setMessage("Unlock this User Successfully.")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		        }
-		     })
-		     .show();
+					.setTitle("Success")
+					.setMessage("Unlock this User Successfully.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
 			return;
 		}
 	}

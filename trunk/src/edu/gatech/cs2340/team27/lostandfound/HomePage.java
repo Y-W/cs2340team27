@@ -5,13 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-	/**
-	 * Homepage
-	 * five buttons
-	 * each button directs to a new page
-	 * @author all
-	 *
-	 */
+
+/**
+ * Homepage five buttons each button directs to a new page
+ * 
+ * @author all
+ * 
+ */
 public class HomePage extends Activity {
 
 	@Override
@@ -32,65 +32,78 @@ public class HomePage extends Activity {
 		getMenuInflater().inflate(R.menu.home_page, menu);
 		return true;
 	}
+
 	/**
-	 * loserAttempt
-	 * directs to lostItemInput page
-	 * @param view default
+	 * loserAttempt directs to lostItemInput page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void loserAttempt(View view){
-		Intent intent = new Intent(this,LostItemInput.class);
+	public void loserAttempt(View view) {
+		Intent intent = new Intent(this, LostItemInput.class);
 		startActivity(intent);
 	}
+
 	/**
-	 * founderAttempt
-	 * directs to FoundItemInput page
-	 * @param view default
+	 * founderAttempt directs to FoundItemInput page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void founderAttempt(View view){
-		Intent intent = new Intent(this,FoundItemInput.class);
+	public void founderAttempt(View view) {
+		Intent intent = new Intent(this, FoundItemInput.class);
 		startActivity(intent);
 	}
+
 	/**
-	 * lostinfoAttempt
-	 * directs to lostItem page
-	 * @param view default
+	 * lostinfoAttempt directs to lostItem page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void lostinfoAttempt(View view){
-		Intent intent = new Intent(this,LostItem.class);
+	public void lostinfoAttempt(View view) {
+		Intent intent = new Intent(this, LostItem.class);
 		startActivity(intent);
 	}
+
 	/**
-	 * foundinfoAttempt
-	 * directs to FoundItem page
-	 * @param view default
+	 * foundinfoAttempt directs to FoundItem page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void foundinfoAttempt(View view){
-		Intent intent = new Intent(this,FoundItem.class);
+	public void foundinfoAttempt(View view) {
+		Intent intent = new Intent(this, FoundItem.class);
 		startActivity(intent);
 	}
-	
+
 	/**
-	 * log out
-	 * directs to Login page
-	 * @param view default
+	 * log out directs to Login page
+	 * 
+	 * @param view
+	 *            default
 	 */
-	public void logoutAttempt(View view){
-		Intent intent = new Intent(this,Login.class);
+	public void logoutAttempt(View view) {
+		Intent intent = new Intent(this, Login.class);
 		startActivity(intent);
 	}
-	
+
 	/**
 	 * display item
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void displayItems(View view) {
 		Intent intent = new Intent(this, Filter.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
-	
+
 	/**
 	 * go to the matchlist page
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void goToMatchList(View view) {
 		Intent intent = new Intent(this, MatchList.class);
