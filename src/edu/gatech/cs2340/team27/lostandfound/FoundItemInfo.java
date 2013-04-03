@@ -32,27 +32,27 @@ public class FoundItemInfo extends Activity {
 	 * catagory contains the catagory
 	 */
 	public static Item.Category catagory;
-	
-	
+
 	/**
-	 * get details from founditem list
-	 * set text
-	 * @param savedInstanceState Android system bundle
+	 * get details from founditem list set text
+	 * 
+	 * @param savedInstanceState
+	 *            Android system bundle
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_found_item_info);
-		TextView tv=(TextView) this.findViewById(R.id.textView1);
-    	tv.setText(itemname);
-    	TextView tv4=(TextView) this.findViewById(R.id.textView4);
-    	tv4.setText(discription);
-    	TextView tv6=(TextView) this.findViewById(R.id.textView6);
-    	tv6.setText(date.toString());
-    	TextView tv8=(TextView) this.findViewById(R.id.textView8);
-    	tv8.setText(location);
-    	TextView tv10=(TextView) this.findViewById(R.id.textView10);
-    	tv10.setText(catagory.toString());
+		TextView tv = (TextView) this.findViewById(R.id.textView1);
+		tv.setText(itemname);
+		TextView tv4 = (TextView) this.findViewById(R.id.textView4);
+		tv4.setText(discription);
+		TextView tv6 = (TextView) this.findViewById(R.id.textView6);
+		tv6.setText(date.toString());
+		TextView tv8 = (TextView) this.findViewById(R.id.textView8);
+		tv8.setText(location);
+		TextView tv10 = (TextView) this.findViewById(R.id.textView10);
+		tv10.setText(catagory.toString());
 	}
 
 	@Override
@@ -61,12 +61,15 @@ public class FoundItemInfo extends Activity {
 		getMenuInflater().inflate(R.menu.found_item_info, menu);
 		return true;
 	}
+
 	/**
 	 * go back to FoundItem Page
-	 * @param view Android system parameter
+	 * 
+	 * @param view
+	 *            Android system parameter
 	 */
-	public void FoundItemAttempt(View view){
-		Intent intent = new Intent(this,DisplayItem.class);
+	public void FoundItemAttempt(View view) {
+		Intent intent = new Intent(this, DisplayItem.class);
 		startActivity(intent);
 	}
 

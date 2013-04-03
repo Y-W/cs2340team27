@@ -14,8 +14,9 @@ import edu.gatech.cs2340.team27.lostandfound.R;
 
 /**
  * Processes the register activity.
+ * 
  * @author all
- *
+ * 
  */
 public class Register extends Activity {
 
@@ -24,7 +25,7 @@ public class Register extends Activity {
 	private EditText pswdConfirm;
 	private EditText realname;
 	private EditText phone;
-	
+
 	@Override
 	/**
 	 * build in method
@@ -50,41 +51,48 @@ public class Register extends Activity {
 		getMenuInflater().inflate(R.menu.register, menu);
 		return true;
 	}
+
 	/**
 	 * go back to login page
-	 * @param view Android system parameter
+	 * 
+	 * @param view
+	 *            Android system parameter
 	 */
 	public void goBack(View view) {
 		Intent intent = new Intent(this, Login.class);
 		startActivity(intent);
 	}
-	
+
 	/**
 	 * clear password and confirm textfields
 	 */
-	public void clear(){
+	public void clear() {
 		password.setText("");
 		pswdConfirm.setText("");
 	}
+
 	/**
 	 * clear email
 	 */
-	public void emailclear(){
+	public void emailclear() {
 		email.setText("");
-	
+
 	}
+
 	/**
-	 * get email, password and confirmpassword
-	 * if password and confirmpassword doesnt match
-	 * pop up wrong message
-	 * if email is already existed
-	 * pop up wrong message
-	 * otherwise create a new account
-	 * @param view Android system parameter
-	 * @throws ClassNotFoundException throw when class is not found
-	 * @throws IOException throw when file is not found
+	 * get email, password and confirmpassword if password and confirmpassword
+	 * doesnt match pop up wrong message if email is already existed pop up
+	 * wrong message otherwise create a new account
+	 * 
+	 * @param view
+	 *            Android system parameter
+	 * @throws ClassNotFoundException
+	 *             throw when class is not found
+	 * @throws IOException
+	 *             throw when file is not found
 	 */
-	public void registerAccount(View view) throws IOException, ClassNotFoundException{
+	public void registerAccount(View view) throws IOException,
+			ClassNotFoundException {
 		String userText = email.getText().toString();
 		String psText = password.getText().toString();
 		String pConfirm = pswdConfirm.getText().toString();
@@ -92,32 +100,36 @@ public class Register extends Activity {
 		String phoneText = phone.getText().toString();
 		if (!psText.equals(pConfirm)) {
 			new AlertDialog.Builder(this)
-		    .setTitle("Error")
-		    .setMessage("Confirm password is different from your password")
-		    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		        public void onClick(DialogInterface dialog, int which) { 
-		            clear();
-		        }
-		     })
-		     .show();
+					.setTitle("Error")
+					.setMessage(
+							"Confirm password is different from your password")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									clear();
+								}
+							}).show();
 			return;
 		}
-		boolean registerStatus = edu.gatech.cs2340.team27.lostandfound.model.
-				Communication.getInstance().createAccount(userText, psText, nameText, phoneText, false);
+		boolean registerStatus = edu.gatech.cs2340.team27.lostandfound.model.Communication
+				.getInstance().createAccount(userText, psText, nameText,
+						phoneText, false);
 		if (registerStatus)
 			goBack(view);
-		else{
+		else {
 			new AlertDialog.Builder(this)
-			.setTitle("Error")
-			.setMessage("User name already existed.")
-			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) { 
-					clear();
-					emailclear();
-				}
-			})
-			.show();
+					.setTitle("Error")
+					.setMessage("User name already existed.")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									clear();
+									emailclear();
+								}
+							}).show();
 		}
 	}
-	
+
 }

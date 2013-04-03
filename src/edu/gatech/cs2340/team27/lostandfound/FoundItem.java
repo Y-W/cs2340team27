@@ -18,15 +18,17 @@ import edu.gatech.cs2340.team27.lostandfound.data.Items;
 
 public class FoundItem extends Activity {
 
-private ArrayList<Item> foundlist;
-	
+	private ArrayList<Item> foundlist;
+
 	/**
-	 * Processes the onCreate event.
-	 * create a namelist, arrayadapter and use listview to show a
-	 * list of found items
-	 * when click to found item, redirect to detail info
-	 * @param savedInstanceState default
-	 * @param listview List of found item
+	 * Processes the onCreate event. create a namelist, arrayadapter and use
+	 * listview to show a list of found items when click to found item, redirect
+	 * to detail info
+	 * 
+	 * @param savedInstanceState
+	 *            default
+	 * @param listview
+	 *            List of found item
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,33 +40,37 @@ private ArrayList<Item> foundlist;
 		} catch (ParseException e) {
 		}
 		setContentView(R.layout.activity_found_item);
-		String[] nameList=new String[foundlist.size()];
+		String[] nameList = new String[foundlist.size()];
 		int a = 0;
-		for(Item i : foundlist){
-			nameList[a]=i.getName();
+		for (Item i : foundlist) {
+			nameList[a] = i.getName();
 			a++;
 		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-		        android.R.layout.simple_list_item_1, nameList);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, nameList);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
 
-		    	FoundItemInfo.itemname=foundlist.get(position).getName();
-		    	FoundItemInfo.discription=foundlist.get(position).getDescri();
-		    	FoundItemInfo.date=foundlist.get(position).getFoundDate();
-		    	FoundItemInfo.location=foundlist.get(position).getLoca();
-		    	FoundItemInfo.catagory=foundlist.get(position).getCategory();
-		    	Intent intent = new Intent(parent.getContext(), FoundItemInfo.class);
+				FoundItemInfo.itemname = foundlist.get(position).getName();
+				FoundItemInfo.discription = foundlist.get(position).getDescri();
+				FoundItemInfo.date = foundlist.get(position).getFoundDate();
+				FoundItemInfo.location = foundlist.get(position).getLoca();
+				FoundItemInfo.catagory = foundlist.get(position).getCategory();
+				Intent intent = new Intent(parent.getContext(),
+						FoundItemInfo.class);
 				startActivity(intent);
-		    }
-		}); 
+			}
+		});
 	}
 
 	/**
 	 * Processes the onCreateOptionsMenu event.
-	 * @param menu menu
+	 * 
+	 * @param menu
+	 *            menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,14 +78,16 @@ private ArrayList<Item> foundlist;
 		getMenuInflater().inflate(R.menu.found_item, menu);
 		return true;
 	}
-	
+
 	/**
 	 * Processes the cancel button's onClick event.
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void returnParent(View view) {
 		Intent intent = new Intent(this, HomePage.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
 
 }

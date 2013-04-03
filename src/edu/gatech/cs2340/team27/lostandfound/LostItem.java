@@ -17,22 +17,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
- * LostItem page
- * show lost item list
+ * LostItem page show lost item list
+ * 
  * @author all
- *
+ * 
  */
 public class LostItem extends Activity {
-	
+
 	private ArrayList<Item> lostlist;
-	
+
 	/**
-	 * Processes the onCreate event.
-	 * create a namelist, arrayadapter and use listview to show a
-	 * list of lost items
-	 * when click to lost item, redirect to detail info
-	 * @param savedInstanceState default
-	 * @param listview List of lost item
+	 * Processes the onCreate event. create a namelist, arrayadapter and use
+	 * listview to show a list of lost items when click to lost item, redirect
+	 * to detail info
+	 * 
+	 * @param savedInstanceState
+	 *            default
+	 * @param listview
+	 *            List of lost item
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,33 +46,37 @@ public class LostItem extends Activity {
 		} catch (ParseException e) {
 		}
 		setContentView(R.layout.activity_lost_item);
-		String[] nameList=new String[lostlist.size()];
+		String[] nameList = new String[lostlist.size()];
 		int a = 0;
-		for(Item i : lostlist){
-			nameList[a]=i.getName();
+		for (Item i : lostlist) {
+			nameList[a] = i.getName();
 			a++;
 		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-		        android.R.layout.simple_list_item_1, nameList);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, nameList);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-		    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
 
-		    	LostItemInfo.itemname=lostlist.get(position).getName();
-		    	LostItemInfo.discription=lostlist.get(position).getDescri();
-		    	LostItemInfo.date=lostlist.get(position).getLostDate();
-		    	LostItemInfo.location=lostlist.get(position).getLoca();
-		    	LostItemInfo.catagory=lostlist.get(position).getCategory();
-		    	Intent intent = new Intent(parent.getContext(), LostItemInfo.class);
+				LostItemInfo.itemname = lostlist.get(position).getName();
+				LostItemInfo.discription = lostlist.get(position).getDescri();
+				LostItemInfo.date = lostlist.get(position).getLostDate();
+				LostItemInfo.location = lostlist.get(position).getLoca();
+				LostItemInfo.catagory = lostlist.get(position).getCategory();
+				Intent intent = new Intent(parent.getContext(),
+						LostItemInfo.class);
 				startActivity(intent);
-		    }
-		}); 
+			}
+		});
 	}
 
 	/**
 	 * Processes the onCreateOptionsMenu event.
-	 * @param menu menu
+	 * 
+	 * @param menu
+	 *            menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,14 +84,16 @@ public class LostItem extends Activity {
 		getMenuInflater().inflate(R.menu.lost_item, menu);
 		return true;
 	}
-	
+
 	/**
 	 * Processes the cancel button's onClick event.
-	 * @param view default
+	 * 
+	 * @param view
+	 *            default
 	 */
 	public void returnParent(View view) {
 		Intent intent = new Intent(this, HomePage.class);
-	    startActivity(intent);
+		startActivity(intent);
 	}
 
 }
