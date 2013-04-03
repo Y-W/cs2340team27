@@ -9,7 +9,6 @@
     <string name="fitemname">Found Item Name</string>
     <string name="app_name">Lost and Found</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -22,11 +21,8 @@
     <string name="cancel">Cancel</string>
     <string name="founder">I Found Something</string>
     <string name="loser">I Lost Something</string>
-    <string name="lostinfo">Lost Item Info</string>
-    <string name="foundinfo">Found Item Info</string>
     <string name="filter">Display Items</string>
     <string name="logout">Log Out</string>
-    <string name="title_activity_home_page">HomePage</string>
     <string name="title_activity_lost_item_input">LostItemInput</string>
     <string name="lostItemInfo">Lost Item Info</string>
     <string name="foundItemInfo">Found Item Info</string>
@@ -48,7 +44,7 @@
     <string name="deleteuser">Delete this User</string>
     <string name="unlockuser">Unlock this User</string>
     <string name="title_activity_create_admin">CreateAdmin</string>
-    <string name="catagory">Catagory</string>
+    <string name="catagory">Category</string>
     <string name="title_activity_found_item_input">FoundItemInput</string>
     <string name="title_activity_found_item">FoundItem</string>
     <string name="title_activity_found_item_info">FoundItemInfo</string>
