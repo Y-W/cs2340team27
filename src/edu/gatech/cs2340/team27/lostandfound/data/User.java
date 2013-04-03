@@ -8,10 +8,10 @@ package edu.gatech.cs2340.team27.lostandfound.data;
  */
 public class User {
 
-	protected String name;
-	protected String phoneNumber;
-	protected String email;
-	protected boolean isLocked;
+	private String name;
+	private String phoneNumber;
+	private String email;
+	private boolean isLocked;
 
 	/**
 	 * Constructor.

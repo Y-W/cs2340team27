@@ -32,7 +32,7 @@ public class Users {
 	public Users() throws IOException, ClassNotFoundException {
 		list = Communication.getInstance().getUserList();
 		currentUser = Communication.getInstance().getCurrentUser();
-		if (Communication.getInstance().checkPrivilege(currentUser.email)) {
+		if (Communication.getInstance().checkPrivilege(currentUser.getEmail())) {
 			currentUser = new Admin(currentUser);
 		}
 	}
@@ -99,7 +99,7 @@ public class Users {
 	 */
 	public void updateCurrentUser() throws IOException, ClassNotFoundException {
 		currentUser = Communication.getInstance().getCurrentUser();
-		if (Communication.getInstance().checkPrivilege(currentUser.email)) {
+		if (Communication.getInstance().checkPrivilege(currentUser.getEmail())) {
 			currentUser = new Admin(currentUser);
 		}
 	}

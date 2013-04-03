@@ -248,7 +248,7 @@ public class Items {
 			Communication.getInstance()
 					.removeItem(f.getFounder().getEmail(), f);
 			Communication.getInstance().removeItem(l.getLoser().getEmail(), l);
-			Item r = new Item(f, l);
+			//Item r = new Item(f, l);
 			// Communication.getInstance().addItem(r);
 			return true;
 		}
