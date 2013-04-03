@@ -78,7 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBox4"
         android:layout_below="@+id/checkBox4"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="" >
 
         <requestFocus />
     </EditText>
