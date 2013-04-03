@@ -77,18 +77,6 @@ public class CreateAdmin extends Activity {
 	 * doesnt match pop up wrong message if email is already existed pop up
 	 * wrong message otherwise create a new account
 	 * 
-	 * @param view
-	 *            default
-	 * @param userText
-	 *            email Text
-	 * @param psText
-	 *            password Text
-	 * @param pConfirm
-	 *            password confirm
-	 * @param nameText
-	 *            real name text
-	 * @param phoneText
-	 *            phone number text
 	 * @throws ClassNotFoundException
 	 *             when class is not found
 	 * @throws IOException

@@ -101,16 +101,6 @@ public class Login extends Activity {
 	/**
 	 * check pw status
 	 * 
-	 * @param username
-	 *            username
-	 * @param password
-	 *            password
-	 * @param userText
-	 *            user text
-	 * @param psText
-	 *            password text
-	 * @param status
-	 *            login status
 	 * @return check password status
 	 * @throws IOException
 	 * @throws ClassNotFoundException
