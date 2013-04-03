@@ -33,7 +33,7 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_alignParentRight="true"
         android:layout_marginRight="46dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:onClick="cancel" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="14dp"
-        android:text="TextView" />
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/textView4"
@@ -52,7 +52,7 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
         android:layout_marginTop="15dp"
-        android:text="TextView" />
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/textView5"
@@ -70,7 +70,7 @@
         android:layout_alignLeft="@+id/textView5"
         android:layout_below="@+id/textView5"
         android:layout_marginTop="14dp"
-        android:text="TextView" />
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/textView7"
@@ -88,7 +88,7 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView7"
         android:layout_marginTop="22dp"
-        android:text="TextVw" />
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/textView2"
@@ -106,7 +106,7 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="16dp"
-        android:text="TextView" />
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/textView8"
@@ -115,7 +115,7 @@
         android:layout_alignLeft="@+id/textView6"
         android:layout_below="@+id/textView6"
         android:layout_marginTop="16dp"
-        android:text="Founder" />
+        android:text="@string/Finder" />
 
     <TextView
         android:id="@+id/textView9"
@@ -124,7 +124,7 @@
         android:layout_alignLeft="@+id/textView8"
         android:layout_below="@+id/textView8"
         android:layout_marginTop="15dp"
-        android:text="TextView" />
+        android:text="@string/Blank" />
 
     <Button
         android:id="@+id/button1"
@@ -133,7 +133,7 @@
         android:layout_alignLeft="@+id/textView9"
         android:layout_below="@+id/textView9"
         android:layout_marginTop="18dp"
-        android:text="Match!"
+        android:text="@string/Match"
         android:onClick="match" />
 
 </RelativeLayout>
