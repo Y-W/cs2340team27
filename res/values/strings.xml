@@ -55,5 +55,8 @@
     <string name="title_activity_match_list">MatchList</string>
     <string name="title_activity_match_info">MatchInfo</string>
     <string name="Blank">Blank</string>
+    <string name="Finder">Finder</string>
+    <string name="Match">Match</string>
+    
 
 </resources>
