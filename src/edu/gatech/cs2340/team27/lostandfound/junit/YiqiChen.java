@@ -38,8 +38,21 @@ public class YiqiChen {
 			"test2description", new Date(), test2user, Category.ANIMAL);
 		ArrayList<Item> list = Items.getInstance().getList();
 		assertEquals(2, list.size());
-		assertTrue(list.contains(new Item(ItemStatus.LOST, "test1", "test1location",
-			"test1description", new Date(), test1user, Category.ANIMAL)));
+		boolean test3 = false;
+		boolean test4 = false;
+		for(Item item : list) {
+			if(item.equals(new Item(ItemStatus.LOST, "test1", "test1location",
+			"test1description", new Date(), test1user, Category.ANIMAL))) {
+				test3 = true;
+			}
+			if(item.equals(new Item(ItemStatus.FOUND, "test4", "test4location",
+			"test4description", new Date(), test1user, Category.ANIMAL))) {
+				test3 = true;
+			}
+			
+		}
+		assertTrue(test3);
+		assertFalse(test4);
 	}
 
 }
