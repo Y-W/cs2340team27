@@ -63,6 +63,7 @@ public class Items {
 	/*
 	 * public void initialize(ArrayList<Item> items) { list = items; }
 	 */
+	
 	/**
 	 * Adds an item
 	 * 
@@ -109,6 +110,10 @@ public class Items {
 	public void update() throws IOException, ClassNotFoundException,
 			ParseException {
 		list = Communication.getInstance().getItems();
+	}
+	
+	public ArrayList<Item> getList() {
+		return list;
 	}
 
 	/**
