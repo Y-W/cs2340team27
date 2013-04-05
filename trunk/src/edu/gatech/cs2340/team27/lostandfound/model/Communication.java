@@ -89,7 +89,7 @@ public class Communication {
 				editor = pref.edit();
 				data = (HashMap<String, String>) pref.getAll();
 			} catch (Exception e) {
-				Log.v("reading fails", "reading fails");
+//				Log.v("reading fails", "reading fails");
 			}
 		}
 		createAccount("test", "test", "", "", false);
@@ -681,7 +681,7 @@ public class Communication {
 			if (s == null || s.equals("") || s.equals("null")) {
 				locknum = 0;
 			} else {
-				Log.v("value of s", s);
+//				Log.v("value of s", s);
 				try {
 					locknum = Integer.parseInt(s);
 				} catch (NumberFormatException e) {
