@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
@@ -16,9 +16,12 @@ import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 public class YW {
 
-	@Before
-	public void setUp() throws IOException, ClassNotFoundException, ParseException{
+	@BeforeClass 
+	public static void setUp() throws IOException, ClassNotFoundException, ParseException{
 		Communication.debug = true;
+		Communication.getInstance().createAccount("EA", "EA", "A", "1", false);
+		Communication.getInstance().createAccount("EB", "EB", "B", "2", false);
+		Communication.getInstance().createAccount("EC", "EC", "C", "3", false);
 		Items.getInstance().addItem(Item.ItemStatus.FOUND, "a", "aa", "aaa", 
 				new Date(), new User("A", "1", "EA", false),
 				Item.Category.ANIMAL);
