@@ -29,6 +29,8 @@ public class Communication {
 	private static final String prefName = "lostAndFound";
 	private SharedPreferences pref;
 	private SharedPreferences.Editor editor;
+	
+	public static boolean debug = false;
 
 	/**
 	 * Returns the only instance of Communication. If there's no instance ever
@@ -78,12 +80,17 @@ public class Communication {
 	 */
 	@SuppressWarnings("unchecked")
 	protected Communication() throws IOException, ClassNotFoundException {
-		try {
-			pref = getContext().getSharedPreferences(prefName, 0);
-			editor = pref.edit();
-			data = (HashMap<String, String>) pref.getAll();
-		} catch (Exception e) {
-			Log.v("reading fails", "reading fails");
+		if (debug) {
+			data  = new HashMap<String, String>();
+		}
+		else {
+			try {
+				pref = getContext().getSharedPreferences(prefName, 0);
+				editor = pref.edit();
+				data = (HashMap<String, String>) pref.getAll();
+			} catch (Exception e) {
+				Log.v("reading fails", "reading fails");
+			}
 		}
 		createAccount("test", "test", "", "", false);
 		createAccount("admin", "admin", "", "", true);
@@ -100,10 +107,12 @@ public class Communication {
 	 * save data to local file
 	 */
 	private void submit() {
-		for (String s : data.keySet()) {
-			editor.putString(s, data.get(s));
+		if (!debug) {
+			for (String s : data.keySet()) {
+				editor.putString(s, data.get(s));
+			}
+			editor.commit();
 		}
-		editor.commit();
 	}
 
 	/**
