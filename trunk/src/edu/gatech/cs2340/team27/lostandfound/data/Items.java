@@ -233,8 +233,7 @@ public class Items {
 	 *            found item
 	 * @param l
 	 *            lost item
-	 * @return true if these two are match delete found and lost item add
-	 *         resolved item
+	 * @return true if these two are match delete found and lost item
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws ParseException
