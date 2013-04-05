@@ -169,7 +169,11 @@ public class Item {
 	public User getFounder() {
 		return founder;
 	}
-
+	/**
+	 * see if these two items are equal
+	 * @param item item
+	 * @return equals or not
+	 */
 	public boolean equals(Item item) {
 		return name.toLowerCase().equals(item.name.toLowerCase());
 	}
