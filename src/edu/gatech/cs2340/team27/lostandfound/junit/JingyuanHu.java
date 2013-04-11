@@ -23,18 +23,62 @@ public class JingyuanHu {
 	}
 
 	@Test
-	public void test() throws IOException, ClassNotFoundException,
+	public void test1() throws IOException, ClassNotFoundException,
+			ParseException {
+		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
+				new Date(), new User("name", "123", "emaila", false),
+				Item.Category.OTHER);
+		Item b = new Item(ItemStatus.LOST, "APPLE", "COC", "apple", new Date(),
+				new User("nameb", "1111", "emailb", false), Item.Category.OTHER);
+		assertTrue(Items.getInstance().match(a, b));
+
+	}
+	@Test
+	public void test2() throws IOException, ClassNotFoundException,
 			ParseException {
 		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
 				new Date(), new User("name", "123", "emaila", false),
 				Item.Category.OTHER);
 		Item b = new Item(ItemStatus.LOST, "apple", "COC", "apple", new Date(),
 				new User("nameb", "1111", "emailb", false), Item.Category.OTHER);
+		assertTrue(Items.getInstance().match(a, b));
+
+	}
+	@Test
+	public void test3() throws IOException, ClassNotFoundException,
+			ParseException {
+		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
+				new Date(), new User("name", "123", "emaila", false),
+				Item.Category.OTHER);
 		Item c = new Item(ItemStatus.LOST, "Banana", "GT", "A banana",
 				new Date(), new User("namec", "1234", "emailc", false),
 				Item.Category.OTHER);
-		assertTrue(Items.getInstance().match(a, b));
 		assertFalse(Items.getInstance().match(a, c));
+
+	}
+	@Test
+	public void test4() throws IOException, ClassNotFoundException,
+			ParseException {
+		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
+				new Date(), new User("name", "123", "emaila", false),
+				Item.Category.OTHER);
+		Item c = new Item(ItemStatus.LOST, "Apple", "GT", "A banana",
+				new Date(), new User("namec", "1234", "emailc", false),
+				Item.Category.ELECTRONICS);
+		assertTrue(Items.getInstance().match(a, c));
+
+	}
+	
+	@Test
+	public void test5() throws IOException, ClassNotFoundException,
+			ParseException {
+		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
+				new Date(), new User("name", "123", "emaila", false),
+				Item.Category.OTHER);
+		Item c = new Item(ItemStatus.LOST, "aPplE", "GT", "A banana",
+				new Date(), new User("namec", "1234", "emailc", false),
+				Item.Category.OTHER);
+		assertTrue(Items.getInstance().match(a, c));
 
 	}
 
