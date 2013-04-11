@@ -63,7 +63,7 @@ public class Items {
 	/*
 	 * public void initialize(ArrayList<Item> items) { list = items; }
 	 */
-	
+
 	/**
 	 * Adds an item
 	 * 
@@ -111,7 +111,7 @@ public class Items {
 			ParseException {
 		list = Communication.getInstance().getItems();
 	}
-	
+
 	public ArrayList<Item> getList() {
 		return list;
 	}

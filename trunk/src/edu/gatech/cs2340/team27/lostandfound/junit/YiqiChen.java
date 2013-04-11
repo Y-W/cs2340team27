@@ -24,32 +24,38 @@ public class YiqiChen {
 	}
 
 	@Test
-	public void testAddItem() throws IOException, ClassNotFoundException, ParseException {
+	public void testAddItem() throws IOException, ClassNotFoundException,
+			ParseException {
 		Communication.debug = true;
-		User test1user = new User("test1username", "test1phone", "test1email", false);
-		User test2user = new User("test2username", "test2phone", "test2email", false);
-		Communication.getInstance().createAccount(test1user.getEmail(), "test1ps",
-				test1user.getName(), test1user.getPhoneNumber(), false);
-		Communication.getInstance().createAccount(test2user.getEmail(), "test2ps",
-				test2user.getName(), test2user.getPhoneNumber(), false);
+		User test1user = new User("test1username", "test1phone", "test1email",
+				false);
+		User test2user = new User("test2username", "test2phone", "test2email",
+				false);
+		Communication.getInstance().createAccount(test1user.getEmail(),
+				"test1ps", test1user.getName(), test1user.getPhoneNumber(),
+				false);
+		Communication.getInstance().createAccount(test2user.getEmail(),
+				"test2ps", test2user.getName(), test2user.getPhoneNumber(),
+				false);
 		Items.getInstance().addItem(ItemStatus.LOST, "test1", "test1location",
-			"test1description", new Date(), test1user, Category.ANIMAL);
+				"test1description", new Date(), test1user, Category.ANIMAL);
 		Items.getInstance().addItem(ItemStatus.LOST, "test2", "test2location",
-			"test2description", new Date(), test2user, Category.ANIMAL);
+				"test2description", new Date(), test2user, Category.ANIMAL);
 		ArrayList<Item> list = Items.getInstance().getList();
 		assertEquals(2, list.size());
 		boolean test3 = false;
 		boolean test4 = false;
-		for(Item item : list) {
-			if(item.equals(new Item(ItemStatus.LOST, "test1", "test1location",
-			"test1description", new Date(), test1user, Category.ANIMAL))) {
+		for (Item item : list) {
+			if (item.equals(new Item(ItemStatus.LOST, "test1", "test1location",
+					"test1description", new Date(), test1user, Category.ANIMAL))) {
 				test3 = true;
 			}
-			if(item.equals(new Item(ItemStatus.FOUND, "test4", "test4location",
-			"test4description", new Date(), test1user, Category.ANIMAL))) {
+			if (item.equals(new Item(ItemStatus.FOUND, "test4",
+					"test4location", "test4description", new Date(), test1user,
+					Category.ANIMAL))) {
 				test3 = true;
 			}
-			
+
 		}
 		assertTrue(test3);
 		assertFalse(test4);

@@ -11,8 +11,8 @@ import edu.gatech.cs2340.team27.lostandfound.data.User;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
 public class YukangYang {
-	
-	public Communication get() throws IOException, ClassNotFoundException{
+
+	public Communication get() throws IOException, ClassNotFoundException {
 		return Communication.getInstance();
 	}
 
@@ -21,11 +21,12 @@ public class YukangYang {
 	}
 
 	@Test
-	public void userSerializationTest() throws IOException, ClassNotFoundException {
+	public void userSerializationTest() throws IOException,
+			ClassNotFoundException {
 		Communication.debug = true;
 		assertEquals("[]", get().serializeUser(null));
 		User a = new User("name", "111", "email", false);
-		assertEquals("name%user%111%user%email%user%",get().serializeUser(a));
+		assertEquals("name%user%111%user%email%user%", get().serializeUser(a));
 	}
 
 }
