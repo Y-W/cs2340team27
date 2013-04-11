@@ -169,9 +169,12 @@ public class Item {
 	public User getFounder() {
 		return founder;
 	}
+
 	/**
 	 * see if these two items are equal
-	 * @param item item
+	 * 
+	 * @param item
+	 *            item
 	 * @return equals or not
 	 */
 	public boolean equals(Item item) {

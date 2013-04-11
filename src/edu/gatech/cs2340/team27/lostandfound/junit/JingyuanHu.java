@@ -15,7 +15,6 @@ import edu.gatech.cs2340.team27.lostandfound.data.Item.ItemStatus;
 import edu.gatech.cs2340.team27.lostandfound.data.User;
 import edu.gatech.cs2340.team27.lostandfound.model.Communication;
 
-
 public class JingyuanHu {
 
 	@Before
@@ -24,14 +23,19 @@ public class JingyuanHu {
 	}
 
 	@Test
-	public void test() throws IOException, ClassNotFoundException, ParseException {
-		Item a = new Item(ItemStatus.FOUND,"APPLE","COC","An Apple",new Date(),new User("name", "123", "emaila", false),Item.Category.OTHER);
-		Item b = new Item(ItemStatus.LOST,"apple","COC","apple",new Date(),new User("nameb", "1111", "emailb", false),Item.Category.OTHER);
-		Item c = new Item(ItemStatus.LOST,"Banana","GT","A banana",new Date(),new User("namec", "1234", "emailc", false),Item.Category.OTHER);
+	public void test() throws IOException, ClassNotFoundException,
+			ParseException {
+		Item a = new Item(ItemStatus.FOUND, "APPLE", "COC", "An Apple",
+				new Date(), new User("name", "123", "emaila", false),
+				Item.Category.OTHER);
+		Item b = new Item(ItemStatus.LOST, "apple", "COC", "apple", new Date(),
+				new User("nameb", "1111", "emailb", false), Item.Category.OTHER);
+		Item c = new Item(ItemStatus.LOST, "Banana", "GT", "A banana",
+				new Date(), new User("namec", "1234", "emailc", false),
+				Item.Category.OTHER);
 		assertTrue(Items.getInstance().match(a, b));
 		assertFalse(Items.getInstance().match(a, c));
-		
-		
+
 	}
 
 }

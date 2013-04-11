@@ -29,7 +29,7 @@ public class Communication {
 	private static final String prefName = "lostAndFound";
 	private SharedPreferences pref;
 	private SharedPreferences.Editor editor;
-	
+
 	public static boolean debug = false;
 
 	/**
@@ -81,15 +81,14 @@ public class Communication {
 	@SuppressWarnings("unchecked")
 	protected Communication() throws IOException, ClassNotFoundException {
 		if (debug) {
-			data  = new HashMap<String, String>();
-		}
-		else {
+			data = new HashMap<String, String>();
+		} else {
 			try {
 				pref = getContext().getSharedPreferences(prefName, 0);
 				editor = pref.edit();
 				data = (HashMap<String, String>) pref.getAll();
 			} catch (Exception e) {
-//				Log.v("reading fails", "reading fails");
+				// Log.v("reading fails", "reading fails");
 			}
 		}
 		createAccount("test", "test", "", "", false);
@@ -681,7 +680,7 @@ public class Communication {
 			if (s == null || s.equals("") || s.equals("null")) {
 				locknum = 0;
 			} else {
-//				Log.v("value of s", s);
+				// Log.v("value of s", s);
 				try {
 					locknum = Integer.parseInt(s);
 				} catch (NumberFormatException e) {
