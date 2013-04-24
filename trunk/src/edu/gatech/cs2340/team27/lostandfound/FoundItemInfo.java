@@ -69,7 +69,7 @@ public class FoundItemInfo extends Activity {
 	public void viewPicture(View view) {
 		Intent intent = new Intent();  
 		intent.setAction(android.content.Intent.ACTION_VIEW);  
-		File file = new File("/storage/sdcard0/DCIM/100MEDIA/IMAG0999.jpg");
+		File file = new File(getExternalFilesDir(null).getAbsolutePath()+"/"+itemname.replace(' ', '_')+date.getTime()+".jpg");
 		//File file = new File(getFilesDir().getAbsolutePath() + "/abc.jpg");//itemname.replace(' ', '_')+date.getTime()+".jpg");  
 		intent.setDataAndType(Uri.fromFile(file),"image/*");  
 		startActivity(intent); 
