@@ -8,7 +8,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +28,7 @@ public class FoundItemInput extends Activity {
 
 	ArrayAdapter<String> adapter;
 	Category cate;
+	static Bitmap imgTmp;
 
 	/**
 	 * Processes the onCreate event.
@@ -115,6 +118,19 @@ public class FoundItemInput extends Activity {
 	public void cancelFoundItemInfo(View view) {
 		Intent intent = new Intent(this, HomePage.class);
 		startActivity(intent);
+	}
+	
+	/**
+	 * Takes photo.
+	 * 
+	 * @param view
+	 *            Android system parameter
+	 */
+	public void takePhoto(View view) {
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    startActivityForResult(takePictureIntent, 0);
+	    Bundle extras = takePictureIntent.getExtras();
+	    imgTmp = (Bitmap) extras.get("data");
 	}
 
 	private class SpinnerSelectedListener implements OnItemSelectedListener {
