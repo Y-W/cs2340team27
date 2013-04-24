@@ -114,7 +114,7 @@ public class FoundItemInput extends Activity {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Bundle extras = takePictureIntent.getExtras();
+		Bundle extras = data.getExtras();
 	    imgTmp = (Bitmap) extras.get("data");
 	}
 
