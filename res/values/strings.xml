@@ -57,6 +57,7 @@
     <string name="Blank">Blank</string>
     <string name="Finder">Finder</string>
     <string name="Match">Match</string>
+    <string name="photo">Take Photo</string>
     
 
 </resources>
