@@ -97,4 +97,14 @@
         android:text="@string/cancel"  
         android:onClick="FoundItemAttempt"/>
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toRightOf="@+id/textView5"
+        android:text="@string/view_picture"
+        android:onClick="viewPicture"/>
+
 </RelativeLayout>

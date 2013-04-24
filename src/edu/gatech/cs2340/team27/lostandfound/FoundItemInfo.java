@@ -1,11 +1,15 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Date;
 
 import edu.gatech.cs2340.team27.lostandfound.data.Item;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -60,6 +64,15 @@ public class FoundItemInfo extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.found_item_info, menu);
 		return true;
+	}
+	
+	public void viewPicture(View view) {
+		Intent intent = new Intent();  
+		intent.setAction(android.content.Intent.ACTION_VIEW);  
+		File file = new File("/storage/sdcard0/DCIM/100MEDIA/IMAG0999.jpg");
+		//File file = new File(getFilesDir().getAbsolutePath() + "/abc.jpg");//itemname.replace(' ', '_')+date.getTime()+".jpg");  
+		intent.setDataAndType(Uri.fromFile(file),"image/*");  
+		startActivity(intent); 
 	}
 
 	/**
