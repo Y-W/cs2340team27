@@ -120,10 +120,11 @@ public class FoundItemInput extends Activity {
 //			);
 //		
 //		FileOutputStream fileOutputStream = new FileOutputStream(storageDir.getPath());
-		FileOutputStream fos = openFileOutput(name.replace(' ', '_')+date.getTime()+".jpg", Context.MODE_PRIVATE);
+		//FileOutputStream fos = openFileOutput(name.replace(' ', '_')+date.getTime()+".jpg", Context.MODE_PRIVATE);
+		FileOutputStream fos = openFileOutput("abc.jpg", Context.MODE_PRIVATE);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
 
-		imgTmp.compress(CompressFormat.JPEG, 8, bos);
+		imgTmp.compress(CompressFormat.JPEG, 80, bos);
 
 		bos.flush();
 
