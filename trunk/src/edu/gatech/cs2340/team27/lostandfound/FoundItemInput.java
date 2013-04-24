@@ -9,6 +9,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -111,16 +112,16 @@ public class FoundItemInput extends Activity {
 							}).show();
 			return;
 		}
-		File storageDir = new File(
-			    Environment.getExternalStoragePublicDirectory(
-			        Environment.DIRECTORY_PICTURES
-			    ), 
-			    name.replace(' ', '_')+date.getTime()+".jpg"
-			);
-		
-		FileOutputStream fileOutputStream = new FileOutputStream(storageDir.getPath());
-
-		BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
+//		File storageDir = new File(
+//			    Environment.getExternalStoragePublicDirectory(
+//			        Environment.DIRECTORY_PICTURES
+//			    ), 
+//			    name.replace(' ', '_')+date.getTime()+".jpg"
+//			);
+//		
+//		FileOutputStream fileOutputStream = new FileOutputStream(storageDir.getPath());
+		FileOutputStream fos = openFileOutput(name.replace(' ', '_')+date.getTime()+".jpg", Context.MODE_PRIVATE);
+		BufferedOutputStream bos = new BufferedOutputStream(fos);
 
 		imgTmp.compress(CompressFormat.JPEG, 8, bos);
 
