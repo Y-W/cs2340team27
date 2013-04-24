@@ -28,7 +28,7 @@ public class FoundItemInput extends Activity {
 
 	ArrayAdapter<String> adapter;
 	Category cate;
-	static Bitmap imgTmp;
+	static Intent takePictureIntent;
 
 	/**
 	 * Processes the onCreate event.
@@ -78,6 +78,9 @@ public class FoundItemInput extends Activity {
 	 */
 	public void confirmFoundItemInfo(View view) throws IOException,
 			ClassNotFoundException, ParseException {
+		Bundle extras = takePictureIntent.getExtras();
+	    Bitmap imgTmp = (Bitmap) extras.get("data");
+	    
 		String name = ((TextView) (this.findViewById(R.id.editText1)))
 				.getText().toString();
 		String location = ((TextView) (this.findViewById(R.id.editText2)))
@@ -127,10 +130,9 @@ public class FoundItemInput extends Activity {
 	 *            Android system parameter
 	 */
 	public void takePhoto(View view) {
-		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	    startActivityForResult(takePictureIntent, 0);
-	    Bundle extras = takePictureIntent.getExtras();
-	    imgTmp = (Bitmap) extras.get("data");
+	    
 	}
 
 	private class SpinnerSelectedListener implements OnItemSelectedListener {
