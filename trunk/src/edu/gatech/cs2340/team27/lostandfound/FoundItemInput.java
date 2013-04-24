@@ -29,6 +29,7 @@ public class FoundItemInput extends Activity {
 	ArrayAdapter<String> adapter;
 	Category cate;
 	static Intent takePictureIntent;
+	static Bitmap imgTmp;
 
 	/**
 	 * Processes the onCreate event.
@@ -78,8 +79,8 @@ public class FoundItemInput extends Activity {
 	 */
 	public void confirmFoundItemInfo(View view) throws IOException,
 			ClassNotFoundException, ParseException {
-		Bundle extras = takePictureIntent.getExtras();
-	    Bitmap imgTmp = (Bitmap) extras.get("data");
+
+		imgTmp.getWidth();
 	    
 		String name = ((TextView) (this.findViewById(R.id.editText1)))
 				.getText().toString();
@@ -110,6 +111,11 @@ public class FoundItemInput extends Activity {
 				ItemStatus.FOUND, null));
 		Intent intent = new Intent(this, DisplayItem.class);
 		startActivity(intent);
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Bundle extras = takePictureIntent.getExtras();
+	    imgTmp = (Bitmap) extras.get("data");
 	}
 
 	/**
