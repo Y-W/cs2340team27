@@ -121,15 +121,17 @@ public class FoundItemInput extends Activity {
 //		
 //		FileOutputStream fileOutputStream = new FileOutputStream(storageDir.getPath());
 		//FileOutputStream fos = openFileOutput(name.replace(' ', '_')+date.getTime()+".jpg", Context.MODE_PRIVATE);
-		FileOutputStream fos = openFileOutput("abc.jpg", Context.MODE_PRIVATE);
+		//FileOutputStream fos = openFileOutput("abc.jpg", Context.MODE_PRIVATE);
+		File file = new File("/storage/sdcard0/DCIM/100MEDIA/abc.jpg");
+		FileOutputStream fos = new FileOutputStream(file);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
 
-		imgTmp.compress(CompressFormat.JPEG, 80, bos);
+		imgTmp.compress(Bitmap.CompressFormat.JPEG, 80, bos);
 
 		bos.flush();
 
 		bos.close();
-		
+		fos.close();
 		DisplayItem.setList(Items.getInstance().filter(null, null,
 				ItemStatus.FOUND, null));
 		Intent intent = new Intent(this, DisplayItem.class);
