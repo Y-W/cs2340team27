@@ -86,31 +86,33 @@
     </EditText>
 
     <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toRightOf="@+id/button1"
+        android:onClick="takePhoto"
+        android:text="@string/photo" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/button3"
         android:layout_alignBottom="@+id/button3"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignTop="@+id/button3"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/button3"
         android:onClick="cancelFoundItemInfo"
         android:text="@string/cancel" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
         android:onClick="confirmFoundItemInfo"
         android:text="@string/confirm" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button1"
-        android:layout_toLeftOf="@+id/button2"
-        android:text="@string/photo" 
-        android:onClick="takePhoto"/>
 
 </RelativeLayout>
