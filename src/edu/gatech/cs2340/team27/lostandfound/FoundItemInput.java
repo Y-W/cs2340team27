@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.team27.lostandfound;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -9,7 +12,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
@@ -28,7 +33,6 @@ public class FoundItemInput extends Activity {
 
 	ArrayAdapter<String> adapter;
 	Category cate;
-	static Intent takePictureIntent;
 	static Bitmap imgTmp;
 
 	/**
@@ -80,7 +84,7 @@ public class FoundItemInput extends Activity {
 	public void confirmFoundItemInfo(View view) throws IOException,
 			ClassNotFoundException, ParseException {
 
-		imgTmp.getWidth();
+		
 	    
 		String name = ((TextView) (this.findViewById(R.id.editText1)))
 				.getText().toString();
@@ -107,6 +111,23 @@ public class FoundItemInput extends Activity {
 							}).show();
 			return;
 		}
+		File storageDir = new File(
+			    Environment.getExternalStoragePublicDirectory(
+			        Environment.DIRECTORY_PICTURES
+			    ), 
+			    name.replace(' ', '_')+date.getTime()+".jpg"
+			);
+		
+		FileOutputStream fileOutputStream = new FileOutputStream(storageDir.getPath());
+
+		BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
+
+		imgTmp.compress(CompressFormat.JPEG, 8, bos);
+
+		bos.flush();
+
+		bos.close();
+		
 		DisplayItem.setList(Items.getInstance().filter(null, null,
 				ItemStatus.FOUND, null));
 		Intent intent = new Intent(this, DisplayItem.class);
@@ -136,7 +157,7 @@ public class FoundItemInput extends Activity {
 	 *            Android system parameter
 	 */
 	public void takePhoto(View view) {
-		takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	    startActivityForResult(takePictureIntent, 0);
 	    
 	}
